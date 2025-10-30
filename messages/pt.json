@@ -458,7 +458,11 @@
           "seo": "Ótimo",
           "dynamicContent": "Alto",
           "serverLoad": "Equilibrado",
-          "useCases": ["Apps modernos", "Apps com muitos dados", "Apps seguros"],
+          "useCases": [
+            "Apps modernos",
+            "Apps com muitos dados",
+            "Apps seguros"
+          ],
           "description": "Componentes apenas do servidor"
         },
         "streaming": {
@@ -527,4 +531,3 @@
     }
   }
 }
-

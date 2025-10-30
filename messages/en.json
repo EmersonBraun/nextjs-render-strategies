@@ -24,7 +24,7 @@
   "navigation": {
     "home": "Home",
     "csr": "Client-Side Rendering",
-    "ssr": "Server-Side Rendering", 
+    "ssr": "Server-Side Rendering",
     "ssg": "Static Site Generation",
     "isr": "Incremental Static Regeneration",
     "rsc": "React Server Components",
@@ -105,7 +105,7 @@
       "comparison": {
         "title": "CSR Comparison",
         "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance", 
+        "seoPerformance": "SEO Performance",
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
@@ -141,7 +141,7 @@
         "title": "SSR Comparison",
         "initialSpeed": "Initial Speed",
         "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content", 
+        "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
         "bestForValue": "E-commerce, Blogs, SEO-critical sites"
@@ -199,7 +199,7 @@
         "initialSpeed": "Initial Speed",
         "seoPerformance": "SEO Performance",
         "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load", 
+        "serverLoad": "Server Load",
         "bestFor": "Best for",
         "bestForValue": "Blogs, Docs, Marketing sites"
       }
@@ -408,11 +408,7 @@
         "hybrid": {
           "title": "Hybrid Approach",
           "description": "Use ISR, RSC, or PPR for optimal performance",
-          "items": [
-            "Product catalogs",
-            "News sites",
-            "Modern web apps"
-          ]
+          "items": ["Product catalogs", "News sites", "Modern web apps"]
         }
       },
       "modes": {

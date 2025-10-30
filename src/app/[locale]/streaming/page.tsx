@@ -1,21 +1,23 @@
-import { BenefitsCard } from "./components/benefits-card"
-import { ComparisonCard } from "./components/comparison-card"
-import { Step1Card } from "./components/step1-card"
-import { Step2Card } from "./components/step2-card"
-import { Step3Card } from "./components/step3-card"
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from "next-intl/server";
+import { BenefitsCard } from "./components/benefits-card";
+import { ComparisonCard } from "./components/comparison-card";
+import { Step1Card } from "./components/step1-card";
+import { Step2Card } from "./components/step2-card";
+import { Step3Card } from "./components/step3-card";
 
-export default async function StreamingPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'pages.streaming' })
-  
+export default async function StreamingPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.streaming" });
+
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold">{t('title')}</h1>
-        <p className="text-muted-foreground">
-          {t('description')}
-        </p>
+        <h1 className="text-3xl font-bold">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("description")}</p>
       </div>
 
       <div className="space-y-6">
@@ -26,5 +28,5 @@ export default async function StreamingPage({ params }: { params: Promise<{ loca
         <ComparisonCard />
       </div>
     </div>
-  )
+  );
 }

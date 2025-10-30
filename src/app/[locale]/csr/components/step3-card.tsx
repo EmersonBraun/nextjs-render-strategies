@@ -1,23 +1,24 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-import { useTranslations } from 'next-intl'
+import { useTranslations } from "next-intl";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Step3CardProps {
-  showContent: boolean
-  data: { message: string; timestamp: string } | null
+  showContent: boolean;
+  data: { message: string; timestamp: string } | null;
 }
 
 export function Step3Card({ showContent, data }: Step3CardProps) {
-  const t = useTranslations('pages.csr.step3')
-  
+  const t = useTranslations("pages.csr.step3");
+
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm">3</span>
-          {t('title')}
+          <span className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm">
+            3
+          </span>
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -27,17 +28,17 @@ export function Step3Card({ showContent, data }: Step3CardProps) {
               ✅ {data.message}
             </p>
             <p className="text-sm text-blue-600 dark:text-blue-300 mt-1">
-              {t('loadedAt')} {data.timestamp}
+              {t("loadedAt")} {data.timestamp}
             </p>
           </div>
         ) : (
           <div className="p-4 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
             <p className="text-gray-600 dark:text-gray-400">
-              {t('clickToLoad')}
+              {t("clickToLoad")}
             </p>
           </div>
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

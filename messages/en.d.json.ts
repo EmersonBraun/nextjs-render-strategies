@@ -2,456 +2,452 @@
 // See: https://next-intl.dev/docs/workflows/typescript#messages-arguments
 
 declare const messages: {
-  "common": {
-    "loading": "Loading...",
-    "error": "Error",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "close": "Close",
-    "open": "Open",
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit",
-    "view": "View",
-    "search": "Search",
-    "filter": "Filter",
-    "sort": "Sort",
-    "refresh": "Refresh",
-    "language": "Language",
-    "theme": "Theme",
-    "dark": "Dark",
-    "light": "Light"
-  },
-  "navigation": {
-    "home": "Home",
-    "csr": "Client-Side Rendering",
-    "ssr": "Server-Side Rendering", 
-    "ssg": "Static Site Generation",
-    "isr": "Incremental Static Regeneration",
-    "rsc": "React Server Components",
-    "streaming": "React Streaming",
-    "ppr": "Partial Prerendering",
-    "comparison": "Comparison"
-  },
-  "pages": {
-    "home": {
-      "hero": {
-        "title": "Next.js Rendering Strategies",
-        "subtitle": "Your comprehensive guide to Next.js rendering approaches with interactive demos",
-        "cta": "Start Learning 🚀"
-      },
-      "whatIs": {
-        "title": "What is this project?",
-        "description": "This Next.js Rendering Strategies guide is your comprehensive companion for understanding different rendering approaches. Each strategy is presented with interactive demos showcasing Use Cases, Key Points, and Comparisons. This organization helps you quickly understand when to use each approach, what's important to know for building performant applications, and how different strategies relate to each other.",
-        "cta": "Explore Strategies ✨"
-      },
-      "explore": {
-        "title": "Explore Rendering Strategies"
-      },
-      "comparison": {
-        "description": "Compare all rendering modes side by side to understand their trade-offs",
-        "cta": "View Comparison"
-      },
-      "takeaways": {
-        "title": "Key Takeaways",
-        "static": {
-          "title": "Static Content",
-          "description": "Use SSG for blogs, docs, marketing pages"
-        },
-        "dynamic": {
-          "title": "Dynamic Content",
-          "description": "Use SSR for profiles, e-commerce, real-time data"
-        },
-        "hybrid": {
-          "title": "Hybrid Approach",
-          "description": "Use ISR, RSC, or PPR for optimal performance"
-        }
-      },
-      "title": "Next.js Rendering Strategies",
-      "subtitle": "Explore different rendering approaches and their trade-offs",
-      "description": "This demo showcases various Next.js rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR. Each page demonstrates the unique characteristics and use cases of different rendering approaches.",
-      "getStarted": "Get Started",
-      "learnMore": "Learn More"
-    },
-    "csr": {
-      "loading": "Page loading...",
-      "title": "Client-Side Rendering (CSR)",
-      "description": "Pages are rendered on the client-side after JavaScript loads",
-      "step1": {
-        "title": "Page Loaded",
-        "description": "✅ Page shell loaded, JavaScript executing..."
-      },
-      "step2": {
-        "title": "Dynamic Content Loading",
-        "description": "JavaScript fetches and renders content",
-        "loading": "Loading...",
-        "loadButton": "Load Dynamic Content",
-        "fetching": "🔄 Fetching data on client side..."
-      },
-      "step3": {
-        "title": "Dynamic Content Loaded",
-        "description": "All content is now visible and interactive",
-        "loadedAt": "Loaded at:",
-        "clickToLoad": "Click \"Load Dynamic Content\" to see this step"
-      },
-      "benefits": {
-        "title": "CSR Benefits",
-        "items": [
+  common: {
+    loading: "Loading...";
+    error: "Error";
+    back: "Back";
+    next: "Next";
+    previous: "Previous";
+    close: "Close";
+    open: "Open";
+    save: "Save";
+    cancel: "Cancel";
+    delete: "Delete";
+    edit: "Edit";
+    view: "View";
+    search: "Search";
+    filter: "Filter";
+    sort: "Sort";
+    refresh: "Refresh";
+    language: "Language";
+    theme: "Theme";
+    dark: "Dark";
+    light: "Light";
+  };
+  navigation: {
+    home: "Home";
+    csr: "Client-Side Rendering";
+    ssr: "Server-Side Rendering";
+    ssg: "Static Site Generation";
+    isr: "Incremental Static Regeneration";
+    rsc: "React Server Components";
+    streaming: "React Streaming";
+    ppr: "Partial Prerendering";
+    comparison: "Comparison";
+  };
+  pages: {
+    home: {
+      hero: {
+        title: "Next.js Rendering Strategies";
+        subtitle: "Your comprehensive guide to Next.js rendering approaches with interactive demos";
+        cta: "Start Learning 🚀";
+      };
+      whatIs: {
+        title: "What is this project?";
+        description: "This Next.js Rendering Strategies guide is your comprehensive companion for understanding different rendering approaches. Each strategy is presented with interactive demos showcasing Use Cases, Key Points, and Comparisons. This organization helps you quickly understand when to use each approach, what's important to know for building performant applications, and how different strategies relate to each other.";
+        cta: "Explore Strategies ✨";
+      };
+      explore: {
+        title: "Explore Rendering Strategies";
+      };
+      comparison: {
+        description: "Compare all rendering modes side by side to understand their trade-offs";
+        cta: "View Comparison";
+      };
+      takeaways: {
+        title: "Key Takeaways";
+        static: {
+          title: "Static Content";
+          description: "Use SSG for blogs, docs, marketing pages";
+        };
+        dynamic: {
+          title: "Dynamic Content";
+          description: "Use SSR for profiles, e-commerce, real-time data";
+        };
+        hybrid: {
+          title: "Hybrid Approach";
+          description: "Use ISR, RSC, or PPR for optimal performance";
+        };
+      };
+      title: "Next.js Rendering Strategies";
+      subtitle: "Explore different rendering approaches and their trade-offs";
+      description: "This demo showcases various Next.js rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR. Each page demonstrates the unique characteristics and use cases of different rendering approaches.";
+      getStarted: "Get Started";
+      learnMore: "Learn More";
+    };
+    csr: {
+      loading: "Page loading...";
+      title: "Client-Side Rendering (CSR)";
+      description: "Pages are rendered on the client-side after JavaScript loads";
+      step1: {
+        title: "Page Loaded";
+        description: "✅ Page shell loaded, JavaScript executing...";
+      };
+      step2: {
+        title: "Dynamic Content Loading";
+        description: "JavaScript fetches and renders content";
+        loading: "Loading...";
+        loadButton: "Load Dynamic Content";
+        fetching: "🔄 Fetching data on client side...";
+      };
+      step3: {
+        title: "Dynamic Content Loaded";
+        description: "All content is now visible and interactive";
+        loadedAt: "Loaded at:";
+        clickToLoad: 'Click "Load Dynamic Content" to see this step';
+      };
+      benefits: {
+        title: "CSR Benefits";
+        items: [
           "Rich Interactivity: Full client-side interactivity",
           "Reduced Server Load: Minimal server processing",
           "Dynamic Updates: Real-time content updates",
-          "Offline Support: Works without server connection"
-        ]
-      },
-      "comparison": {
-        "title": "CSR Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance", 
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load",
-        "bestFor": "Best for",
-        "bestForValue": "SPAs, Dashboards, Interactive apps"
-      }
-    },
-    "ssr": {
-      "title": "Server-Side Rendering (SSR)",
-      "description": "Pages are rendered on the server for each request",
-      "step1": {
-        "title": "Server Processing",
-        "description": "🔄 Server fetching data and rendering HTML..."
-      },
-      "step2": {
-        "title": "HTML Sent to Client",
-        "description": "✅ Complete HTML with data sent to browser"
-      },
-      "step3": {
-        "title": "Page Ready",
-        "description": "Page is immediately visible and interactive",
-        "renderedAt": "Server rendered at:"
-      },
-      "benefits": {
-        "title": "SSR Benefits",
-        "items": [
+          "Offline Support: Works without server connection",
+        ];
+      };
+      comparison: {
+        title: "CSR Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "SPAs, Dashboards, Interactive apps";
+      };
+    };
+    ssr: {
+      title: "Server-Side Rendering (SSR)";
+      description: "Pages are rendered on the server for each request";
+      step1: {
+        title: "Server Processing";
+        description: "🔄 Server fetching data and rendering HTML...";
+      };
+      step2: {
+        title: "HTML Sent to Client";
+        description: "✅ Complete HTML with data sent to browser";
+      };
+      step3: {
+        title: "Page Ready";
+        description: "Page is immediately visible and interactive";
+        renderedAt: "Server rendered at:";
+      };
+      benefits: {
+        title: "SSR Benefits";
+        items: [
           "SEO Optimized: Search engines can crawl content",
           "Fast Initial Load: HTML ready immediately",
           "Social Sharing: Rich previews for social media",
-          "Accessibility: Works without JavaScript"
-        ]
-      },
-      "comparison": {
-        "title": "SSR Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content", 
-        "serverLoad": "Server Load",
-        "bestFor": "Best for",
-        "bestForValue": "E-commerce, Blogs, SEO-critical sites"
-      }
-    },
-    "ssg": {
-      "title": "Static Site Generation (SSG)",
-      "description": "Pages are pre-built at build time",
-      "step1": {
-        "title": "Build Time Generation",
-        "description": "Content generated and HTML pre-built"
-      },
-      "step2": {
-        "title": "CDN Storage",
-        "description": "Static HTML files cached on CDN"
-      },
-      "step3": {
-        "title": "Instant Delivery",
-        "description": "Content served instantly from CDN"
-      },
-      "benefits": {
-        "title": "SSG Benefits",
-        "items": [
+          "Accessibility: Works without JavaScript",
+        ];
+      };
+      comparison: {
+        title: "SSR Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "E-commerce, Blogs, SEO-critical sites";
+      };
+    };
+    ssg: {
+      title: "Static Site Generation (SSG)";
+      description: "Pages are pre-built at build time";
+      step1: {
+        title: "Build Time Generation";
+        description: "Content generated and HTML pre-built";
+      };
+      step2: {
+        title: "CDN Storage";
+        description: "Static HTML files cached on CDN";
+      };
+      step3: {
+        title: "Instant Delivery";
+        description: "Content served instantly from CDN";
+      };
+      benefits: {
+        title: "SSG Benefits";
+        items: [
           "Maximum Performance: Fastest possible loading",
           "CDN Distribution: Global content delivery",
           "Cost Effective: Minimal server resources needed",
-          "Security: No server-side vulnerabilities"
-        ]
-      },
-      "comparison": {
-        "title": "SSG Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load", 
-        "bestFor": "Best for",
-        "bestForValue": "Blogs, Docs, Marketing sites"
-      }
-    },
-    "isr": {
-      "title": "Incremental Static Regeneration (ISR)",
-      "description": "SSG with timed revalidation",
-      "step1": {
-        "title": "Static Content Served",
-        "description": "Cached static content served instantly"
-      },
-      "step2": {
-        "title": "Background Regeneration",
-        "description": "Content regenerating in background"
-      },
-      "step3": {
-        "title": "Fresh Content Ready",
-        "description": "Updated content ready for next request"
-      },
-      "benefits": {
-        "title": "ISR Benefits",
-        "items": [
+          "Security: No server-side vulnerabilities",
+        ];
+      };
+      comparison: {
+        title: "SSG Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "Blogs, Docs, Marketing sites";
+      };
+    };
+    isr: {
+      title: "Incremental Static Regeneration (ISR)";
+      description: "SSG with timed revalidation";
+      step1: {
+        title: "Static Content Served";
+        description: "Cached static content served instantly";
+      };
+      step2: {
+        title: "Background Regeneration";
+        description: "Content regenerating in background";
+      };
+      step3: {
+        title: "Fresh Content Ready";
+        description: "Updated content ready for next request";
+      };
+      benefits: {
+        title: "ISR Benefits";
+        items: [
           "Best of Both Worlds: Static performance + dynamic updates",
           "Automatic Revalidation: Content stays fresh",
           "Scalable: Handles traffic spikes gracefully",
-          "Cost Efficient: Reduced server load"
-        ]
-      },
-      "comparison": {
-        "title": "ISR Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load",
-        "bestFor": "Best for",
-        "bestForValue": "Catalogs, News, Product listings"
-      }
-    },
-    "rsc": {
-      "title": "React Server Components (RSC)",
-      "description": "Server-only components for optimal performance",
-      "step1": {
-        "title": "Server Component",
-        "description": "Rendered on server with direct data access"
-      },
-      "step2": {
-        "title": "Client Component",
-        "description": "Rendered on client with browser APIs"
-      },
-      "step3": {
-        "title": "Combined Result",
-        "description": "Server + Client components working together"
-      },
-      "benefits": {
-        "title": "RSC Benefits",
-        "items": [
+          "Cost Efficient: Reduced server load",
+        ];
+      };
+      comparison: {
+        title: "ISR Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "Catalogs, News, Product listings";
+      };
+    };
+    rsc: {
+      title: "React Server Components (RSC)";
+      description: "Server-only components for optimal performance";
+      step1: {
+        title: "Server Component";
+        description: "Rendered on server with direct data access";
+      };
+      step2: {
+        title: "Client Component";
+        description: "Rendered on client with browser APIs";
+      };
+      step3: {
+        title: "Combined Result";
+        description: "Server + Client components working together";
+      };
+      benefits: {
+        title: "RSC Benefits";
+        items: [
           "Optimal Performance: Server + client components",
           "Secure Data Access: Server-side data fetching",
           "Reduced Bundle Size: Less JavaScript to client",
-          "Better SEO: Server-rendered content"
-        ]
-      },
-      "comparison": {
-        "title": "RSC Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load",
-        "bestFor": "Best for",
-        "bestForValue": "Modern apps, Data-heavy, Secure apps"
-      }
-    },
-    "streaming": {
-      "title": "React Streaming",
-      "description": "Progressive loading with Suspense boundaries",
-      "step1": {
-        "title": "Fast Content (Immediate)",
-        "description": "Content that loads instantly"
-      },
-      "step2": {
-        "title": "Slow Content (2s delay)",
-        "description": "Content that takes time to load, wrapped in Suspense"
-      },
-      "step3": {
-        "title": "Multiple Suspense Boundaries",
-        "description": "Multiple components loading independently"
-      },
-      "benefits": {
-        "title": "Streaming Benefits",
-        "items": [
+          "Better SEO: Server-rendered content",
+        ];
+      };
+      comparison: {
+        title: "RSC Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "Modern apps, Data-heavy, Secure apps";
+      };
+    };
+    streaming: {
+      title: "React Streaming";
+      description: "Progressive loading with Suspense boundaries";
+      step1: {
+        title: "Fast Content (Immediate)";
+        description: "Content that loads instantly";
+      };
+      step2: {
+        title: "Slow Content (2s delay)";
+        description: "Content that takes time to load, wrapped in Suspense";
+      };
+      step3: {
+        title: "Multiple Suspense Boundaries";
+        description: "Multiple components loading independently";
+      };
+      benefits: {
+        title: "Streaming Benefits";
+        items: [
           "Progressive Loading: Fast content appears immediately",
           "Better UX: Users see content as it becomes available",
           "Parallel Loading: Multiple components load independently",
-          "Error Boundaries: Isolated error handling per component"
-        ]
-      },
-      "comparison": {
-        "title": "Streaming Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load",
-        "bestFor": "Best for",
-        "bestForValue": "Dashboards, Real-time, Progressive apps"
-      }
-    },
-    "ppr": {
-      "title": "Partial Prerendering (PPR)",
-      "description": "Static shells with dynamic holes",
-      "step1": {
-        "title": "Static Shell",
-        "description": "Static content prerendered at build time"
-      },
-      "step2": {
-        "title": "Dynamic Holes",
-        "description": "Dynamic content streams into static shell"
-      },
-      "step3": {
-        "title": "Hybrid Result",
-        "description": "Static shell + dynamic content = optimal performance"
-      },
-      "benefits": {
-        "title": "PPR Benefits",
-        "items": [
+          "Error Boundaries: Isolated error handling per component",
+        ];
+      };
+      comparison: {
+        title: "Streaming Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "Dashboards, Real-time, Progressive apps";
+      };
+    };
+    ppr: {
+      title: "Partial Prerendering (PPR)";
+      description: "Static shells with dynamic holes";
+      step1: {
+        title: "Static Shell";
+        description: "Static content prerendered at build time";
+      };
+      step2: {
+        title: "Dynamic Holes";
+        description: "Dynamic content streams into static shell";
+      };
+      step3: {
+        title: "Hybrid Result";
+        description: "Static shell + dynamic content = optimal performance";
+      };
+      benefits: {
+        title: "PPR Benefits";
+        items: [
           "Instant Static Shell: Fast initial page load",
           "Progressive Enhancement: Dynamic content streams in",
           "Optimal UX: Users see content immediately",
-          "Flexible Architecture: Mix static and dynamic content"
-        ]
-      },
-      "comparison": {
-        "title": "PPR Comparison",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load",
-        "bestFor": "Best for",
-        "bestForValue": "Next.js 16+, Hybrid apps, Optimal perf"
-      }
-    },
-    "comparison": {
-      "title": "Rendering Modes Comparison",
-      "subtitle": "Compare different rendering approaches across key metrics",
-      "tableTitle": "Rendering Modes Comparison Table",
-      "tableDescription": "This table compares various rendering modes for web applications",
-      "headers": {
-        "mode": "Mode",
-        "initialSpeed": "Initial Speed",
-        "seoPerformance": "SEO Performance",
-        "dynamicContent": "Dynamic Content",
-        "serverLoad": "Server Load",
-        "useCases": "Use Cases"
-      },
-      "takeaways": {
-        "title": "Key Takeaways",
-        "static": {
-          "title": "Static Content",
-          "description": "Use SSG for content that doesn't change often",
-          "items": [
+          "Flexible Architecture: Mix static and dynamic content",
+        ];
+      };
+      comparison: {
+        title: "PPR Comparison";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        bestFor: "Best for";
+        bestForValue: "Next.js 16+, Hybrid apps, Optimal perf";
+      };
+    };
+    comparison: {
+      title: "Rendering Modes Comparison";
+      subtitle: "Compare different rendering approaches across key metrics";
+      tableTitle: "Rendering Modes Comparison Table";
+      tableDescription: "This table compares various rendering modes for web applications";
+      headers: {
+        mode: "Mode";
+        initialSpeed: "Initial Speed";
+        seoPerformance: "SEO Performance";
+        dynamicContent: "Dynamic Content";
+        serverLoad: "Server Load";
+        useCases: "Use Cases";
+      };
+      takeaways: {
+        title: "Key Takeaways";
+        static: {
+          title: "Static Content";
+          description: "Use SSG for content that doesn't change often";
+          items: [
             "Blogs and documentation",
             "Marketing pages",
-            "Portfolio sites"
-          ]
-        },
-        "dynamic": {
-          "title": "Dynamic Content",
-          "description": "Use SSR for real-time or user-specific content",
-          "items": [
+            "Portfolio sites",
+          ];
+        };
+        dynamic: {
+          title: "Dynamic Content";
+          description: "Use SSR for real-time or user-specific content";
+          items: [
             "E-commerce product pages",
             "User profiles",
-            "Real-time dashboards"
-          ]
-        },
-        "hybrid": {
-          "title": "Hybrid Approach",
-          "description": "Use ISR, RSC, or PPR for optimal performance",
-          "items": [
-            "Product catalogs",
-            "News sites",
-            "Modern web apps"
-          ]
-        }
-      },
-      "modes": {
-        "csr": {
-          "name": "Client-Side Rendering",
-          "initialSpeed": "Slow",
-          "seo": "Poor",
-          "dynamicContent": "High",
-          "serverLoad": "Low",
-          "useCases": ["SPAs", "Games", "Dashboards"],
-          "description": "Browser renders after JavaScript loads"
-        },
-        "ssr": {
-          "name": "Server-Side Rendering",
-          "initialSpeed": "Fast",
-          "seo": "Great",
-          "dynamicContent": "High",
-          "serverLoad": "High",
-          "useCases": ["E-commerce", "Profiles", "Real-time data"],
-          "description": "Server renders on each request"
-        },
-        "ssg": {
-          "name": "Static Site Generation",
-          "initialSpeed": "Fast",
-          "seo": "Great",
-          "dynamicContent": "Low",
-          "serverLoad": "None",
-          "useCases": ["Blogs", "Docs", "Marketing"],
-          "description": "Pre-built at build time"
-        },
-        "isr": {
-          "name": "Incremental Static Regeneration",
-          "initialSpeed": "Fast",
-          "seo": "Great",
-          "dynamicContent": "Medium",
-          "serverLoad": "Low",
-          "useCases": ["Catalogs", "News", "Product listings"],
-          "description": "SSG with timed regeneration"
-        },
-        "rsc": {
-          "name": "React Server Components",
-          "initialSpeed": "Optimal",
-          "seo": "Great",
-          "dynamicContent": "High",
-          "serverLoad": "Balanced",
-          "useCases": ["Modern apps", "Data-heavy", "Secure apps"],
-          "description": "Server-only components"
-        },
-        "streaming": {
-          "name": "Streaming",
-          "initialSpeed": "Fast",
-          "seo": "Good",
-          "dynamicContent": "High",
-          "serverLoad": "Medium",
-          "useCases": ["Dashboards", "Real-time", "Progressive apps"],
-          "description": "Chunked HTML via Suspense"
-        },
-        "ppr": {
-          "name": "Partial Prerendering",
-          "initialSpeed": "Optimal",
-          "seo": "Great",
-          "dynamicContent": "High",
-          "serverLoad": "Balanced",
-          "useCases": ["Next.js 16+", "Hybrid apps", "Optimal perf"],
-          "description": "Static shells + dynamic holes"
-        }
-      },
-      "speedLabels": {
-        "high": "High",
-        "optimal": "Optimal",
-        "fast": "Fast",
-        "slow": "Slow"
-      },
-      "seoLabels": {
-        "great": "Great",
-        "good": "Good",
-        "poor": "Poor"
-      },
-      "dynamicLabels": {
-        "high": "High",
-        "medium": "Medium",
-        "low": "Low"
-      },
-      "serverLoadLabels": {
-        "none": "None",
-        "low": "Low",
-        "balanced": "Balanced",
-        "medium": "Medium",
-        "high": "High"
-      }
-    }
-  }
+            "Real-time dashboards",
+          ];
+        };
+        hybrid: {
+          title: "Hybrid Approach";
+          description: "Use ISR, RSC, or PPR for optimal performance";
+          items: ["Product catalogs", "News sites", "Modern web apps"];
+        };
+      };
+      modes: {
+        csr: {
+          name: "Client-Side Rendering";
+          initialSpeed: "Slow";
+          seo: "Poor";
+          dynamicContent: "High";
+          serverLoad: "Low";
+          useCases: ["SPAs", "Games", "Dashboards"];
+          description: "Browser renders after JavaScript loads";
+        };
+        ssr: {
+          name: "Server-Side Rendering";
+          initialSpeed: "Fast";
+          seo: "Great";
+          dynamicContent: "High";
+          serverLoad: "High";
+          useCases: ["E-commerce", "Profiles", "Real-time data"];
+          description: "Server renders on each request";
+        };
+        ssg: {
+          name: "Static Site Generation";
+          initialSpeed: "Fast";
+          seo: "Great";
+          dynamicContent: "Low";
+          serverLoad: "None";
+          useCases: ["Blogs", "Docs", "Marketing"];
+          description: "Pre-built at build time";
+        };
+        isr: {
+          name: "Incremental Static Regeneration";
+          initialSpeed: "Fast";
+          seo: "Great";
+          dynamicContent: "Medium";
+          serverLoad: "Low";
+          useCases: ["Catalogs", "News", "Product listings"];
+          description: "SSG with timed regeneration";
+        };
+        rsc: {
+          name: "React Server Components";
+          initialSpeed: "Optimal";
+          seo: "Great";
+          dynamicContent: "High";
+          serverLoad: "Balanced";
+          useCases: ["Modern apps", "Data-heavy", "Secure apps"];
+          description: "Server-only components";
+        };
+        streaming: {
+          name: "Streaming";
+          initialSpeed: "Fast";
+          seo: "Good";
+          dynamicContent: "High";
+          serverLoad: "Medium";
+          useCases: ["Dashboards", "Real-time", "Progressive apps"];
+          description: "Chunked HTML via Suspense";
+        };
+        ppr: {
+          name: "Partial Prerendering";
+          initialSpeed: "Optimal";
+          seo: "Great";
+          dynamicContent: "High";
+          serverLoad: "Balanced";
+          useCases: ["Next.js 16+", "Hybrid apps", "Optimal perf"];
+          description: "Static shells + dynamic holes";
+        };
+      };
+      speedLabels: {
+        high: "High";
+        optimal: "Optimal";
+        fast: "Fast";
+        slow: "Slow";
+      };
+      seoLabels: {
+        great: "Great";
+        good: "Good";
+        poor: "Poor";
+      };
+      dynamicLabels: {
+        high: "High";
+        medium: "Medium";
+        low: "Low";
+      };
+      serverLoadLabels: {
+        none: "None";
+        low: "Low";
+        balanced: "Balanced";
+        medium: "Medium";
+        high: "High";
+      };
+    };
+  };
 };
 export default messages;

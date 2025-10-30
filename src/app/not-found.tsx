@@ -1,9 +1,7 @@
-'use client';
+"use client";
 
-import Error from 'next/error';
+import NextError from "next/error";
 
 export default function GlobalNotFound() {
-    return (
-        <Error statusCode={404} />
-    );
+  return <NextError statusCode={404} />;
 }
