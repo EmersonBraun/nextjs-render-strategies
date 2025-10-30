@@ -1,10 +1,12 @@
-import { GetRequestConfigParams } from "next-intl/server";
 import { notFound } from "next/navigation";
+import type { GetRequestConfigParams } from "next-intl/server";
 
 // Can be imported from a shared config
 const locales = ["en", "pt", "es", "uk"];
 
-export default async function getRequestConfig({ locale }: GetRequestConfigParams) {
+export default async function getRequestConfig({
+  locale,
+}: GetRequestConfigParams) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as unknown as string)) notFound();
 
@@ -13,4 +15,3 @@ export default async function getRequestConfig({ locale }: GetRequestConfigParam
     messages: (await import(`./messages/${locale}.json`)).default,
   };
 }
-

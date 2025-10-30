@@ -5,6 +5,9 @@ import { Step1Card } from "./components/step1-card";
 import { Step2Card } from "./components/step2-card";
 import { Step3Card } from "./components/step3-card";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // Simulate server-side data fetching
 async function getServerData(locale: string) {
   // Simulate database/API call

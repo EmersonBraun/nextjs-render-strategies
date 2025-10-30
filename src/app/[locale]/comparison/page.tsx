@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import {
   Card,
   CardContent,
@@ -5,8 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { getTranslations } from "next-intl/server";
 
 function getSpeedColor(speed: string, speedLabels: Record<string, string>) {
   if (speed === speedLabels.high || speed === speedLabels.optimal) {

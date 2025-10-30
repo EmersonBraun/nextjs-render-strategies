@@ -1,9 +1,9 @@
+import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
 import { Step1Card } from "./components/step1-card";
 import { Step2Card } from "./components/step2-card";
 import { Step3Card } from "./components/step3-card";
-import { getTranslations } from "next-intl/server";
 
 // Simulate server-side data fetching
 async function getServerData() {
