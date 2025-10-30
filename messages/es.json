@@ -1,0 +1,529 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "refresh": "Actualizar",
+    "language": "Idioma",
+    "theme": "Tema",
+    "dark": "Oscuro",
+    "light": "Claro"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "csr": "Renderizado del Cliente",
+    "ssr": "Renderizado del Servidor",
+    "ssg": "Generación de Sitio Estático",
+    "isr": "Regeneración Estática Incremental",
+    "rsc": "Componentes del Servidor React",
+    "streaming": "Streaming React",
+    "ppr": "Prerenderizado Parcial",
+    "comparison": "Comparación"
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "title": "Estrategias de Renderizado Next.js",
+        "subtitle": "Tu guía completa para enfoques de renderizado Next.js con demostraciones interactivas",
+        "cta": "Comenzar a Aprender 🚀"
+      },
+      "whatIs": {
+        "title": "¿Qué es este proyecto?",
+        "description": "Esta guía de Estrategias de Renderizado Next.js es tu compañero completo para entender diferentes enfoques de renderizado. Cada estrategia se presenta con demostraciones interactivas mostrando Casos de Uso, Puntos Clave y Comparaciones. Esta organización te ayuda a entender rápidamente cuándo usar cada enfoque, qué es importante saber para construir aplicaciones de alto rendimiento y cómo se relacionan entre sí las diferentes estrategias.",
+        "cta": "Explorar Estrategias ✨"
+      },
+      "explore": {
+        "title": "Explorar Estrategias de Renderizado"
+      },
+      "comparison": {
+        "description": "Compara todos los modos de renderizado lado a lado para entender sus compensaciones",
+        "cta": "Ver Comparación"
+      },
+      "takeaways": {
+        "title": "Conclusiones Clave",
+        "static": {
+          "title": "Contenido Estático",
+          "description": "Usa SSG para blogs, documentación, páginas de marketing"
+        },
+        "dynamic": {
+          "title": "Contenido Dinámico",
+          "description": "Usa SSR para perfiles, e-commerce, datos en tiempo real"
+        },
+        "hybrid": {
+          "title": "Enfoque Híbrido",
+          "description": "Usa ISR, RSC o PPR para rendimiento óptimo"
+        }
+      },
+      "title": "Estrategias de Renderizado Next.js",
+      "subtitle": "Explora diferentes enfoques de renderizado y sus compensaciones",
+      "description": "Esta demostración muestra varias estrategias de renderizado Next.js incluyendo CSR, SSR, SSG, ISR, RSC, Streaming y PPR. Cada página demuestra las características únicas y casos de uso de diferentes enfoques de renderizado.",
+      "getStarted": "Comenzar",
+      "learnMore": "Saber Más"
+    },
+    "csr": {
+      "loading": "Cargando página...",
+      "title": "Renderizado del Cliente (CSR)",
+      "description": "Las páginas se renderizan en el cliente después de que JavaScript se carga",
+      "step1": {
+        "title": "Página Cargada",
+        "description": "✅ Shell HTML cargado, JavaScript ejecutándose..."
+      },
+      "step2": {
+        "title": "Carga de Contenido Dinámico",
+        "description": "JavaScript obtiene y renderiza contenido",
+        "loading": "Cargando...",
+        "loadButton": "Cargar Contenido Dinámico",
+        "fetching": "🔄 Obteniendo datos en el cliente..."
+      },
+      "step3": {
+        "title": "Contenido Dinámico Cargado",
+        "description": "Todo el contenido está ahora visible e interactivo",
+        "loadedAt": "Cargado en:",
+        "clickToLoad": "Haz clic en \"Cargar Contenido Dinámico\" para ver este paso"
+      },
+      "benefits": {
+        "title": "Beneficios CSR",
+        "items": [
+          "Interactividad Rica: Interactividad completa del cliente",
+          "Reducción de Carga del Servidor: Procesamiento mínimo del servidor",
+          "Actualizaciones Dinámicas: Actualizaciones de contenido en tiempo real",
+          "Soporte Offline: Funciona sin conexión al servidor"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación CSR",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "SPAs, Dashboards, Apps interactivas"
+      }
+    },
+    "ssr": {
+      "title": "Renderizado del Servidor (SSR)",
+      "description": "Las páginas se renderizan en el servidor para cada solicitud",
+      "step1": {
+        "title": "Procesamiento del Servidor",
+        "description": "🔄 Servidor obteniendo datos y renderizando HTML..."
+      },
+      "step2": {
+        "title": "HTML Enviado al Cliente",
+        "description": "✅ HTML completo con datos enviado al navegador"
+      },
+      "step3": {
+        "title": "Página Lista",
+        "description": "La página está inmediatamente visible e interactiva",
+        "renderedAt": "Renderizado en el servidor a las:"
+      },
+      "benefits": {
+        "title": "Beneficios SSR",
+        "items": [
+          "SEO Optimizado: Los motores de búsqueda pueden rastrear contenido",
+          "Carga Inicial Rápida: HTML listo inmediatamente",
+          "Compartir Social: Previews ricos para redes sociales",
+          "Accesibilidad: Funciona sin JavaScript"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación SSR",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "E-commerce, Blogs, Sitios críticos para SEO"
+      }
+    },
+    "ssg": {
+      "title": "Generación de Sitio Estático (SSG)",
+      "description": "Las páginas se pre-construyen en tiempo de build",
+      "step1": {
+        "title": "Generación en Tiempo de Build",
+        "description": "🔨 Contenido generado y HTML pre-construido",
+        "generateStaticParams": "generateStaticParams() se ejecuta en tiempo de build",
+        "currentPageId": "ID de página actual:",
+        "pageGenerated": "Esta página fue generada estáticamente para el ID \"{id}\" en tiempo de build",
+        "pageGeneratedId": "Esta página fue generada estáticamente para el ID \"{id}\" en tiempo de build"
+      },
+      "step2": {
+        "title": "Almacenamiento CDN",
+        "description": "📦 Archivos HTML estáticos en caché en CDN"
+      },
+      "step3": {
+        "title": "Entrega Instantánea",
+        "description": "Contenido servido instantáneamente desde CDN",
+        "builtAt": "Construido en:",
+        "previewTitle": "📄 Vista Previa de Contenido Estático:",
+        "titleLabel": "Título:",
+        "authorLabel": "Autor:",
+        "categoryLabel": "Categoría:",
+        "viewsLabel": "Vistas:",
+        "publishedLabel": "Publicado:"
+      },
+      "dynamicRoutes": {
+        "title": "🚀 Prueba Rutas SSG Dinámicas",
+        "description": "Estas páginas se generan estáticamente en tiempo de build para diferentes IDs:",
+        "tip": "💡 Cada página muestra contenido diferente generado en tiempo de build usando generateStaticParams()",
+        "links": {
+          "gettingStarted": "Comenzando",
+          "advancedPatterns": "Patrones Avanzados",
+          "performanceComparison": "Comparación de Rendimiento",
+          "id": "ID:"
+        }
+      },
+      "overview": "Descripción general de SSG con ejemplos de rutas dinámicas",
+      "benefits": {
+        "title": "Beneficios SSG",
+        "items": [
+          "Rendimiento Máximo: Carga más rápida posible",
+          "Distribución CDN: Entrega global de contenido",
+          "Costo Efectivo: Recursos mínimos de servidor necesarios",
+          "Seguridad: Sin vulnerabilidades del lado del servidor"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación SSG",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "Blogs, Documentación, Sitios de marketing"
+      }
+    },
+    "isr": {
+      "title": "Regeneración Estática Incremental (ISR)",
+      "description": "SSG con revalidación cronometrada",
+      "step1": {
+        "title": "Contenido Estático Servido",
+        "description": "⚡ Contenido estático en caché servido instantáneamente"
+      },
+      "step2": {
+        "title": "Regeneración en Background",
+        "description": "🔄 Contenido regenerándose en background..."
+      },
+      "step3": {
+        "title": "Contenido Fresco Listo",
+        "description": "Contenido actualizado listo para próxima solicitud",
+        "generated": "Generado:",
+        "nextUpdate": "Próxima actualización:"
+      },
+      "benefits": {
+        "title": "Beneficios ISR",
+        "items": [
+          "Mejor de Ambos Mundos: Rendimiento estático + actualizaciones dinámicas",
+          "Revalidación Automática: El contenido permanece fresco",
+          "Escalable: Maneja graciosamente picos de tráfico",
+          "Costo Eficiente: Carga reducida del servidor"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación ISR",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "Catálogos, Noticias, Listados de productos"
+      }
+    },
+    "rsc": {
+      "title": "Componentes del Servidor React (RSC)",
+      "description": "Componentes solo del servidor para rendimiento optimizado",
+      "step1": {
+        "title": "Componente del Servidor",
+        "description": "Renderizado en el servidor con acceso directo a datos",
+        "serverDataDetails": "📊 Detalles de Datos del Servidor:",
+        "serverTimestamp": "Timestamp del Servidor",
+        "environment": "Ambiente:",
+        "keyPoint": "💡 Punto Clave:",
+        "keyPointText": "¡Estos datos se obtuvieron directamente en el servidor, sin necesidad de llamadas API del lado del cliente!"
+      },
+      "step2": {
+        "title": "Componente del Cliente",
+        "description": "Renderizado en el cliente con APIs del navegador"
+      },
+      "step3": {
+        "title": "Resultado Combinado",
+        "description": "✅ Componentes del servidor + cliente trabajando juntos",
+        "subDescription": "Rendimiento optimizado con acceso seguro a datos"
+      },
+      "benefits": {
+        "title": "Beneficios RSC",
+        "items": [
+          "Rendimiento Optimizado: Componentes del servidor + cliente",
+          "Acceso Seguro a Datos: Obtención de datos del lado del servidor",
+          "Tamaño de Bundle Reducido: Menos JavaScript al cliente",
+          "Mejor SEO: Contenido renderizado en el servidor"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación RSC",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "Apps modernas, Apps con muchos datos, Apps seguras"
+      }
+    },
+    "streaming": {
+      "title": "Streaming React",
+      "description": "Carga progresiva con límites Suspense",
+      "step1": {
+        "title": "Contenido Rápido (Inmediato)",
+        "description": "Contenido que se carga instantáneamente",
+        "fastContentLoaded": "⚡ ¡Contenido rápido cargado inmediatamente!",
+        "fastContentSubtext": "Este contenido aparece instantáneamente mientras otras partes aún se están cargando"
+      },
+      "step2": {
+        "title": "Contenido Lento (2s de retraso)",
+        "description": "Contenido que toma tiempo en cargar, envuelto en Suspense",
+        "loadingMessage": "🔄 Cargando contenido lento...",
+        "slowDataTitle": "Datos Lentos",
+        "loadedAt": "Cargado en:",
+        "afterDelay": "después de {delay}s de retraso",
+        "componentATitle": "Componente A",
+        "componentBTitle": "Componente B"
+      },
+      "step3": {
+        "title": "Múltiples Límites Suspense",
+        "description": "Múltiples componentes cargando independientemente",
+        "componentA": "Componente A (1.5s)",
+        "componentB": "Componente B (3s)",
+        "loadingA": "Cargando A...",
+        "loadingB": "Cargando B...",
+        "componentATitle": "Componente A",
+        "componentBTitle": "Componente B"
+      },
+      "benefits": {
+        "title": "Beneficios Streaming",
+        "items": [
+          "Carga Progresiva: Contenido rápido aparece inmediatamente",
+          "Mejor UX: Los usuarios ven contenido conforme está disponible",
+          "Carga Paralela: Múltiples componentes cargan independientemente",
+          "Límites de Error: Manejo de error aislado por componente"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación Streaming",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "Dashboards, Tiempo real, Apps progresivas"
+      }
+    },
+    "ppr": {
+      "title": "Prerenderizado Parcial (PPR)",
+      "description": "Conchas estáticas con agujeros dinámicos",
+      "step1": {
+        "title": "Concha Estática",
+        "description": "Contenido estático prerenderizado en tiempo de build",
+        "staticShellReady": "⚡ ¡Concha estática lista!",
+        "builtAt": "Construido en:"
+      },
+      "step2": {
+        "title": "Agujeros Dinámicos",
+        "description": "Contenido dinámico fluye hacia la concha estática",
+        "descriptionText": "Contenido dinámico fluye hacia la concha estática:",
+        "dynamicContent": "Contenido Dinámico (500ms)",
+        "userContent": "Contenido del Usuario (300ms)",
+        "dynamicContentLoaded": "✅ Contenido dinámico cargado",
+        "userSpecificContentLoaded": "✅ Contenido específico del usuario cargado",
+        "time": "Hora:",
+        "random": "Aleatorio:"
+      },
+      "step3": {
+        "title": "Resultado Híbrido",
+        "description": "✅ Concha estática + contenido dinámico = rendimiento optimizado",
+        "subDescription": "Lo mejor de ambos mundos: velocidad + personalización"
+      },
+      "benefits": {
+        "title": "Beneficios PPR",
+        "items": [
+          "Concha Estática Instantánea: Carga inicial rápida de la página",
+          "Mejora Progresiva: Contenido dinámico fluye",
+          "UX Optimizada: Los usuarios ven contenido inmediatamente",
+          "Arquitectura Flexible: Mezcla contenido estático y dinámico"
+        ]
+      },
+      "comparison": {
+        "title": "Comparación PPR",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "bestFor": "Mejor para",
+        "bestForValue": "Next.js 16+, Apps híbridas, Rendimiento optimizado"
+      }
+    },
+    "comparison": {
+      "title": "Comparación de Modos de Renderizado",
+      "subtitle": "Compara diferentes enfoques de renderizado en métricas clave",
+      "tableTitle": "Tabla de Comparación de Modos de Renderizado",
+      "tableDescription": "Esta tabla compara varios modos de renderizado para aplicaciones web",
+      "headers": {
+        "mode": "Modo",
+        "initialSpeed": "Velocidad Inicial",
+        "seoPerformance": "Rendimiento SEO",
+        "dynamicContent": "Contenido Dinámico",
+        "serverLoad": "Carga del Servidor",
+        "useCases": "Casos de Uso"
+      },
+      "takeaways": {
+        "title": "Conclusiones Clave",
+        "static": {
+          "title": "Contenido Estático",
+          "description": "Usa SSG para contenido que no cambia frecuentemente",
+          "items": [
+            "Blogs y documentación",
+            "Páginas de marketing",
+            "Sitios de portafolio"
+          ]
+        },
+        "dynamic": {
+          "title": "Contenido Dinámico",
+          "description": "Usa SSR para contenido en tiempo real o específico del usuario",
+          "items": [
+            "Páginas de productos e-commerce",
+            "Perfiles de usuario",
+            "Dashboards en tiempo real"
+          ]
+        },
+        "hybrid": {
+          "title": "Enfoque Híbrido",
+          "description": "Usa ISR, RSC o PPR para rendimiento optimizado",
+          "items": [
+            "Catálogos de productos",
+            "Sitios de noticias",
+            "Apps web modernas"
+          ]
+        }
+      },
+      "modes": {
+        "csr": {
+          "name": "Client-Side Rendering",
+          "initialSpeed": "Lento",
+          "seo": "Pobre",
+          "dynamicContent": "Alto",
+          "serverLoad": "Bajo",
+          "useCases": ["SPAs", "Juegos", "Dashboards"],
+          "description": "Navegador renderiza después de cargar JavaScript"
+        },
+        "ssr": {
+          "name": "Server-Side Rendering",
+          "initialSpeed": "Rápido",
+          "seo": "Excelente",
+          "dynamicContent": "Alto",
+          "serverLoad": "Alto",
+          "useCases": ["E-commerce", "Perfiles", "Datos en tiempo real"],
+          "description": "Servidor renderiza en cada solicitud"
+        },
+        "ssg": {
+          "name": "Static Site Generation",
+          "initialSpeed": "Rápido",
+          "seo": "Excelente",
+          "dynamicContent": "Bajo",
+          "serverLoad": "Ninguno",
+          "useCases": ["Blogs", "Documentación", "Marketing"],
+          "description": "Pre-construido en tiempo de build"
+        },
+        "isr": {
+          "name": "Incremental Static Regeneration",
+          "initialSpeed": "Rápido",
+          "seo": "Excelente",
+          "dynamicContent": "Medio",
+          "serverLoad": "Bajo",
+          "useCases": ["Catálogos", "Noticias", "Listados de productos"],
+          "description": "SSG con regeneración cronometrada"
+        },
+        "rsc": {
+          "name": "React Server Components",
+          "initialSpeed": "Óptimo",
+          "seo": "Excelente",
+          "dynamicContent": "Alto",
+          "serverLoad": "Equilibrado",
+          "useCases": ["Apps modernas", "Apps con muchos datos", "Apps seguras"],
+          "description": "Componentes solo del servidor"
+        },
+        "streaming": {
+          "name": "Streaming",
+          "initialSpeed": "Rápido",
+          "seo": "Bueno",
+          "dynamicContent": "Alto",
+          "serverLoad": "Medio",
+          "useCases": ["Dashboards", "Tiempo real", "Apps progresivas"],
+          "description": "HTML en chunks vía Suspense"
+        },
+        "ppr": {
+          "name": "Partial Prerendering",
+          "initialSpeed": "Óptimo",
+          "seo": "Excelente",
+          "dynamicContent": "Alto",
+          "serverLoad": "Equilibrado",
+          "useCases": ["Next.js 16+", "Apps híbridas", "Rendimiento óptimo"],
+          "description": "Conchas estáticas + agujeros dinámicos"
+        }
+      },
+      "speedLabels": {
+        "high": "Alto",
+        "optimal": "Óptimo",
+        "fast": "Rápido",
+        "slow": "Lento"
+      },
+      "seoLabels": {
+        "great": "Excelente",
+        "good": "Bueno",
+        "poor": "Pobre"
+      },
+      "dynamicLabels": {
+        "high": "Alto",
+        "medium": "Medio",
+        "low": "Bajo"
+      },
+      "serverLoadLabels": {
+        "none": "Ninguno",
+        "low": "Bajo",
+        "balanced": "Equilibrado",
+        "medium": "Medio",
+        "high": "Alto"
+      }
+    }
+  },
+  "footer": {
+    "docs": "Documentación",
+    "authorSocialLinks": "Enlaces Sociales del Autor",
+    "linkedin": "LinkedIn",
+    "twitter": "X",
+    "github": "GitHub",
+    "ebookTitle": "¿Cansado de fallar en entrevistas técnicas?",
+    "ebookDescription": "¡Obtén mi **E-book GRATIS** \"Cracking The Technical Interview\" y aprende estrategias probadas para triunfar en tu próxima entrevista técnica con confianza!",
+    "ebookBenefits": {
+      "master": "Domina preguntas de codificación y diseño de sistemas",
+      "learn": "Aprende técnicas de entrevista conductual",
+      "discover": "Descubre estrategias de negociación",
+      "build": "Construye confianza inquebrantable"
+    },
+    "ebookCta": "Obtener Mi E-book Gratis 📚",
+    "ebookTrust": "Confiado por más de 2.000 desarrolladores • Sin spam, lo prometemos",
+    "copyright": "Demostración de Estrategias de Renderizado Next.js. Creado por Emerson Braun, última actualización el {date}",
+    "navigation": {
+      "strategies": "Estrategias"
+    }
+  }
+}
