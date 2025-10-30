@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { getTranslations } from "next-intl/server";
 
 import { Suspense } from "react";
@@ -5,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Dynamic content - rendered at request time
 async function DynamicContent({ locale }: { locale: string }) {
+  noStore();
   await new Promise((resolve) => setTimeout(resolve, 500));
 
   const t = await getTranslations({ locale, namespace: "pages.ppr.step2" });
@@ -28,6 +30,7 @@ async function DynamicContent({ locale }: { locale: string }) {
 
 // Another dynamic section
 async function UserSpecificContent({ locale }: { locale: string }) {
+  noStore();
   await new Promise((resolve) => setTimeout(resolve, 300));
 
   const t = await getTranslations({ locale, namespace: "pages.ppr.step2" });
