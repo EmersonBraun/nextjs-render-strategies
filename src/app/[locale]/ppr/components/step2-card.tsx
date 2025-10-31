@@ -1,8 +1,8 @@
-import { unstable_noStore as noStore } from "next/cache";
-import { getTranslations } from "next-intl/server";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Suspense } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getTranslations } from "next-intl/server";
+import { unstable_noStore as noStore } from "next/cache";
 
 // Dynamic content - rendered at request time
 async function DynamicContent({ locale }: { locale: string }) {

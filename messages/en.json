@@ -109,7 +109,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "SPAs, Dashboards, Interactive apps"
+        "bestForValue": "SPAs, Dashboards, Interactive apps",
+        "valueSlow": "Slow",
+        "valuePoor": "Poor",
+        "valueHigh": "High",
+        "valueLow": "Low"
       }
     },
     "ssr": {
@@ -144,7 +148,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "E-commerce, Blogs, SEO-critical sites"
+        "bestForValue": "E-commerce, Blogs, SEO-critical sites",
+        "valueFast": "Fast",
+        "valueGreat": "Great",
+        "valueLow": "Low",
+        "valueHigh": "High"
       }
     },
     "ssg": {
@@ -201,7 +209,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "Blogs, Docs, Marketing sites"
+        "bestForValue": "Blogs, Docs, Marketing sites",
+        "valueFast": "Fast",
+        "valueGreat": "Great",
+        "valueLow": "Low",
+        "valueNone": "None"
       }
     },
     "isr": {
@@ -237,7 +249,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "Catalogs, News, Product listings"
+        "bestForValue": "Catalogs, News, Product listings",
+        "valueFast": "Fast",
+        "valueGreat": "Great",
+        "valueMedium": "Medium",
+        "valueLow": "Low"
       }
     },
     "rsc": {
@@ -277,7 +293,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "Modern apps, Data-heavy, Secure apps"
+        "bestForValue": "Modern apps, Data-heavy, Secure apps",
+        "valueOptimal": "Optimal",
+        "valueGreat": "Great",
+        "valueHigh": "High",
+        "valueBalanced": "Balanced"
       }
     },
     "streaming": {
@@ -325,7 +345,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "Dashboards, Real-time, Progressive apps"
+        "bestForValue": "Dashboards, Real-time, Progressive apps",
+        "valueFast": "Fast",
+        "valueGood": "Good",
+        "valueHigh": "High",
+        "valueMedium": "Medium"
       }
     },
     "ppr": {
@@ -369,7 +393,11 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "Next.js 16+, Hybrid apps, Optimal perf"
+        "bestForValue": "Next.js 16+, Hybrid apps, Optimal perf",
+        "valueOptimal": "Optimal",
+        "valueGreat": "Great",
+        "valueHigh": "High",
+        "valueBalanced": "Balanced"
       }
     },
     "comparison": {

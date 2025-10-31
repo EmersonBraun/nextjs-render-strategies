@@ -22,25 +22,25 @@ export function ComparisonCard() {
             <div className="flex justify-between items-center">
               <span className="font-medium">{t("initialSpeed")}:</span>
               <span className="text-red-600 dark:text-red-400 font-semibold">
-                Slow
+                {t("valueSlow")}
               </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="font-medium">{t("seoPerformance")}:</span>
               <span className="text-red-600 dark:text-red-400 font-semibold">
-                Poor
+                {t("valuePoor")}
               </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="font-medium">{t("dynamicContent")}:</span>
               <span className="text-green-600 dark:text-green-400 font-semibold">
-                High
+                {t("valueHigh")}
               </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="font-medium">{t("serverLoad")}:</span>
               <span className="text-green-600 dark:text-green-400 font-semibold">
-                Low
+                {t("valueLow")}
               </span>
             </div>
             <div className="mt-3">
