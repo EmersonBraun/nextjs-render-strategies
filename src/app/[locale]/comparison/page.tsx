@@ -1,4 +1,3 @@
-import { getTranslations } from "next-intl/server";
 import {
   Card,
   CardContent,
@@ -6,6 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+import { getTranslations } from "next-intl/server";
 
 function getSpeedColor(speed: string, speedLabels: Record<string, string>) {
   if (speed === speedLabels.high || speed === speedLabels.optimal) {
@@ -98,7 +99,7 @@ export default async function ComparisonPage({
   const serverLoadLabels = t.raw("serverLoadLabels") as Record<string, string>;
 
   // Get comparison data for all modes
-  const modes = ["csr", "ssr", "ssg", "isr", "rsc", "streaming", "ppr"];
+  const modes = ["csr", "ssr", "ssg", "isr", "ppr"];
   const comparisonData = modes.map((mode) => ({
     mode: mode.toUpperCase(),
     name: t(`modes.${mode}.name`),
