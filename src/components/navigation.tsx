@@ -1,12 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
-import { cn } from "@/lib/utils";
 import { LanguageSelector } from "./language-selector";
+import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "./theme-toggle";
+import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
 
 const navigationItems = [
   { name: "Home", href: "/" },
@@ -14,9 +14,9 @@ const navigationItems = [
   { name: "SSR", href: "/ssr" },
   { name: "SSG", href: "/ssg" },
   { name: "ISR", href: "/isr" },
+  { name: "PPR", href: "/ppr" },
   { name: "RSC", href: "/rsc" },
   { name: "Streaming", href: "/streaming" },
-  { name: "PPR", href: "/ppr" },
   { name: "Comparison", href: "/comparison" },
 ];
 
