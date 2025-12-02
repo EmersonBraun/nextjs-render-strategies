@@ -19,10 +19,12 @@ export async function ImplementationCard({ locale }: { locale: string }) {
             <pre className="text-sm">
               <code>{`export const revalidate = 3600; // 1 hour
 
-export default async function ISRComponent() {
-  const res = await fetch("https://api.example.com/data", {
-    next: { revalidate: 3600 },
-  });
+export async function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }];
+}
+
+export default async function ISRComponent({ params }: { params: { id: string } }) {
+  const res = await fetch("https://api.example.com/data");
   const data = await res.json();
 
   return <div>{data.message}</div>;

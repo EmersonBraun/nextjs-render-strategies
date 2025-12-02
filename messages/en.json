@@ -125,8 +125,7 @@
         "items": [
           "Rich Interactivity: Full client-side interactivity",
           "Reduced Server Load: Minimal server processing",
-          "Dynamic Updates: Real-time content updates",
-          "Offline Support: Works without server connection"
+          "Dynamic Updates: Real-time content updates"
         ],
         "tradeoffs": [
           "Poor initial SEO: Search engines see empty HTML",
@@ -230,11 +229,11 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "SSR uses async Server Components without React hooks.",
+        "description": "SSR uses async Server Components. In App Router, dynamic rendering is the default for pages with dynamic data.",
         "points": [
           "Components are async functions (no 'use client' directive)",
           "Cannot use React hooks (useState, useEffect, etc.)",
-          "Add 'export const dynamic = \"force-dynamic\"' to disable caching",
+          "Use async fetch() for data fetching on the server",
           "Data fetching happens on the server for each request"
         ]
       }
@@ -321,11 +320,12 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "SSG uses async Server Components that are pre-rendered at build time.",
+        "description": "SSG uses async Server Components that are pre-rendered at build time. Use generateStaticParams for dynamic routes.",
         "points": [
           "Components are async functions (no 'use client' directive)",
           "Cannot use React hooks (useState, useEffect, etc.)",
           "Use 'cache: \"force-cache\"' in fetch for static data",
+          "Use generateStaticParams() for dynamic routes",
           "Pages are generated at build time, not on request"
         ]
       }
@@ -391,12 +391,14 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "ISR uses async Server Components with revalidation time.",
+        "description": "ISR uses async Server Components with page-level revalidation. Use generateStaticParams for dynamic routes.",
         "points": [
           "Components are async functions (no 'use client' directive)",
           "Cannot use React hooks (useState, useEffect, etc.)",
-          "Add 'export const revalidate = 3600' (1 hour) to set revalidation time",
-          "Pages are regenerated periodically based on revalidate value"
+          "Add 'export const revalidate = 3600' at page level (1 hour)",
+          "Use generateStaticParams() for dynamic routes",
+          "Use revalidatePath() or revalidateTag() for on-demand revalidation",
+          "Set 'dynamic = \"force-static\"' for static generation with revalidation"
         ]
       }
     },
@@ -466,12 +468,15 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "RSC uses Server Components by default, with Client Components when needed.",
+        "description": "RSC uses Server Components by default in App Router. Server Components cannot import Client Components.",
         "points": [
           "Server Components are async functions (default, no directive needed)",
           "Cannot use React hooks in Server Components",
           "Add 'use client' directive only when you need interactivity",
-          "Server Components can fetch data directly, Client Components use hooks"
+          "Server Components can fetch data directly, Client Components use hooks",
+          "Server Components cannot import Client Components (only pass props)",
+          "Environment variables are stripped from client bundle automatically",
+          "RSC payload is serialized and sent to client for hydration"
         ]
       }
     },
@@ -550,12 +555,14 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "Streaming uses Suspense boundaries with async Server Components.",
+        "description": "Streaming uses Suspense boundaries with async Server Components. Cannot use hooks in Suspense boundaries.",
         "points": [
           "Components are async functions (no 'use client' directive)",
-          "Cannot use React hooks in Server Components",
+          "Cannot use React hooks (including use hook) in Server Components",
           "Wrap async components with Suspense and provide fallback",
-          "Content streams to the client as it becomes available"
+          "Use loading.js for route-level loading states",
+          "Content streams to the client as it becomes available",
+          "Works seamlessly with RSC and fetch options (revalidate)"
         ]
       }
     },
@@ -623,7 +630,7 @@
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
         "bestFor": "Best for",
-        "bestForValue": "Next.js 16+, Hybrid apps, Optimal perf",
+        "bestForValue": "Hybrid apps, Optimal perf, Modern pages",
         "valueOptimal": "Optimal",
         "valueGreat": "Great",
         "valueHigh": "High",
@@ -631,10 +638,12 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "PPR combines static shell with dynamic content streaming. Introduced in Next.js 14.1 (experimental), stable in 15+.",
+        "description": "PPR combines static shell with dynamic content streaming. Requires React 19 and RSC. Introduced in Next.js 14.1 (experimental), stable in 15+.",
         "points": [
-          "Enable PPR via 'cacheComponents: true' or 'ppr: true' in next.config.js",
+          "Enable PPR via 'experimental: { ppr: true }' in next.config.js",
+          "Requires React 19 and React Server Components",
           "Wrap dynamic components in <Suspense fallback={<Skeleton />}>",
+          "Use 'use cache' directive for cacheable dynamic content",
           "Static parts are prerendered at build time",
           "Dynamic parts stream on request - status codes can't change post-stream"
         ]
@@ -809,8 +818,8 @@
         },
         "hybrid": {
           "title": "Hybrid Approach",
-          "description": "Use ISR, RSC, or PPR for optimal performance",
-          "items": ["Product catalogs", "News sites", "Modern web apps"]
+          "description": "Use ISR, RSC, or PPR for optimal performance. Can mix strategies per-page.",
+          "items": ["Product catalogs", "News sites", "Modern web apps", "Per-page strategy selection"]
         }
       },
       "modes": {
@@ -829,7 +838,7 @@
           "introduced": "Traditional",
           "initialSpeed": "Fast",
           "seo": "Great",
-          "dynamicContent": "High",
+          "dynamicContent": "Medium",
           "serverLoad": "High",
           "useCases": ["E-commerce", "Profiles", "Real-time data"],
           "description": "Server renders on each request"
@@ -842,7 +851,7 @@
           "dynamicContent": "Low",
           "serverLoad": "None",
           "useCases": ["Blogs", "Docs", "Marketing"],
-          "description": "Pre-built at build time"
+          "description": "Pre-built at build time. Higher build costs for large sites."
         },
         "isr": {
           "name": "Incremental Static Regeneration",
@@ -862,7 +871,7 @@
           "dynamicContent": "High",
           "serverLoad": "Balanced",
           "useCases": ["Modern apps", "Data-heavy", "Secure apps"],
-          "description": "Technique for server-only rendering (default in App Router). No client JS for non-interactive parts. Use Cases: Data fetching, secure logic (e.g., API keys). Pros: Smaller bundles, faster FCP, secure. Cons: No state/events (use Client Components for interactivity); serializable props only. Implementation: Omit 'use client' for server; pass props to client-marked files."
+          "description": "Technique for server-only rendering (default in App Router). No client JS for non-interactive parts. Use Cases: Data fetching, secure logic (e.g., API keys). Pros: Smaller bundles, faster FCP, secure. Cons: No state/events (use Client Components for interactivity); serializable props only. Implementation: Omit 'use client' for server; pass props to client-marked files. Server Components cannot import Client Components."
         },
         "streaming": {
           "name": "Streaming",
@@ -882,7 +891,7 @@
           "dynamicContent": "High",
           "serverLoad": "Balanced",
           "useCases": ["Hybrid apps", "Optimal perf", "Modern pages"],
-          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via <Suspense> at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js. Use Cases: Pages mixing static UI (nav, headers) with dynamic data (user feeds). Pros: Instant shell delivery + parallel dynamic rendering; SEO-friendly. Cons: Requires <Suspense> wrappers; status codes can't change post-stream. Implementation: Wrap dynamic components in <Suspense fallback={<Skeleton />}>."
+          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via <Suspense> at request. Introduced in Next.js 14.1 (experimental), stable in 15+; requires React 19 and RSC. Enable via experimental: { ppr: true } in next.config.js. Use Cases: Pages mixing static UI (nav, headers) with dynamic data (user feeds). Pros: Instant shell delivery + parallel dynamic rendering; SEO-friendly. Cons: Requires <Suspense> wrappers; status codes can't change post-stream. Implementation: Wrap dynamic components in <Suspense fallback={<Skeleton />}>; use 'use cache' directive."
         }
       },
       "speedLabels": {
