@@ -26,7 +26,9 @@ export function Step3Card({ data }: Step3CardProps) {
       </CardHeader>
       <CardContent>
         <div className="p-5 bg-gradient-to-br from-blue-50/50 to-blue-100/30 dark:from-blue-950/50 dark:to-blue-900/30 border border-blue-200/60 dark:border-blue-800/40 rounded-xl">
-          <p className="text-foreground leading-relaxed font-medium">{data.message}</p>
+          <p className="text-foreground leading-relaxed font-medium">
+            {data.message}
+          </p>
           <p className="text-sm text-muted-foreground mt-2.5">
             {t("generated")} {data.lastGenerated}
           </p>

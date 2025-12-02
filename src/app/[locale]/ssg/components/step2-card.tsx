@@ -18,9 +18,7 @@ export function Step2Card() {
       </CardHeader>
       <CardContent>
         <div className="p-5 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-950/50 dark:to-amber-900/30 border border-amber-200/60 dark:border-amber-800/40 rounded-xl">
-          <p className="text-foreground leading-relaxed">
-            {t("description")}
-          </p>
+          <p className="text-foreground leading-relaxed">{t("description")}</p>
         </div>
       </CardContent>
     </Card>

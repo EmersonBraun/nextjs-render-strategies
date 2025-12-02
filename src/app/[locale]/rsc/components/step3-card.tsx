@@ -18,9 +18,7 @@ export function Step3Card() {
       </CardHeader>
       <CardContent>
         <div className="p-5 bg-gradient-to-br from-purple-50/50 to-purple-100/30 dark:from-purple-950/50 dark:to-purple-900/30 border border-purple-200/60 dark:border-purple-800/40 rounded-xl">
-          <p className="text-foreground leading-relaxed">
-            {t("description")}
-          </p>
+          <p className="text-foreground leading-relaxed">{t("description")}</p>
           <p className="text-sm text-purple-600 dark:text-purple-300 mt-1">
             {t("subDescription")}
           </p>

@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+
+import { getTranslations } from "next-intl/server";
 import {
   Card,
   CardContent,
@@ -5,8 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-import { getTranslations } from "next-intl/server";
 
 function getSpeedColor(speed: string, speedLabels: Record<string, string>) {
   if (speed === speedLabels.high || speed === speedLabels.optimal) {
@@ -82,6 +83,30 @@ interface Takeaways {
     title: string;
     description: string;
     items: string[];
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.comparison" });
+
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    openGraph: {
+      title: t("title"),
+      description: t("subtitle"),
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("subtitle"),
+    },
   };
 }
 

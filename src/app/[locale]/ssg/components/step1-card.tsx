@@ -34,8 +34,12 @@ export function Step1Card({ pageId }: Step1CardProps) {
           {pageId && (
             <div className="p-4 bg-muted/50 border border-border/60 rounded-xl">
               <p className="text-sm text-foreground">
-                <span className="font-medium text-muted-foreground">{t("currentPageId")}</span>{" "}
-                <span className="font-mono text-foreground font-semibold">{pageId}</span>
+                <span className="font-medium text-muted-foreground">
+                  {t("currentPageId")}
+                </span>{" "}
+                <span className="font-mono text-foreground font-semibold">
+                  {pageId}
+                </span>
               </p>
               <p className="text-xs text-muted-foreground mt-1.5">
                 {t("pageGeneratedId", { id: pageId })}

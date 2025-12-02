@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "../components/benefits-card";
 import { ComparisonCard } from "../components/comparison-card";
@@ -64,14 +65,27 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+  params: Promise<{ id: string; locale: string }>;
+}): Promise<Metadata> {
+  const { id, locale } = await params;
   const data = await getStaticData(id);
+  const t = await getTranslations({ locale, namespace: "pages.ssg" });
 
   return {
-    title: `${data.title} - SSG Demo`,
+    title: `${data.title} - ${t("title")}`,
     description: data.content,
+    openGraph: {
+      title: `${data.title} - ${t("title")}`,
+      description: data.content,
+      type: "article",
+      authors: [data.author],
+      publishedTime: data.publishDate,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${data.title} - ${t("title")}`,
+      description: data.content,
+    },
   };
 }
 

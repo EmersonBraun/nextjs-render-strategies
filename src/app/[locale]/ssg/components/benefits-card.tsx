@@ -9,16 +9,16 @@ export function BenefitsCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          {t("title")}
-        </CardTitle>
+        <CardTitle>{t("title")}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="p-5">
           <ul className="text-foreground space-y-2.5">
             {t.raw("items").map((item: string) => (
               <li key={item} className="flex items-start gap-2.5">
-                <span className="text-purple-600 dark:text-purple-400 mt-0.5">•</span>
+                <span className="text-purple-600 dark:text-purple-400 mt-0.5">
+                  •
+                </span>
                 <span>{item}</span>
               </li>
             ))}

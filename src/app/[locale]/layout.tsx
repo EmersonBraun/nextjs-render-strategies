@@ -1,9 +1,14 @@
 import "../globals.css";
 
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -17,10 +22,82 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.home" });
+
+  return {
+    title: {
+      default: t("hero.title"),
+      template: `%s | ${t("hero.title")}`,
+    },
+    description: t("hero.subtitle"),
+    keywords: [
+      "Next.js",
+      "React",
+      "Rendering Strategies",
+      "SSR",
+      "SSG",
+      "ISR",
+      "CSR",
+      "RSC",
+      "Streaming",
+      "PPR",
+      "Server Components",
+      "Web Development",
+      "Performance",
+      "SEO",
+    ],
+    authors: [{ name: "Emerson Braun" }],
+    creator: "Emerson Braun",
+    openGraph: {
+      type: "website",
+      locale: locale,
+      alternateLocale: locales.filter((l) => l !== locale),
+      title: t("hero.title"),
+      description: t("hero.subtitle"),
+      siteName: "Next.js Rendering Strategies",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("hero.title"),
+      description: t("hero.subtitle"),
+      creator: "@EmersonfBraun",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        en: "/en",
+        pt: "/pt",
+        es: "/es",
+        uk: "/uk",
+      },
+    },
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
-}: LayoutProps<"/[locale]">) {
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   // Validate that the incoming `locale` parameter is valid
   if (!hasLocale(routing.locales, locale)) {

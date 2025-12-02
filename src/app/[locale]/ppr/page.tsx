@@ -1,9 +1,34 @@
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
 import { DiagramCard } from "./components/diagram-card";
-import { getTranslations } from "next-intl/server";
 
 export const experimental_ppr = true;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.ppr" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+  };
+}
 
 export default async function PPRPage({
   params,

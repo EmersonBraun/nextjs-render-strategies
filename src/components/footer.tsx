@@ -15,10 +15,31 @@ export function Footer() {
     },
   );
 
+  const copyrightText = t("copyright", { date: currentDate });
+  const nameToLink = "Emerson Braun";
+  const parts = copyrightText.split(nameToLink);
+
   return (
     <footer className="border-t border-border/60 bg-background mt-16 text-center py-8">
       <div className="flex justify-center items-center gap-4 flex-wrap">
-        <div className="text-muted-foreground">{t("copyright", { date: currentDate })}</div>
+        <div className="text-muted-foreground">
+          {parts.length > 1 ? (
+            <>
+              {parts[0]}
+              <a
+                href="https://emersonbraun.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors underline"
+              >
+                {nameToLink}
+              </a>
+              {parts[1]}
+            </>
+          ) : (
+            copyrightText
+          )}
+        </div>
         <div className="text-border">|</div>
         <div className="flex items-center gap-2">
           <a
@@ -32,7 +53,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-2">
           <a
-            href="https://x.com/emersonbraun"
+            href="https://x.com/EmersonfBraun"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
@@ -42,7 +63,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/emersonbraun"
+            href="https://github.com/EmersonBraun/nextjs-render-strategies"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"

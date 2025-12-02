@@ -33,9 +33,7 @@ export function Step3Card({ showContent, data }: Step3CardProps) {
           </div>
         ) : (
           <div className="p-5 bg-muted/50 border border-border/60 rounded-xl">
-            <p className="text-muted-foreground">
-              {t("clickToLoad")}
-            </p>
+            <p className="text-muted-foreground">{t("clickToLoad")}</p>
           </div>
         )}
       </CardContent>

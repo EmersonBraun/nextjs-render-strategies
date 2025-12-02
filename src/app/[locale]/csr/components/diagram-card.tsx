@@ -1,8 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function DiagramCard() {
   const t = useTranslations("pages.csr.diagram");
@@ -65,6 +64,7 @@ export function DiagramCard() {
     <div>
       <div className="flex justify-center mb-6">
         <button
+          type="button"
           onClick={resetAnimation}
           className="px-6 py-3 text-base bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium shadow-md cursor-pointer"
         >
@@ -73,7 +73,6 @@ export function DiagramCard() {
       </div>
 
       <div>
-
         {/* Server Section */}
         <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-950/30 border-2 border-dashed border-gray-500 rounded-xl">
           <h4 className="text-xl font-bold text-center text-gray-700 dark:text-gray-400 mb-4">
@@ -82,26 +81,46 @@ export function DiagramCard() {
 
           {/* Client-Server Communication */}
           <div className="flex justify-center items-center gap-6 mb-6 relative">
-            <div className={`w-20 h-20 bg-blue-500 rounded-xl flex items-center justify-center text-white text-4xl shadow-lg transition-all duration-500 ${currentStep >= 0 ? "opacity-100 scale-100" : "opacity-30 scale-90"
-              }`}>
+            <div
+              className={`w-20 h-20 bg-blue-500 rounded-xl flex items-center justify-center text-white text-4xl shadow-lg transition-all duration-500 ${
+                currentStep >= 0
+                  ? "opacity-100 scale-100"
+                  : "opacity-30 scale-90"
+              }`}
+            >
               🌐
             </div>
             <div className="flex flex-col gap-3 relative">
               {/* Request Arrow */}
-              <div className={`w-16 h-1 bg-blue-500 transition-all duration-500 ${currentStep >= 0 ? "opacity-100" : "opacity-0"
-                }`}>
+              <div
+                className={`w-16 h-1 bg-blue-500 transition-all duration-500 ${
+                  currentStep >= 0 ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <div className="w-0 h-0 border-l-4 border-l-blue-500 border-t-2 border-t-transparent border-b-2 border-b-transparent absolute right-0 top-1/2 transform -translate-y-1/2"></div>
               </div>
-              <div className="text-xs text-center text-muted-foreground font-medium">Request</div>
+              <div className="text-xs text-center text-muted-foreground font-medium">
+                Request
+              </div>
               {/* Response Arrow */}
-              <div className={`w-16 h-1 bg-emerald-500 transition-all duration-500 ${currentStep >= 1 ? "opacity-100" : "opacity-0"
-                }`}>
+              <div
+                className={`w-16 h-1 bg-emerald-500 transition-all duration-500 ${
+                  currentStep >= 1 ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <div className="w-0 h-0 border-r-4 border-r-emerald-500 border-t-2 border-t-transparent border-b-2 border-b-transparent absolute left-0 top-1/2 transform -translate-y-1/2"></div>
               </div>
-              <div className="text-xs text-center text-muted-foreground font-medium">Response</div>
+              <div className="text-xs text-center text-muted-foreground font-medium">
+                Response
+              </div>
             </div>
-            <div className={`w-20 h-20 bg-gray-600 rounded-xl flex items-center justify-center text-white text-4xl shadow-lg transition-all duration-500 ${currentStep >= 1 ? "opacity-100 scale-100" : "opacity-30 scale-90"
-              }`}>
+            <div
+              className={`w-20 h-20 bg-gray-600 rounded-xl flex items-center justify-center text-white text-4xl shadow-lg transition-all duration-500 ${
+                currentStep >= 1
+                  ? "opacity-100 scale-100"
+                  : "opacity-30 scale-90"
+              }`}
+            >
               🖥️
             </div>
           </div>
@@ -109,13 +128,20 @@ export function DiagramCard() {
           {/* Server Steps */}
           <div className="space-y-6">
             {/* Step 1: Server sends HTML/CSS/JS */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 1 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 1 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               <div className="border-2 border-dashed border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-lg">{t("serverSendsHTML")}</span>
+                  <span className="font-semibold text-lg">
+                    {t("serverSendsHTML")}
+                  </span>
                   {currentStep >= 1 && (
-                    <span className="text-gray-600 dark:text-gray-400 text-2xl animate-pulse">✓</span>
+                    <span className="text-gray-600 dark:text-gray-400 text-2xl animate-pulse">
+                      ✓
+                    </span>
                   )}
                 </div>
               </div>
@@ -132,10 +158,15 @@ export function DiagramCard() {
           {/* Client Steps */}
           <div className="space-y-6 relative">
             {/* Step 2: Client loads HTML/CSS/JS */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 2 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 2 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <span className="font-semibold text-lg">{t("clientLoadsHTML")}</span>
+                <span className="font-semibold text-lg">
+                  {t("clientLoadsHTML")}
+                </span>
               </div>
               {currentStep >= 3 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
@@ -143,13 +174,18 @@ export function DiagramCard() {
             </div>
 
             {/* Step 3: React.mount() */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 3 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 3 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               {currentStep >= 2 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
               <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <span className="font-semibold text-lg font-mono">React.mount()</span>
+                <span className="font-semibold text-lg font-mono">
+                  React.mount()
+                </span>
               </div>
               {currentStep >= 4 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
@@ -157,13 +193,18 @@ export function DiagramCard() {
             </div>
 
             {/* Step 4: render() */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 4 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 4 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               {currentStep >= 3 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
               <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <span className="font-semibold text-lg font-mono">render()</span>
+                <span className="font-semibold text-lg font-mono">
+                  render()
+                </span>
               </div>
               {currentStep >= 5 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
@@ -171,13 +212,18 @@ export function DiagramCard() {
             </div>
 
             {/* Step 5: componentDidMount() / useEffect() */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 5 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 5 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               {currentStep >= 4 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
               <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <div className="font-semibold text-lg font-mono">componentDidMount() / useEffect()</div>
+                <div className="font-semibold text-lg font-mono">
+                  componentDidMount() / useEffect()
+                </div>
               </div>
               {currentStep >= 6 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
@@ -185,13 +231,18 @@ export function DiagramCard() {
             </div>
 
             {/* Step 6: JavaScript fetches data */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 6 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 6 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               {currentStep >= 5 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
               <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <span className="font-semibold text-lg">{t("jsFetchesData")}</span>
+                <span className="font-semibold text-lg">
+                  {t("jsFetchesData")}
+                </span>
               </div>
               {currentStep >= 7 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
@@ -199,13 +250,18 @@ export function DiagramCard() {
             </div>
 
             {/* Step 7: Dynamic content rendered on client */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 7 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 7 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               {currentStep >= 6 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
               <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <span className="font-semibold text-lg">{t("dynamicContentRendered")}</span>
+                <span className="font-semibold text-lg">
+                  {t("dynamicContentRendered")}
+                </span>
               </div>
               {currentStep >= 8 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
@@ -213,8 +269,11 @@ export function DiagramCard() {
             </div>
 
             {/* Step 8: Render UI / Content appears on screen */}
-            <div className={`relative transition-all duration-500 ${currentStep >= 8 ? "opacity-100" : "opacity-30"
-              }`}>
+            <div
+              className={`relative transition-all duration-500 ${
+                currentStep >= 8 ? "opacity-100" : "opacity-30"
+              }`}
+            >
               {currentStep >= 7 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
@@ -231,4 +290,3 @@ export function DiagramCard() {
     </div>
   );
 }
-

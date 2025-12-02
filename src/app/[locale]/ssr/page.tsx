@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
@@ -5,6 +6,30 @@ import { DiagramCard } from "./components/diagram-card";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.ssr" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+  };
+}
 
 export default async function SSRPage({
   params,

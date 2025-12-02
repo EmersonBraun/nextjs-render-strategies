@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { LanguageSelector } from "./language-selector";
-import { Link } from "@/i18n/navigation";
-import { ThemeToggle } from "./theme-toggle";
-import { cn } from "@/lib/utils";
-import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
+import { LanguageSelector } from "./language-selector";
+import { ThemeToggle } from "./theme-toggle";
 
 const navigationItems = [
   { name: "Home", href: "/" },

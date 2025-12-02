@@ -1,7 +1,29 @@
 {
-  "name": "render",
-  "version": "0.1.0",
+  "name": "nextjs-render-strategies",
+  "version": "1.0.0",
+  "description": "Comprehensive guide and interactive demos for Next.js rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR",
   "private": true,
+  "author": "Emerson Braun",
+  "keywords": [
+    "nextjs",
+    "react",
+    "rendering-strategies",
+    "ssr",
+    "ssg",
+    "isr",
+    "csr",
+    "rsc",
+    "streaming",
+    "ppr",
+    "server-components",
+    "web-development",
+    "performance",
+    "seo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emersonbraun/nextjs-render-strategies"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

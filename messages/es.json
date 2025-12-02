@@ -36,8 +36,69 @@
     "home": {
       "hero": {
         "title": "Estrategias de Renderizado Next.js",
-        "subtitle": "Tu guía completa para enfoques de renderizado Next.js con demostraciones interactivas",
-        "cta": "Comenzar a Aprender 🚀"
+        "subtitle": "Domina los enfoques de renderizado Next.js con demostraciones interactivas, ejemplos prácticos y comparaciones completas",
+        "cta": "Comenzar a Aprender 🚀",
+        "secondaryCta": "Ver Comparación"
+      },
+      "strategies": {
+        "title": "Explorar Estrategias de Renderizado",
+        "subtitle": "Haz clic en cualquier estrategia para aprender más sobre su implementación, beneficios y casos de uso",
+        "description": "Next.js ofrece múltiples estrategias de renderizado para optimizar el rendimiento, SEO y experiencia del usuario de tu aplicación. Desde Renderizado del Lado del Cliente (CSR) para aplicaciones interactivas hasta Generación de Sitios Estáticos (SSG) para máximo rendimiento, Renderizado del Lado del Servidor (SSR) para contenido dinámico, y enfoques modernos como Componentes del Servidor React (RSC), Streaming y Prerenderizado Parcial (PPR). Cada estrategia tiene sus propias fortalezas y casos de uso, permitiéndote elegir el mejor enfoque para tus necesidades específicas.",
+        "csr": {
+          "name": "Renderizado del Lado del Cliente",
+          "description": "Renderizar páginas en el navegador después de cargar JavaScript",
+          "shortDescription": "El navegador renderiza después de cargar JavaScript"
+        },
+        "ssr": {
+          "name": "Renderizado del Lado del Servidor",
+          "description": "Renderizar páginas en el servidor para cada solicitud",
+          "shortDescription": "El servidor renderiza en cada solicitud"
+        },
+        "ssg": {
+          "name": "Generación de Sitio Estático",
+          "description": "Pre-construir páginas en tiempo de compilación para máximo rendimiento",
+          "shortDescription": "Pre-construido en tiempo de compilación"
+        },
+        "isr": {
+          "name": "Regeneración Estática Incremental",
+          "description": "SSG con revalidación automática para contenido fresco",
+          "shortDescription": "SSG con regeneración cronometrada"
+        },
+        "rsc": {
+          "name": "Componentes del Servidor React",
+          "description": "Componentes solo del servidor para rendimiento óptimo",
+          "shortDescription": "Componentes solo del servidor"
+        },
+        "streaming": {
+          "name": "Streaming React",
+          "description": "Carga progresiva con límites Suspense",
+          "shortDescription": "HTML en fragmentos vía Suspense"
+        },
+        "ppr": {
+          "name": "Prerenderizado Parcial",
+          "description": "Cáscaras estáticas con agujeros dinámicos para UX óptima",
+          "shortDescription": "Cáscaras estáticas + agujeros dinámicos"
+        }
+      },
+      "features": {
+        "title": "¿Por Qué Usar Esta Guía?",
+        "subtitle": "Todo lo que necesitas para dominar el renderizado Next.js",
+        "interactive": {
+          "title": "Demostraciones Interactivas",
+          "description": "Ve cada estrategia en acción con ejemplos en vivo y diagramas visuales"
+        },
+        "comparisons": {
+          "title": "Comparaciones Lado a Lado",
+          "description": "Compara modos de renderizado en métricas clave para tomar decisiones informadas"
+        },
+        "practical": {
+          "title": "Ejemplos Prácticos",
+          "description": "Casos de uso del mundo real y ejemplos de código para cada enfoque"
+        },
+        "comprehensive": {
+          "title": "Guía Completa",
+          "description": "Desde lo básico hasta patrones avanzados, todo en un solo lugar"
+        }
       },
       "whatIs": {
         "title": "¿Qué es este proyecto?",
@@ -48,8 +109,10 @@
         "title": "Explorar Estrategias de Renderizado"
       },
       "comparison": {
-        "description": "Compara todos los modos de renderizado lado a lado para entender sus compensaciones",
-        "cta": "Ver Comparación"
+        "title": "Comparar Todas las Estrategias",
+        "description": "Ve cómo se comparan los diferentes modos de renderizado en rendimiento, SEO y casos de uso",
+        "cta": "Ver Comparación Completa",
+        "subtitle": "Toma decisiones informadas con comparaciones completas"
       },
       "takeaways": {
         "title": "Conclusiones Clave",
@@ -105,6 +168,8 @@
       "diagram": {
         "title": "Diagrama de Flujo CSR",
         "restart": "Reiniciar Animación",
+        "server": "Servidor",
+        "client": "Cliente",
         "serverSendsHTML": "Servidor envía HTML/CSS/JS",
         "clientLoadsHTML": "Cliente carga HTML/CSS/JS",
         "jsFetchesData": "JavaScript obtiene datos",
@@ -155,6 +220,8 @@
       "diagram": {
         "title": "Diagrama de Flujo SSR",
         "restart": "Reiniciar Animación",
+        "server": "Servidor",
+        "client": "Cliente",
         "clientSendsRequest": "Cliente envía solicitud",
         "serverReceivesRequest": "Servidor recibe solicitud",
         "serverFetchesData": "Servidor obtiene datos",
@@ -280,6 +347,8 @@
       "diagram": {
         "title": "Diagrama de Flujo ISR",
         "restart": "Reiniciar Animación",
+        "server": "Servidor",
+        "client": "Cliente",
         "clientSendsRequest": "Cliente envía solicitud",
         "serverChecksCache": "Servidor verifica caché",
         "cacheValidOrExpired": "Caché válido o expirado",
@@ -336,6 +405,8 @@
       "diagram": {
         "title": "Diagrama de Flujo RSC",
         "restart": "Reiniciar Animación",
+        "server": "Servidor",
+        "client": "Cliente",
         "clientSendsRequest": "Cliente envía solicitud",
         "serverReceivesRequest": "Servidor recibe solicitud",
         "serverFetchesData": "Servidor obtiene datos",
@@ -401,6 +472,8 @@
       "diagram": {
         "title": "Diagrama de Flujo Streaming",
         "restart": "Reiniciar Animación",
+        "server": "Servidor",
+        "client": "Cliente",
         "clientSendsRequest": "Cliente envía solicitud",
         "serverReceivesRequest": "Servidor recibe solicitud",
         "serverStartsRendering": "Servidor inicia renderizado",
@@ -467,6 +540,8 @@
         "generateStaticShell": "Generar concha estática",
         "storeStaticShell": "Almacenar concha estática",
         "runtime": "Tiempo de Ejecución",
+        "server": "Servidor",
+        "client": "Cliente",
         "clientSendsRequest": "Cliente envía solicitud",
         "serverSendsStaticShell": "Servidor envía concha estática",
         "clientReceivesStaticShell": "Cliente recibe concha estática",

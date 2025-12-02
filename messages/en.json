@@ -36,8 +36,69 @@
     "home": {
       "hero": {
         "title": "Next.js Rendering Strategies",
-        "subtitle": "Your comprehensive guide to Next.js rendering approaches with interactive demos",
-        "cta": "Start Learning 🚀"
+        "subtitle": "Master Next.js rendering approaches with interactive demos, real-world examples, and comprehensive comparisons",
+        "cta": "Start Learning 🚀",
+        "secondaryCta": "View Comparison"
+      },
+      "strategies": {
+        "title": "Explore Rendering Strategies",
+        "subtitle": "Click on any strategy to learn more about its implementation, benefits, and use cases",
+        "description": "Next.js offers multiple rendering strategies to optimize your application's performance, SEO, and user experience. From Client-Side Rendering (CSR) for interactive applications to Static Site Generation (SSG) for maximum performance, Server-Side Rendering (SSR) for dynamic content, and modern approaches like React Server Components (RSC), Streaming, and Partial Prerendering (PPR). Each strategy has its own strengths and use cases, allowing you to choose the best approach for your specific needs.",
+        "csr": {
+          "name": "Client-Side Rendering",
+          "description": "Render pages in the browser after JavaScript loads",
+          "shortDescription": "Browser renders after JavaScript loads"
+        },
+        "ssr": {
+          "name": "Server-Side Rendering",
+          "description": "Render pages on the server for each request",
+          "shortDescription": "Server renders on each request"
+        },
+        "ssg": {
+          "name": "Static Site Generation",
+          "description": "Pre-build pages at build time for maximum performance",
+          "shortDescription": "Pre-built at build time"
+        },
+        "isr": {
+          "name": "Incremental Static Regeneration",
+          "description": "SSG with automatic revalidation for fresh content",
+          "shortDescription": "SSG with timed regeneration"
+        },
+        "rsc": {
+          "name": "React Server Components",
+          "description": "Server-only components for optimal performance",
+          "shortDescription": "Server-only components"
+        },
+        "streaming": {
+          "name": "React Streaming",
+          "description": "Progressive loading with Suspense boundaries",
+          "shortDescription": "Chunked HTML via Suspense"
+        },
+        "ppr": {
+          "name": "Partial Prerendering",
+          "description": "Static shells with dynamic holes for optimal UX",
+          "shortDescription": "Static shells + dynamic holes"
+        }
+      },
+      "features": {
+        "title": "Why Use This Guide?",
+        "subtitle": "Everything you need to master Next.js rendering",
+        "interactive": {
+          "title": "Interactive Demos",
+          "description": "See each strategy in action with live examples and visual diagrams"
+        },
+        "comparisons": {
+          "title": "Side-by-Side Comparisons",
+          "description": "Compare rendering modes across key metrics to make informed decisions"
+        },
+        "practical": {
+          "title": "Practical Examples",
+          "description": "Real-world use cases and code examples for each approach"
+        },
+        "comprehensive": {
+          "title": "Complete Guide",
+          "description": "From basics to advanced patterns, everything in one place"
+        }
       },
       "whatIs": {
         "title": "What is this project?",
@@ -48,8 +109,10 @@
         "title": "Explore Rendering Strategies"
       },
       "comparison": {
-        "description": "Compare all rendering modes side by side to understand their trade-offs",
-        "cta": "View Comparison"
+        "title": "Compare All Strategies",
+        "description": "See how different rendering modes stack up across performance, SEO, and use cases",
+        "cta": "View Full Comparison",
+        "subtitle": "Make informed decisions with comprehensive comparisons"
       },
       "takeaways": {
         "title": "Key Takeaways",

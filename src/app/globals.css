@@ -70,7 +70,8 @@
 }
 
 * {
-  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+  transition-property:
+    color, background-color, border-color, opacity, transform, box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -78,14 +79,21 @@
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.01em;
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: -0.02em;
   line-height: 1.2;
   font-weight: 600;

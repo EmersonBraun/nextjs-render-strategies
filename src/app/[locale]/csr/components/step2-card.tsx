@@ -40,9 +40,7 @@ export function Step2Card({
             <div className="p-5 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-950/50 dark:to-amber-900/30 border border-amber-200/60 dark:border-amber-800/40 rounded-xl">
               <div className="flex items-center gap-2.5">
                 <div className="animate-spin w-4 h-4 border-2 border-amber-600 dark:border-amber-400 border-t-transparent rounded-full"></div>
-                <p className="text-foreground">
-                  {t("fetching")}
-                </p>
+                <p className="text-foreground">{t("fetching")}</p>
               </div>
             </div>
           )}

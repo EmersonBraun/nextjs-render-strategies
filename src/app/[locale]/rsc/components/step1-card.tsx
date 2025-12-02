@@ -54,7 +54,8 @@ export async function Step1Card({ serverData, locale }: Step1CardProps) {
               </div>
             </div>
             <div className="mt-4 p-3 bg-emerald-100/50 dark:bg-emerald-900/30 rounded-lg text-xs text-muted-foreground">
-              <strong className="text-foreground">{t("keyPoint")}</strong> {t("keyPointText")}
+              <strong className="text-foreground">{t("keyPoint")}</strong>{" "}
+              {t("keyPointText")}
             </div>
           </div>
         </div>

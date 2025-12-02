@@ -15,9 +15,7 @@ export function Step1Card() {
       </CardHeader>
       <CardContent>
         <div className="p-5 bg-gradient-to-br from-emerald-50/50 to-emerald-100/30 dark:from-emerald-950/50 dark:to-emerald-900/30 border border-emerald-200/60 dark:border-emerald-800/40 rounded-xl">
-          <p className="text-foreground leading-relaxed">
-            {t("description")}
-          </p>
+          <p className="text-foreground leading-relaxed">{t("description")}</p>
         </div>
       </CardContent>
     </Card>
