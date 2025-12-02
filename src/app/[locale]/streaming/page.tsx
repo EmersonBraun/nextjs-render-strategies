@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
 import { DiagramCard } from "./components/diagram-card";
+import { ImplementationCard } from "./components/implementation-card";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -49,6 +50,7 @@ export default async function StreamingPage({
       <div className="space-y-6">
         <DiagramCard />
         <BenefitsCard />
+        <ImplementationCard locale={locale} />
         <ComparisonCard />
       </div>
     </div>

@@ -123,17 +123,34 @@ export default async function ComparisonPage({
   const dynamicLabels = t.raw("dynamicLabels") as Record<string, string>;
   const serverLoadLabels = t.raw("serverLoadLabels") as Record<string, string>;
 
-  // Get comparison data for all modes
-  const modes = ["csr", "ssr", "ssg", "isr", "ppr"];
-  const comparisonData = modes.map((mode) => ({
-    mode: mode.toUpperCase(),
-    name: t(`modes.${mode}.name`),
-    initialSpeed: t(`modes.${mode}.initialSpeed`),
-    seo: t(`modes.${mode}.seo`),
-    dynamicContent: t(`modes.${mode}.dynamicContent`),
-    serverLoad: t(`modes.${mode}.serverLoad`),
-    useCases: t.raw(`modes.${mode}.useCases`) as string[],
-    description: t(`modes.${mode}.description`),
+  // Get comparison data for all techniques
+  const techniques = ["csr", "ssr", "ssg", "isr", "rsc", "streaming", "ppr"];
+  const tradeoffsData = t.raw("tradeoffs.items") as Array<{
+    strategy: string;
+    tradeoffs: string;
+  }>;
+
+  // Helper function to normalize strategy name for tradeoffs lookup
+  const normalizeStrategyName = (technique: string): string => {
+    if (technique === "streaming") return "Streaming";
+    return technique.toUpperCase();
+  };
+
+  const tradeoffsMap = new Map(
+    tradeoffsData.map((item) => [item.strategy, item.tradeoffs]),
+  );
+
+  const comparisonData = techniques.map((technique) => ({
+    technique: technique.toUpperCase(),
+    name: t(`modes.${technique}.name`),
+    introduced: t(`modes.${technique}.introduced`),
+    initialSpeed: t(`modes.${technique}.initialSpeed`),
+    seo: t(`modes.${technique}.seo`),
+    dynamicContent: t(`modes.${technique}.dynamicContent`),
+    serverLoad: t(`modes.${technique}.serverLoad`),
+    useCases: t.raw(`modes.${technique}.useCases`) as string[],
+    description: t(`modes.${technique}.description`),
+    tradeoffs: tradeoffsMap.get(normalizeStrategyName(technique)) || "",
   }));
 
   const takeaways = t.raw("takeaways") as Takeaways;
@@ -156,7 +173,10 @@ export default async function ComparisonPage({
               <thead>
                 <tr className="border-b">
                   <th className="text-left p-3 font-semibold">
-                    {headers.mode}
+                    {headers.technique}
+                  </th>
+                  <th className="text-left p-3 font-semibold">
+                    {headers.introduced}
                   </th>
                   <th className="text-left p-3 font-semibold">
                     {headers.initialSpeed}
@@ -173,49 +193,57 @@ export default async function ComparisonPage({
                   <th className="text-left p-3 font-semibold">
                     {headers.useCases}
                   </th>
+                  <th className="text-left p-3 font-semibold">
+                    {headers.keyTradeoffs}
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {comparisonData.map((mode) => (
-                  <tr key={mode.mode} className="border-b hover:bg-muted/50">
+                {comparisonData.map((item) => (
+                  <tr
+                    key={item.technique}
+                    className="border-b hover:bg-muted/50"
+                  >
                     <td className="p-3">
                       <div>
-                        <div className="font-semibold">{mode.mode}</div>
+                        <div className="font-semibold">{item.technique}</div>
                         <div className="text-sm text-muted-foreground">
-                          {mode.name}
+                          {item.name}
                         </div>
                       </div>
                     </td>
+                    <td className="p-3 text-sm">{item.introduced}</td>
                     <td
-                      className={`p-3 font-medium ${getSpeedColor(mode.initialSpeed, speedLabels)}`}
+                      className={`p-3 font-medium ${getSpeedColor(item.initialSpeed, speedLabels)}`}
                     >
-                      {mode.initialSpeed}
+                      {item.initialSpeed}
                     </td>
                     <td
-                      className={`p-3 font-medium ${getSEOColor(mode.seo, seoLabels)}`}
+                      className={`p-3 font-medium ${getSEOColor(item.seo, seoLabels)}`}
                     >
-                      {mode.seo}
+                      {item.seo}
                     </td>
                     <td
-                      className={`p-3 font-medium ${getDynamicColor(mode.dynamicContent, dynamicLabels)}`}
+                      className={`p-3 font-medium ${getDynamicColor(item.dynamicContent, dynamicLabels)}`}
                     >
-                      {mode.dynamicContent}
+                      {item.dynamicContent}
                     </td>
                     <td
-                      className={`p-3 font-medium ${getServerLoadColor(mode.serverLoad, serverLoadLabels)}`}
+                      className={`p-3 font-medium ${getServerLoadColor(item.serverLoad, serverLoadLabels)}`}
                     >
-                      {mode.serverLoad}
+                      {item.serverLoad}
                     </td>
                     <td className="p-3">
                       <div className="text-sm">
-                        {mode.useCases.map((useCase, index) => (
+                        {item.useCases.map((useCase, index) => (
                           <span key={useCase}>
                             {useCase}
-                            {index < mode.useCases.length - 1 && ", "}
+                            {index < item.useCases.length - 1 && ", "}
                           </span>
                         ))}
                       </div>
                     </td>
+                    <td className="p-3 text-sm">{item.tradeoffs}</td>
                   </tr>
                 ))}
               </tbody>

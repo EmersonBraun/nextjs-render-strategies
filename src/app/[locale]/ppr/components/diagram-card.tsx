@@ -88,7 +88,7 @@ export function DiagramCard() {
               }`}
             >
               <div className="border-2 border-solid border-indigo-500 rounded-xl p-6 bg-indigo-50/50 dark:bg-indigo-950/30 shadow-md">
-                <div className="font-semibold text-lg font-mono">
+                <div className="font-semibold text-lg font-mono text-indigo-900 dark:text-indigo-100">
                   React.renderToStaticMarkup()
                 </div>
                 <div className="text-sm text-muted-foreground mt-2">
@@ -111,7 +111,7 @@ export function DiagramCard() {
               )}
               <div className="border-2 border-dashed border-green-500 rounded-xl p-6 bg-green-50/50 dark:bg-green-950/30 shadow-md">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-green-900 dark:text-green-100">
                     {t("storeStaticShell")}
                   </span>
                   {currentStep >= 1 && (
@@ -191,7 +191,7 @@ export function DiagramCard() {
               >
                 <div className="border-2 border-dashed border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-lg">
+                    <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
                       {t("serverSendsStaticShell")}
                     </span>
                     {currentStep >= 3 && (
@@ -210,7 +210,7 @@ export function DiagramCard() {
                 }`}
               >
                 <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
                     {t("serverFetchesDynamicData")}
                   </span>
                 </div>
@@ -223,7 +223,7 @@ export function DiagramCard() {
                 }`}
               >
                 <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
                     {t("serverStreamsDynamicContent")}
                   </span>
                 </div>
@@ -244,7 +244,7 @@ export function DiagramCard() {
                 }`}
               >
                 <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
                     {t("clientSendsRequest")}
                   </span>
                 </div>
@@ -263,7 +263,7 @@ export function DiagramCard() {
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
                 )}
                 <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
                     {t("clientReceivesStaticShell")}
                   </span>
                 </div>
@@ -282,7 +282,7 @@ export function DiagramCard() {
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
                 )}
                 <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <span className="font-semibold text-lg">
+                  <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
                     {t("clientReceivesDynamicContent")}
                   </span>
                 </div>
@@ -301,7 +301,7 @@ export function DiagramCard() {
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
                 )}
                 <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <div className="font-semibold text-lg font-mono">
+                  <div className="font-semibold text-lg font-mono text-blue-900 dark:text-blue-100">
                     React.hydrate()
                   </div>
                 </div>
@@ -322,7 +322,7 @@ export function DiagramCard() {
                 <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">✨</span>
-                    <span className="font-semibold text-lg">
+                    <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
                       {t("pageInteractive")}
                     </span>
                   </div>

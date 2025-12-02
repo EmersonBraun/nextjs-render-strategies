@@ -34,11 +34,15 @@ export function LanguageSelector() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="w-[150px]">
-        <Button variant="outline" size="sm" className="gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentLanguage?.flag}</span>
-          <span className="hidden md:inline">{currentLanguage?.name}</span>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+          className="md:w-auto md:px-3 md:gap-2"
+        >
+          <Globe className="h-[1.2rem] w-[1.2rem]" />
+          <span className="hidden md:inline">{currentLanguage?.flag}</span>
+          <span className="hidden lg:inline ml-1">{currentLanguage?.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-background">

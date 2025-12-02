@@ -2,6 +2,9 @@
 
 A comprehensive, interactive guide to understanding and implementing different Next.js rendering strategies. This project demonstrates various rendering approaches with live examples, visual diagrams, and detailed comparisons.
 
+🌐 **Live Demo**: [render-strategies.emersonbraun.dev](https://render-strategies.emersonbraun.dev)  
+📦 **Repository**: [github.com/emersonbraun/nextjs-render-strategies](https://github.com/emersonbraun/nextjs-render-strategies)
+
 ## 🚀 Features
 
 - **Interactive Demos**: See each rendering strategy in action with live examples
@@ -13,13 +16,14 @@ A comprehensive, interactive guide to understanding and implementing different N
 
 ## 📚 Rendering Strategies Covered
 
-- **CSR** - Client-Side Rendering
-- **SSR** - Server-Side Rendering
-- **SSG** - Static Site Generation
-- **ISR** - Incremental Static Regeneration
-- **RSC** - React Server Components
-- **Streaming** - React Streaming with Suspense
-- **PPR** - Partial Prerendering
+- **[CSR](https://render-strategies.emersonbraun.dev/en/csr)** - Client-Side Rendering
+- **[SSR](https://render-strategies.emersonbraun.dev/en/ssr)** - Server-Side Rendering
+- **[SSG](https://render-strategies.emersonbraun.dev/en/ssg)** - Static Site Generation
+- **[ISR](https://render-strategies.emersonbraun.dev/en/isr)** - Incremental Static Regeneration
+- **[RSC](https://render-strategies.emersonbraun.dev/en/rsc)** - React Server Components
+- **[Streaming](https://render-strategies.emersonbraun.dev/en/streaming)** - React Streaming with Suspense
+- **[PPR](https://render-strategies.emersonbraun.dev/en/ppr)** - Partial Prerendering
+- **[Comparison](https://render-strategies.emersonbraun.dev/en/comparison)** - Side-by-side comparison of all strategies
 
 ## 🛠️ Tech Stack
 
@@ -61,7 +65,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📖 Project Structure
 
-```
+```text
 src/
 ├── app/
 │   └── [locale]/          # Internationalized routes
@@ -81,6 +85,7 @@ src/
 ## 🌍 Internationalization
 
 This project supports multiple languages:
+
 - English (en)
 - Portuguese (pt)
 - Spanish (es)
@@ -102,16 +107,40 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
+## 👥 Contributors
+
+Thank you to all the wonderful people who have contributed to this project!
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/emersonbraun"><img src="https://github.com/emersonbraun.png?s=100" width="100px;" alt="Emerson Braun"/><br /><sub><b>Emerson Braun</b></sub></a><br /><a href="https://github.com/emersonbraun/nextjs-render-strategies/commits?author=emersonbraun" title="Code">💻</a> <a href="#design-emersonbraun" title="Design">🎨</a> <a href="#maintenance-emersonbraun" title="Maintenance">🚧</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## 👤 Author
 
-**Emerson Braun**
+### Emerson Braun
 
-- LinkedIn: [@emersonbraun](https://linkedin.com/in/emersonbraun)
-- Twitter/X: [@emersonbraun](https://twitter.com/emersonbraun)
+- LinkedIn: [@emersonbraun](https://linkedin.com/in/emerson-braun)
+- Twitter/X: [@emersonbraun](https://x.com/emersonfbraun)
 - GitHub: [@emersonbraun](https://github.com/emersonbraun)
 
 ## 🙏 Acknowledgments

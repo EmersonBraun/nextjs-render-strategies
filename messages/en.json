@@ -42,43 +42,7 @@
       },
       "strategies": {
         "title": "Explore Rendering Strategies",
-        "subtitle": "Click on any strategy to learn more about its implementation, benefits, and use cases",
-        "description": "Next.js offers multiple rendering strategies to optimize your application's performance, SEO, and user experience. From Client-Side Rendering (CSR) for interactive applications to Static Site Generation (SSG) for maximum performance, Server-Side Rendering (SSR) for dynamic content, and modern approaches like React Server Components (RSC), Streaming, and Partial Prerendering (PPR). Each strategy has its own strengths and use cases, allowing you to choose the best approach for your specific needs.",
-        "csr": {
-          "name": "Client-Side Rendering",
-          "description": "Render pages in the browser after JavaScript loads",
-          "shortDescription": "Browser renders after JavaScript loads"
-        },
-        "ssr": {
-          "name": "Server-Side Rendering",
-          "description": "Render pages on the server for each request",
-          "shortDescription": "Server renders on each request"
-        },
-        "ssg": {
-          "name": "Static Site Generation",
-          "description": "Pre-build pages at build time for maximum performance",
-          "shortDescription": "Pre-built at build time"
-        },
-        "isr": {
-          "name": "Incremental Static Regeneration",
-          "description": "SSG with automatic revalidation for fresh content",
-          "shortDescription": "SSG with timed regeneration"
-        },
-        "rsc": {
-          "name": "React Server Components",
-          "description": "Server-only components for optimal performance",
-          "shortDescription": "Server-only components"
-        },
-        "streaming": {
-          "name": "React Streaming",
-          "description": "Progressive loading with Suspense boundaries",
-          "shortDescription": "Chunked HTML via Suspense"
-        },
-        "ppr": {
-          "name": "Partial Prerendering",
-          "description": "Static shells with dynamic holes for optimal UX",
-          "shortDescription": "Static shells + dynamic holes"
-        }
+        "description": "Next.js offers multiple rendering strategies to optimize your application's performance, SEO, and user experience. From Client-Side Rendering (CSR) for interactive applications to Static Site Generation (SSG) for maximum performance, Server-Side Rendering (SSR) for dynamic content, and modern approaches like React Server Components (RSC), Streaming, and Partial Prerendering (PPR). Each strategy has its own strengths and use cases, allowing you to choose the best approach for your specific needs."
       },
       "features": {
         "title": "Why Use This Guide?",
@@ -157,12 +121,18 @@
         "clickToLoad": "Click \"Load Dynamic Content\" to see this step"
       },
       "benefits": {
-        "title": "CSR Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "Rich Interactivity: Full client-side interactivity",
           "Reduced Server Load: Minimal server processing",
           "Dynamic Updates: Real-time content updates",
           "Offline Support: Works without server connection"
+        ],
+        "tradeoffs": [
+          "Poor initial SEO: Search engines see empty HTML",
+          "Slow Time to First Byte (TTFB): Content loads after JavaScript",
+          "High client CPU usage: All rendering on client",
+          "No content without JavaScript: Breaks if JS is disabled"
         ]
       },
       "diagram": {
@@ -190,6 +160,16 @@
         "valuePoor": "Poor",
         "valueHigh": "High",
         "valueLow": "Low"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "CSR uses client-side components with React hooks for interactivity.",
+        "points": [
+          "Use 'use client' directive at the top of the file",
+          "Components can use React hooks (useState, useEffect, etc.)",
+          "Data fetching happens on the client side",
+          "Perfect for interactive features and dynamic updates"
+        ]
       }
     },
     "ssr": {
@@ -209,12 +189,18 @@
         "renderedAt": "Server rendered at:"
       },
       "benefits": {
-        "title": "SSR Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "SEO Optimized: Search engines can crawl content",
           "Fast Initial Load: HTML ready immediately",
           "Social Sharing: Rich previews for social media",
           "Accessibility: Works without JavaScript"
+        ],
+        "tradeoffs": [
+          "Higher server load: Server processes every request",
+          "Increased latency: Server must render before sending",
+          "More server resources: Requires more CPU/memory",
+          "Slower for high traffic: Each request hits server"
         ]
       },
       "diagram": {
@@ -241,6 +227,16 @@
         "valueGreat": "Great",
         "valueLow": "Low",
         "valueHigh": "High"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "SSR uses async Server Components without React hooks.",
+        "points": [
+          "Components are async functions (no 'use client' directive)",
+          "Cannot use React hooks (useState, useEffect, etc.)",
+          "Add 'export const dynamic = \"force-dynamic\"' to disable caching",
+          "Data fetching happens on the server for each request"
+        ]
       }
     },
     "ssg": {
@@ -282,12 +278,18 @@
         }
       },
       "benefits": {
-        "title": "SSG Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "Maximum Performance: Fastest possible loading",
           "CDN Distribution: Global content delivery",
           "Cost Effective: Minimal server resources needed",
           "Security: No server-side vulnerabilities"
+        ],
+        "tradeoffs": [
+          "Stale data: Content only updates on rebuild",
+          "Long build times: All pages generated at build",
+          "No dynamic content: Can't personalize per user",
+          "Rebuild required: Changes need new deployment"
         ]
       },
       "diagram": {
@@ -316,6 +318,16 @@
         "valueGreat": "Great",
         "valueLow": "Low",
         "valueNone": "None"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "SSG uses async Server Components that are pre-rendered at build time.",
+        "points": [
+          "Components are async functions (no 'use client' directive)",
+          "Cannot use React hooks (useState, useEffect, etc.)",
+          "Use 'cache: \"force-cache\"' in fetch for static data",
+          "Pages are generated at build time, not on request"
+        ]
       }
     },
     "isr": {
@@ -336,12 +348,18 @@
         "nextUpdate": "Next update:"
       },
       "benefits": {
-        "title": "ISR Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "Best of Both Worlds: Static performance + dynamic updates",
           "Automatic Revalidation: Content stays fresh",
           "Scalable: Handles traffic spikes gracefully",
           "Cost Efficient: Reduced server load"
+        ],
+        "tradeoffs": [
+          "Brief staleness: Content may be slightly outdated",
+          "Revalidation overhead: Background regeneration costs",
+          "Complex caching: Need to manage revalidate times",
+          "First request delay: May trigger regeneration"
         ]
       },
       "diagram": {
@@ -370,6 +388,16 @@
         "valueGreat": "Great",
         "valueMedium": "Medium",
         "valueLow": "Low"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "ISR uses async Server Components with revalidation time.",
+        "points": [
+          "Components are async functions (no 'use client' directive)",
+          "Cannot use React hooks (useState, useEffect, etc.)",
+          "Add 'export const revalidate = 3600' (1 hour) to set revalidation time",
+          "Pages are regenerated periodically based on revalidate value"
+        ]
       }
     },
     "rsc": {
@@ -394,12 +422,18 @@
         "subDescription": "Optimal performance with secure data access"
       },
       "benefits": {
-        "title": "RSC Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "Optimal Performance: Server + client components",
           "Secure Data Access: Server-side data fetching",
           "Reduced Bundle Size: Less JavaScript to client",
           "Better SEO: Server-rendered content"
+        ],
+        "tradeoffs": [
+          "Interactivity split: Need to choose server vs client",
+          "Hydration step: Client components need hydration",
+          "Learning curve: Understanding server/client boundaries",
+          "Serialization limits: Can't pass functions/classes"
         ]
       },
       "diagram": {
@@ -429,6 +463,16 @@
         "valueGreat": "Great",
         "valueHigh": "High",
         "valueBalanced": "Balanced"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "RSC uses Server Components by default, with Client Components when needed.",
+        "points": [
+          "Server Components are async functions (default, no directive needed)",
+          "Cannot use React hooks in Server Components",
+          "Add 'use client' directive only when you need interactivity",
+          "Server Components can fetch data directly, Client Components use hooks"
+        ]
       }
     },
     "streaming": {
@@ -461,12 +505,18 @@
         "componentBTitle": "Component B"
       },
       "benefits": {
-        "title": "Streaming Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "Progressive Loading: Fast content appears immediately",
           "Better UX: Users see content as it becomes available",
           "Parallel Loading: Multiple components load independently",
           "Error Boundaries: Isolated error handling per component"
+        ],
+        "tradeoffs": [
+          "Incremental UI: Layout may shift as content loads",
+          "Fallback UX needed: Must design loading states",
+          "Complexity: Managing multiple Suspense boundaries",
+          "SEO considerations: Some content loads after initial render"
         ]
       },
       "diagram": {
@@ -497,11 +547,21 @@
         "valueGood": "Good",
         "valueHigh": "High",
         "valueMedium": "Medium"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "Streaming uses Suspense boundaries with async Server Components.",
+        "points": [
+          "Components are async functions (no 'use client' directive)",
+          "Cannot use React hooks in Server Components",
+          "Wrap async components with Suspense and provide fallback",
+          "Content streams to the client as it becomes available"
+        ]
       }
     },
     "ppr": {
       "title": "Partial Prerendering (PPR)",
-      "description": "Static shells with dynamic holes",
+      "description": "Hybrid technique: Static shells prerendered at build time with dynamic content streamed via Suspense",
       "step1": {
         "title": "Static Shell",
         "description": "Static content prerendered at build time",
@@ -525,12 +585,18 @@
         "subDescription": "Best of both worlds: speed + personalization"
       },
       "benefits": {
-        "title": "PPR Benefits",
+        "title": "Benefits x Trade-offs",
         "items": [
           "Instant Static Shell: Fast initial page load",
           "Progressive Enhancement: Dynamic content streams in",
           "Optimal UX: Users see content immediately",
           "Flexible Architecture: Mix static and dynamic content"
+        ],
+        "tradeoffs": [
+          "Suspense complexity: Requires proper Suspense wrappers",
+          "Browser buffering delays: May delay dynamic content",
+          "Status codes can't change: Set before streaming starts",
+          "Experimental: Still evolving API and best practices"
         ]
       },
       "diagram": {
@@ -562,20 +628,164 @@
         "valueGreat": "Great",
         "valueHigh": "High",
         "valueBalanced": "Balanced"
+      },
+      "implementation": {
+        "title": "How to implement?",
+        "description": "PPR combines static shell with dynamic content streaming. Introduced in Next.js 14.1 (experimental), stable in 15+.",
+        "points": [
+          "Enable PPR via 'cacheComponents: true' or 'ppr: true' in next.config.js",
+          "Wrap dynamic components in <Suspense fallback={<Skeleton />}>",
+          "Static parts are prerendered at build time",
+          "Dynamic parts stream on request - status codes can't change post-stream"
+        ]
       }
     },
     "comparison": {
-      "title": "Rendering Modes Comparison",
+      "title": "Rendering Techniques Comparison",
       "subtitle": "Compare different rendering approaches across key metrics",
-      "tableTitle": "Rendering Modes Comparison Table",
-      "tableDescription": "This table compares various rendering modes for web applications",
+      "summary": {
+        "title": "Quick Reference Guide",
+        "description": "A quick overview of when to use each rendering strategy",
+        "headers": {
+          "strategy": "Strategy",
+          "whenToUse": "When to Use",
+          "seo": "SEO",
+          "performance": "Performance"
+        },
+        "strategies": [
+          {
+            "strategy": "CSR",
+            "whenToUse": "Interactive SPAs",
+            "seo": "Poor",
+            "performance": "Fast nav, slow initial"
+          },
+          {
+            "strategy": "SSR",
+            "whenToUse": "Dynamic/personalized",
+            "seo": "Good",
+            "performance": "Fresh, server-bound"
+          },
+          {
+            "strategy": "SSG",
+            "whenToUse": "Static content",
+            "seo": "Excellent",
+            "performance": "Fastest loads"
+          },
+          {
+            "strategy": "ISR",
+            "whenToUse": "Semi-static",
+            "seo": "Excellent",
+            "performance": "Fast + fresh"
+          },
+          {
+            "strategy": "PPR",
+            "whenToUse": "Hybrid pages",
+            "seo": "Good",
+            "performance": "Instant shell + stream"
+          },
+          {
+            "strategy": "RSC",
+            "whenToUse": "Server data/UI",
+            "seo": "Varies",
+            "performance": "Reduced JS"
+          },
+          {
+            "strategy": "Streaming",
+            "whenToUse": "Slow/large content",
+            "seo": "Good",
+            "performance": "Progressive"
+          }
+        ]
+      },
+      "strategies": {
+        "title": "Strategy Descriptions",
+        "description": "Detailed descriptions of each rendering strategy",
+        "csr": {
+          "name": "Client-Side Rendering",
+          "description": "Render pages in the browser after JavaScript loads"
+        },
+        "ssr": {
+          "name": "Server-Side Rendering",
+          "description": "Render pages on the server for each request"
+        },
+        "ssg": {
+          "name": "Static Site Generation",
+          "description": "Pre-build pages at build time for maximum performance"
+        },
+        "isr": {
+          "name": "Incremental Static Regeneration",
+          "fullDescription": "Statically generates pages at build time but regenerates them in the background after a set interval (e.g., via revalidate or cacheLife).",
+          "useCases": "Use Cases:",
+          "useCasesValue": "Infrequently updated content like blogs or product catalogs.",
+          "pros": "Pros:",
+          "prosValue": "Fast loads like SSG + fresh data without full rebuilds.",
+          "cons": "Cons:",
+          "consValue": "Potential staleness during revalidation window; needs cache invalidation.",
+          "implementation": "Implementation:",
+          "implementationValue": "export const revalidate = 3600; (1 hour)"
+        },
+        "rsc": {
+          "name": "React Server Components",
+          "description": "Technique for server-only rendering (default in App Router). No client JS for non-interactive parts."
+        },
+        "streaming": {
+          "name": "React Streaming",
+          "description": "Progressive loading with Suspense boundaries"
+        },
+        "ppr": {
+          "name": "Partial Prerendering",
+          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via <Suspense> at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js."
+        }
+      },
+      "tableTitle": "Rendering Techniques Comparison Table",
+      "tableDescription": "This table compares various rendering techniques for web applications",
       "headers": {
-        "mode": "Mode",
+        "technique": "Technique",
+        "introduced": "Introduced",
         "initialSpeed": "Initial Speed",
         "seoPerformance": "SEO Performance",
         "dynamicContent": "Dynamic Content",
         "serverLoad": "Server Load",
-        "useCases": "Use Cases"
+        "useCases": "Use Cases",
+        "keyTradeoffs": "Key Trade-offs"
+      },
+      "tradeoffs": {
+        "title": "Trade-offs & Limitations",
+        "description": "Understanding the limitations and trade-offs of each rendering strategy helps make informed decisions",
+        "headers": {
+          "strategy": "Strategy",
+          "tradeoffs": "Key Trade-offs"
+        },
+        "items": [
+          {
+            "strategy": "CSR",
+            "tradeoffs": "Poor initial SEO/TTFB; high client CPU."
+          },
+          {
+            "strategy": "SSR",
+            "tradeoffs": "Higher server load/latency per request."
+          },
+          {
+            "strategy": "SSG",
+            "tradeoffs": "Stale data until rebuild."
+          },
+          {
+            "strategy": "ISR",
+            "tradeoffs": "Brief staleness; revalidation overhead."
+          },
+          {
+            "strategy": "PPR",
+            "tradeoffs": "Suspense complexity; browser buffering delays."
+          },
+          {
+            "strategy": "RSC",
+            "tradeoffs": "Interactivity split; hydration step."
+          },
+          {
+            "strategy": "Streaming",
+            "tradeoffs": "Incremental UI; fallback UX needed."
+          }
+        ]
       },
       "takeaways": {
         "title": "Key Takeaways",
@@ -606,6 +816,7 @@
       "modes": {
         "csr": {
           "name": "Client-Side Rendering",
+          "introduced": "Traditional",
           "initialSpeed": "Slow",
           "seo": "Poor",
           "dynamicContent": "High",
@@ -615,6 +826,7 @@
         },
         "ssr": {
           "name": "Server-Side Rendering",
+          "introduced": "Traditional",
           "initialSpeed": "Fast",
           "seo": "Great",
           "dynamicContent": "High",
@@ -624,6 +836,7 @@
         },
         "ssg": {
           "name": "Static Site Generation",
+          "introduced": "Next.js 9",
           "initialSpeed": "Fast",
           "seo": "Great",
           "dynamicContent": "Low",
@@ -633,6 +846,7 @@
         },
         "isr": {
           "name": "Incremental Static Regeneration",
+          "introduced": "Next.js 9.5",
           "initialSpeed": "Fast",
           "seo": "Great",
           "dynamicContent": "Medium",
@@ -642,15 +856,17 @@
         },
         "rsc": {
           "name": "React Server Components",
+          "introduced": "Next.js 13",
           "initialSpeed": "Optimal",
           "seo": "Great",
           "dynamicContent": "High",
           "serverLoad": "Balanced",
           "useCases": ["Modern apps", "Data-heavy", "Secure apps"],
-          "description": "Server-only components"
+          "description": "Technique for server-only rendering (default in App Router). No client JS for non-interactive parts. Use Cases: Data fetching, secure logic (e.g., API keys). Pros: Smaller bundles, faster FCP, secure. Cons: No state/events (use Client Components for interactivity); serializable props only. Implementation: Omit 'use client' for server; pass props to client-marked files."
         },
         "streaming": {
           "name": "Streaming",
+          "introduced": "Next.js 13",
           "initialSpeed": "Fast",
           "seo": "Good",
           "dynamicContent": "High",
@@ -660,12 +876,13 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
+          "introduced": "Next.js 14.1",
           "initialSpeed": "Optimal",
           "seo": "Great",
           "dynamicContent": "High",
           "serverLoad": "Balanced",
-          "useCases": ["Next.js 16+", "Hybrid apps", "Optimal perf"],
-          "description": "Static shells + dynamic holes"
+          "useCases": ["Hybrid apps", "Optimal perf", "Modern pages"],
+          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via <Suspense> at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js. Use Cases: Pages mixing static UI (nav, headers) with dynamic data (user feeds). Pros: Instant shell delivery + parallel dynamic rendering; SEO-friendly. Cons: Requires <Suspense> wrappers; status codes can't change post-stream. Implementation: Wrap dynamic components in <Suspense fallback={<Skeleton />}>."
         }
       },
       "speedLabels": {

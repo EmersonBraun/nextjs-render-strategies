@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
 import { DiagramCard } from "./components/diagram-card";
+import { ImplementationCard } from "./components/implementation-card";
 
 export default function CSRPage() {
   const t = useTranslations("pages.csr");
@@ -20,6 +21,7 @@ export default function CSRPage() {
       <div className="space-y-6">
         <DiagramCard />
         <BenefitsCard />
+        <ImplementationCard />
         <ComparisonCard />
       </div>
     </div>

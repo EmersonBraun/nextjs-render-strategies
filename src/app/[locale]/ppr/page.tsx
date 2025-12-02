@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
 import { DiagramCard } from "./components/diagram-card";
+import { ImplementationCard } from "./components/implementation-card";
 
 export const experimental_ppr = true;
 
@@ -48,6 +49,7 @@ export default async function PPRPage({
       <div className="space-y-6">
         <DiagramCard />
         <BenefitsCard />
+        <ImplementationCard locale={locale} />
         <ComparisonCard />
       </div>
     </div>

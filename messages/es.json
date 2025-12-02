@@ -157,12 +157,28 @@
         "clickToLoad": "Haz clic en \"Cargar Contenido Dinámico\" para ver este paso"
       },
       "benefits": {
-        "title": "Beneficios CSR",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "Interactividad Rica: Interactividad completa del cliente",
           "Reducción de Carga del Servidor: Procesamiento mínimo del servidor",
           "Actualizaciones Dinámicas: Actualizaciones de contenido en tiempo real",
           "Soporte Offline: Funciona sin conexión al servidor"
+        ],
+        "tradeoffs": [
+          "SEO inicial pobre: Los motores de búsqueda ven HTML vacío",
+          "TTFB lento: El contenido se carga después de JavaScript",
+          "Alto uso de CPU del cliente: Toda la renderización en el cliente",
+          "Sin contenido sin JavaScript: Se rompe si JS está deshabilitado"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "CSR usa componentes del lado del cliente con hooks React para interactividad.",
+        "points": [
+          "Usa la directiva 'use client' en la parte superior del archivo",
+          "Los componentes pueden usar hooks React (useState, useEffect, etc.)",
+          "La obtención de datos ocurre en el lado del cliente",
+          "Perfecto para características interactivas y actualizaciones dinámicas"
         ]
       },
       "diagram": {
@@ -209,12 +225,28 @@
         "renderedAt": "Renderizado en el servidor a las:"
       },
       "benefits": {
-        "title": "Beneficios SSR",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "SEO Optimizado: Los motores de búsqueda pueden rastrear contenido",
           "Carga Inicial Rápida: HTML listo inmediatamente",
           "Compartir Social: Previews ricos para redes sociales",
           "Accesibilidad: Funciona sin JavaScript"
+        ],
+        "tradeoffs": [
+          "Mayor carga del servidor: El servidor procesa cada solicitud",
+          "Latencia aumentada: El servidor debe renderizar antes de enviar",
+          "Más recursos del servidor: Requiere más CPU/memoria",
+          "Más lento para alto tráfico: Cada solicitud golpea el servidor"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "SSR usa componentes Server asíncronos sin hooks React.",
+        "points": [
+          "Los componentes son funciones asíncronas (sin directiva 'use client')",
+          "No se pueden usar hooks React (useState, useEffect, etc.)",
+          "Agrega 'export const dynamic = \"force-dynamic\"' para deshabilitar caché",
+          "La obtención de datos ocurre en el servidor para cada solicitud"
         ]
       },
       "diagram": {
@@ -282,12 +314,28 @@
       },
       "overview": "Descripción general de SSG con ejemplos de rutas dinámicas",
       "benefits": {
-        "title": "Beneficios SSG",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "Rendimiento Máximo: Carga más rápida posible",
           "Distribución CDN: Entrega global de contenido",
           "Costo Efectivo: Recursos mínimos de servidor necesarios",
           "Seguridad: Sin vulnerabilidades del lado del servidor"
+        ],
+        "tradeoffs": [
+          "Datos obsoletos: El contenido solo se actualiza en rebuild",
+          "Tiempos de build largos: Todas las páginas generadas en build",
+          "Sin contenido dinámico: No se puede personalizar por usuario",
+          "Reconstrucción requerida: Los cambios necesitan nuevo despliegue"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "SSG usa componentes Server asíncronos que se prerenderizan en tiempo de build.",
+        "points": [
+          "Los componentes son funciones asíncronas (sin directiva 'use client')",
+          "No se pueden usar hooks React (useState, useEffect, etc.)",
+          "Usa 'cache: \"force-cache\"' en fetch para datos estáticos",
+          "Las páginas se generan en tiempo de build, no en solicitud"
         ]
       },
       "diagram": {
@@ -336,12 +384,28 @@
         "nextUpdate": "Próxima actualización:"
       },
       "benefits": {
-        "title": "Beneficios ISR",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "Mejor de Ambos Mundos: Rendimiento estático + actualizaciones dinámicas",
           "Revalidación Automática: El contenido permanece fresco",
           "Escalable: Maneja graciosamente picos de tráfico",
           "Costo Eficiente: Carga reducida del servidor"
+        ],
+        "tradeoffs": [
+          "Breve obsolescencia: El contenido puede estar ligeramente desactualizado",
+          "Overhead de revalidación: La regeneración en background tiene costos",
+          "Caché complejo: Necesita gestionar tiempos de revalidate",
+          "Retraso en primera solicitud: Puede activar regeneración"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "ISR usa componentes Server asíncronos con tiempo de revalidación.",
+        "points": [
+          "Los componentes son funciones asíncronas (sin directiva 'use client')",
+          "No puedes usar hooks de React (useState, useEffect, etc.)",
+          "Agrega 'export const revalidate = 3600' (1 hora) para definir tiempo de revalidación",
+          "Las páginas se regeneran periódicamente según el valor de revalidate"
         ]
       },
       "diagram": {
@@ -394,12 +458,28 @@
         "subDescription": "Rendimiento optimizado con acceso seguro a datos"
       },
       "benefits": {
-        "title": "Beneficios RSC",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "Rendimiento Optimizado: Componentes del servidor + cliente",
           "Acceso Seguro a Datos: Obtención de datos del lado del servidor",
           "Tamaño de Bundle Reducido: Menos JavaScript al cliente",
           "Mejor SEO: Contenido renderizado en el servidor"
+        ],
+        "tradeoffs": [
+          "División de interactividad: Necesita elegir servidor vs cliente",
+          "Paso de hidratación: Los componentes cliente necesitan hidratación",
+          "Curva de aprendizaje: Entender límites servidor/cliente",
+          "Límites de serialización: No se pueden pasar funciones/clases"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "RSC usa Server Components por defecto, con Client Components cuando se necesitan.",
+        "points": [
+          "Los Server Components son funciones asíncronas (por defecto, sin directiva necesaria)",
+          "No se pueden usar hooks React en Server Components",
+          "Agrega directiva 'use client' solo cuando necesites interactividad",
+          "Los Server Components pueden obtener datos directamente, los Client Components usan hooks"
         ]
       },
       "diagram": {
@@ -461,12 +541,28 @@
         "componentBTitle": "Componente B"
       },
       "benefits": {
-        "title": "Beneficios Streaming",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "Carga Progresiva: Contenido rápido aparece inmediatamente",
           "Mejor UX: Los usuarios ven contenido conforme está disponible",
           "Carga Paralela: Múltiples componentes cargan independientemente",
           "Límites de Error: Manejo de error aislado por componente"
+        ],
+        "tradeoffs": [
+          "UI incremental: El diseño puede cambiar conforme el contenido se carga",
+          "Fallback UX necesario: Debe diseñar estados de carga",
+          "Complejidad: Gestionar múltiples límites Suspense",
+          "Consideraciones SEO: Algún contenido se carga después del render inicial"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "Streaming usa límites Suspense con componentes Server asíncronos.",
+        "points": [
+          "Los componentes son funciones asíncronas (sin directiva 'use client')",
+          "No se pueden usar hooks React en Server Components",
+          "Envuelve componentes asíncronos con Suspense y proporciona fallback",
+          "El contenido se transmite al cliente conforme está disponible"
         ]
       },
       "diagram": {
@@ -525,12 +621,28 @@
         "subDescription": "Lo mejor de ambos mundos: velocidad + personalización"
       },
       "benefits": {
-        "title": "Beneficios PPR",
+        "title": "Beneficios x Trade-offs",
         "items": [
           "Concha Estática Instantánea: Carga inicial rápida de la página",
           "Mejora Progresiva: Contenido dinámico fluye",
           "UX Optimizada: Los usuarios ven contenido inmediatamente",
           "Arquitectura Flexible: Mezcla contenido estático y dinámico"
+        ],
+        "tradeoffs": [
+          "Complejidad del Suspense: Requiere wrappers Suspense adecuados",
+          "Retrasos de buffer del navegador: Puede retrasar contenido dinámico",
+          "Los códigos de estado no pueden cambiar: Establecidos antes de que comience el streaming",
+          "Experimental: API y mejores prácticas aún evolucionando"
+        ]
+      },
+      "implementation": {
+        "title": "¿Cómo implementar?",
+        "description": "PPR combina concha estática con streaming de contenido dinámico. Introducido en Next.js 14.1 (experimental), estable en 15+.",
+        "points": [
+          "Habilita PPR via 'cacheComponents: true' o 'ppr: true' en next.config.js",
+          "Envuelve componentes dinámicos en <Suspense fallback={<Skeleton />}>",
+          "Las partes estáticas se prerenderizan en tiempo de build",
+          "Las partes dinámicas hacen stream en solicitud - los códigos de estado no pueden cambiar post-stream"
         ]
       },
       "diagram": {
@@ -575,7 +687,46 @@
         "seoPerformance": "Rendimiento SEO",
         "dynamicContent": "Contenido Dinámico",
         "serverLoad": "Carga del Servidor",
-        "useCases": "Casos de Uso"
+        "useCases": "Casos de Uso",
+        "keyTradeoffs": "Trade-offs Principales"
+      },
+      "tradeoffs": {
+        "title": "Trade-offs y Limitaciones",
+        "description": "Entender las limitaciones y trade-offs de cada estrategia de renderizado ayuda a tomar decisiones informadas",
+        "headers": {
+          "strategy": "Estrategia",
+          "tradeoffs": "Trade-offs Principales"
+        },
+        "items": [
+          {
+            "strategy": "CSR",
+            "tradeoffs": "SEO inicial pobre/TTFB; alto uso de CPU del cliente."
+          },
+          {
+            "strategy": "SSR",
+            "tradeoffs": "Mayor carga del servidor/latencia por solicitud."
+          },
+          {
+            "strategy": "SSG",
+            "tradeoffs": "Datos obsoletos hasta rebuild."
+          },
+          {
+            "strategy": "ISR",
+            "tradeoffs": "Breve obsolescencia; overhead de revalidación."
+          },
+          {
+            "strategy": "PPR",
+            "tradeoffs": "Complejidad del Suspense; retrasos de buffer del navegador."
+          },
+          {
+            "strategy": "RSC",
+            "tradeoffs": "División de interactividad; paso de hidratación."
+          },
+          {
+            "strategy": "Streaming",
+            "tradeoffs": "UI incremental; fallback UX necesario."
+          }
+        ]
       },
       "takeaways": {
         "title": "Conclusiones Clave",
@@ -610,6 +761,7 @@
       "modes": {
         "csr": {
           "name": "Client-Side Rendering",
+          "introduced": "Tradicional",
           "initialSpeed": "Lento",
           "seo": "Pobre",
           "dynamicContent": "Alto",
@@ -619,6 +771,7 @@
         },
         "ssr": {
           "name": "Server-Side Rendering",
+          "introduced": "Tradicional",
           "initialSpeed": "Rápido",
           "seo": "Excelente",
           "dynamicContent": "Alto",
@@ -628,6 +781,7 @@
         },
         "ssg": {
           "name": "Static Site Generation",
+          "introduced": "Next.js 9",
           "initialSpeed": "Rápido",
           "seo": "Excelente",
           "dynamicContent": "Bajo",
@@ -637,6 +791,7 @@
         },
         "isr": {
           "name": "Incremental Static Regeneration",
+          "introduced": "Next.js 9.5",
           "initialSpeed": "Rápido",
           "seo": "Excelente",
           "dynamicContent": "Medio",
@@ -646,6 +801,7 @@
         },
         "rsc": {
           "name": "React Server Components",
+          "introduced": "Next.js 13",
           "initialSpeed": "Óptimo",
           "seo": "Excelente",
           "dynamicContent": "Alto",
@@ -659,6 +815,7 @@
         },
         "streaming": {
           "name": "Streaming",
+          "introduced": "Next.js 13",
           "initialSpeed": "Rápido",
           "seo": "Bueno",
           "dynamicContent": "Alto",
@@ -668,6 +825,7 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
+          "introduced": "Next.js 14.1",
           "initialSpeed": "Óptimo",
           "seo": "Excelente",
           "dynamicContent": "Alto",
