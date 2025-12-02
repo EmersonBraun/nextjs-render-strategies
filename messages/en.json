@@ -819,7 +819,12 @@
         "hybrid": {
           "title": "Hybrid Approach",
           "description": "Use ISR, RSC, or PPR for optimal performance. Can mix strategies per-page.",
-          "items": ["Product catalogs", "News sites", "Modern web apps", "Per-page strategy selection"]
+          "items": [
+            "Product catalogs",
+            "News sites",
+            "Modern web apps",
+            "Per-page strategy selection"
+          ]
         }
       },
       "modes": {
