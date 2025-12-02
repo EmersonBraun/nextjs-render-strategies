@@ -69,6 +69,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   transition-property:
     color, background-color, border-color, opacity, transform, box-shadow;

@@ -7,7 +7,7 @@ export function ComparisonCard() {
   const t = useTranslations("pages.csr.comparison");
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>

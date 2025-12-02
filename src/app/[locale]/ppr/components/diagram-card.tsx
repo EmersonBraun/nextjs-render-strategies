@@ -61,8 +61,8 @@ export function DiagramCard() {
   };
 
   return (
-    <div>
-      <div className="flex justify-center mb-6">
+    <div className="w-full">
+      <div className="flex justify-center mb-4">
         <button
           type="button"
           onClick={resetAnimation}

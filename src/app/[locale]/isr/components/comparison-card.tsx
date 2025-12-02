@@ -7,7 +7,7 @@ export function ComparisonCard() {
   const t = useTranslations("pages.isr.comparison");
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>

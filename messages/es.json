@@ -857,6 +857,18 @@
         "medium": "Medio",
         "high": "Alto"
       }
+    },
+    "thankYou": {
+      "title": "¡Gracias!",
+      "message": "¡Gracias por su atención! Siéntase libre de explorar el repositorio y conectar conmigo en LinkedIn.",
+      "repository": {
+        "title": "Repositorio",
+        "description": "Escanee para ver el código fuente"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "description": "Escanee para conectar conmigo"
+      }
     }
   },
   "footer": {

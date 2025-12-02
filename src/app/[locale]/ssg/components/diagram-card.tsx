@@ -61,26 +61,26 @@ export function DiagramCard() {
   };
 
   return (
-    <div>
-      <div className="flex justify-center mb-6">
+    <div className="w-full">
+      <div className="flex justify-center mb-4">
         <button
           type="button"
           onClick={resetAnimation}
-          className="px-6 py-3 text-base bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium shadow-md cursor-pointer"
+          className="px-4 py-2 text-sm bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium shadow-md cursor-pointer"
         >
           {t("restart")}
         </button>
       </div>
 
-      <div>
+      <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
         {/* Build Time Section */}
-        <div className="mb-8 p-4 bg-yellow-50 dark:bg-yellow-950/30 border-2 border-dashed border-yellow-500 rounded-xl">
-          <h4 className="text-xl font-bold text-center text-yellow-700 dark:text-yellow-400 mb-4">
+        <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-950/30 border-2 border-dashed border-yellow-500 rounded-xl">
+          <h4 className="text-lg font-bold text-center text-yellow-700 dark:text-yellow-400 mb-3">
             {t("buildTime")}
           </h4>
 
           {/* Build Time Steps */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Step 1: Fetch data at build time */}
             <div
               className={`relative transition-all duration-500 ${
@@ -93,7 +93,7 @@ export function DiagramCard() {
                 </span>
               </div>
               {currentStep >= 1 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gray-400"></div>
               )}
             </div>
 
@@ -104,15 +104,15 @@ export function DiagramCard() {
               }`}
             >
               {currentStep >= 0 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
               )}
-              <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <div className="font-semibold text-lg font-mono text-gray-900 dark:text-gray-100">
+              <div className="border-2 border-solid border-gray-500 rounded-xl p-3 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
+                <div className="font-semibold text-base font-mono text-gray-900 dark:text-gray-100">
                   React.renderToStaticMarkup()
                 </div>
               </div>
               {currentStep >= 2 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gray-400"></div>
               )}
             </div>
 
@@ -123,7 +123,7 @@ export function DiagramCard() {
               }`}
             >
               {currentStep >= 1 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
               )}
               <div className="border-2 border-dashed border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
                 <div className="flex items-center justify-between">
@@ -131,7 +131,7 @@ export function DiagramCard() {
                     {t("storeOnCDN")}
                   </span>
                   {currentStep >= 2 && (
-                    <span className="text-gray-600 dark:text-gray-400 text-2xl animate-pulse">
+                    <span className="text-gray-600 dark:text-gray-400 text-xl animate-pulse">
                       ✓
                     </span>
                   )}
@@ -183,7 +183,7 @@ export function DiagramCard() {
               </div>
             </div>
             <div
-              className={`w-20 h-20 bg-gray-600 rounded-xl flex items-center justify-center text-white text-4xl shadow-lg transition-all duration-500 ${
+              className={`w-16 h-16 bg-gray-600 rounded-xl flex items-center justify-center text-white text-3xl shadow-lg transition-all duration-500 ${
                 currentStep >= 4
                   ? "opacity-100 scale-100"
                   : "opacity-30 scale-90"
@@ -222,24 +222,24 @@ export function DiagramCard() {
           </div>
 
           {/* Client Section */}
-          <div className="p-4 bg-blue-50 dark:bg-blue-950/30 border-2 border-dashed border-blue-500 rounded-xl">
-            <h4 className="text-xl font-bold text-center text-blue-700 dark:text-blue-400 mb-4">
+          <div className="p-3 bg-blue-50 dark:bg-blue-950/30 border-2 border-dashed border-blue-500 rounded-xl">
+            <h4 className="text-lg font-bold text-center text-blue-700 dark:text-blue-400 mb-3">
               {t("client")}
             </h4>
-            <div className="space-y-6 relative">
+            <div className="space-y-3 relative">
               {/* Step 4: Client sends request */}
               <div
                 className={`relative transition-all duration-500 ${
                   currentStep >= 3 ? "opacity-100" : "opacity-30"
                 }`}
               >
-                <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
+              <div className="border-2 border-dashed border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
+                <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
                     {t("clientSendsRequest")}
                   </span>
                 </div>
                 {currentStep >= 4 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gray-400"></div>
                 )}
               </div>
 
@@ -250,15 +250,15 @@ export function DiagramCard() {
                 }`}
               >
                 {currentStep >= 4 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
                 )}
-                <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
+              <div className="border-2 border-dashed border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
+                <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
                     {t("clientReceivesHTML")}
                   </span>
                 </div>
                 {currentStep >= 6 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gray-400"></div>
                 )}
               </div>
 
@@ -269,15 +269,15 @@ export function DiagramCard() {
                 }`}
               >
                 {currentStep >= 5 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
                 )}
-                <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <div className="font-semibold text-lg font-mono text-blue-900 dark:text-blue-100">
+              <div className="border-2 border-solid border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
+                <div className="font-semibold text-base font-mono text-blue-900 dark:text-blue-100">
                     React.hydrate()
                   </div>
                 </div>
                 {currentStep >= 7 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gray-400"></div>
                 )}
               </div>
 
@@ -288,12 +288,12 @@ export function DiagramCard() {
                 }`}
               >
                 {currentStep >= 6 && (
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
                 )}
                 <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">✨</span>
-                    <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">✨</span>
+                  <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
                       {t("pageInteractive")}
                     </span>
                   </div>

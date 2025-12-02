@@ -7,7 +7,7 @@ export function BenefitsCard() {
   const t = useTranslations("pages.rsc.benefits");
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>

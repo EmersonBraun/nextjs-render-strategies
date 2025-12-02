@@ -8,7 +8,7 @@ export async function ImplementationCard({ locale }: { locale: string }) {
   });
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>

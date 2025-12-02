@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideSection } from "@/components/slide-section";
+import { IntroSlide } from "@/components/intro-slide";
 import { BenefitsCard } from "./components/benefits-card";
+import { BuildTimeSection } from "./components/build-time-section";
+import { ClientSection } from "./components/client-section";
 import { ComparisonCard } from "./components/comparison-card";
-import { DiagramCard } from "./components/diagram-card";
 import { ImplementationCard } from "./components/implementation-card";
 
 export const experimental_ppr = true;
@@ -39,19 +43,31 @@ export default async function PPRPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.ppr" });
 
-  return (
-    <div className="max-w-7xl mx-auto space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
-        <p className="text-muted-foreground">{t("description")}</p>
-      </div>
+  const sectionIds = ["intro", "animation-build", "animation-client", "benefits", "implementation", "comparison"];
 
-      <div className="space-y-6">
-        <DiagramCard />
-        <BenefitsCard />
-        <ImplementationCard locale={locale} />
-        <ComparisonCard />
+  return (
+    <>
+      <SlideNavigation sectionIds={sectionIds} />
+      <div className="max-w-7xl mx-auto">
+        <SlideSection id="intro">
+          <IntroSlide title={t("title")} description={t("description")} />
+        </SlideSection>
+        <SlideSection id="animation-build">
+          <BuildTimeSection />
+        </SlideSection>
+        <SlideSection id="animation-client">
+          <ClientSection />
+        </SlideSection>
+        <SlideSection id="benefits">
+          <BenefitsCard />
+        </SlideSection>
+        <SlideSection id="implementation">
+          <ImplementationCard locale={locale} />
+        </SlideSection>
+        <SlideSection id="comparison">
+          <ComparisonCard />
+        </SlideSection>
       </div>
-    </div>
+    </>
   );
 }

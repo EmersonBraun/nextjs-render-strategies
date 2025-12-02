@@ -7,7 +7,7 @@ export function ImplementationCard() {
   const t = useTranslations("pages.csr.implementation");
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>

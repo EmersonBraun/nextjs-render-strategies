@@ -1,29 +1,43 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideSection } from "@/components/slide-section";
+import { IntroSlide } from "@/components/intro-slide";
 import { BenefitsCard } from "./components/benefits-card";
+import { ClientSection } from "./components/client-section";
 import { ComparisonCard } from "./components/comparison-card";
-import { DiagramCard } from "./components/diagram-card";
 import { ImplementationCard } from "./components/implementation-card";
+import { ServerSection } from "./components/server-section";
 
 export default function CSRPage() {
   const t = useTranslations("pages.csr");
 
-  return (
-    <div className="max-w-7xl mx-auto space-y-8">
-      <div className="flex justify-between items-start">
-        <div className="text-center space-y-4 flex-1">
-          <h1 className="text-3xl font-bold">{t("title")}</h1>
-          <p className="text-muted-foreground">{t("description")}</p>
-        </div>
-      </div>
+  const sectionIds = ["intro", "animation-server", "animation-client", "benefits", "implementation", "comparison"];
 
-      <div className="space-y-6">
-        <DiagramCard />
-        <BenefitsCard />
-        <ImplementationCard />
-        <ComparisonCard />
+  return (
+    <>
+      <SlideNavigation sectionIds={sectionIds} />
+      <div className="max-w-7xl mx-auto">
+        <SlideSection id="intro">
+          <IntroSlide title={t("title")} description={t("description")} />
+        </SlideSection>
+        <SlideSection id="animation-server">
+          <ServerSection />
+        </SlideSection>
+        <SlideSection id="animation-client">
+          <ClientSection />
+        </SlideSection>
+        <SlideSection id="benefits">
+          <BenefitsCard />
+        </SlideSection>
+        <SlideSection id="implementation">
+          <ImplementationCard />
+        </SlideSection>
+        <SlideSection id="comparison">
+          <ComparisonCard />
+        </SlideSection>
       </div>
-    </div>
+    </>
   );
 }

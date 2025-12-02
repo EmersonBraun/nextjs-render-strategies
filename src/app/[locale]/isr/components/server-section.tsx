@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
-export function DiagramCard() {
-  const t = useTranslations("pages.rsc.diagram");
+export function ServerSection() {
+  const t = useTranslations("pages.isr.diagram");
   const [currentStep, setCurrentStep] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -16,7 +16,7 @@ export function DiagramCard() {
 
       intervalRef.current = setInterval(() => {
         setCurrentStep((prev) => {
-          if (prev >= 9) {
+          if (prev >= 5) {
             if (intervalRef.current) {
               clearInterval(intervalRef.current);
               intervalRef.current = null;
@@ -47,7 +47,7 @@ export function DiagramCard() {
     setTimeout(() => {
       intervalRef.current = setInterval(() => {
         setCurrentStep((prev) => {
-          if (prev >= 9) {
+          if (prev >= 5) {
             if (intervalRef.current) {
               clearInterval(intervalRef.current);
               intervalRef.current = null;
@@ -61,26 +61,22 @@ export function DiagramCard() {
   };
 
   return (
-    <div className="w-full">
-      <div className="flex justify-center mb-4">
+    <div className="w-full h-full flex flex-col">
+      <div className="flex-1 flex flex-col justify-center">
         <button
           type="button"
           onClick={resetAnimation}
-          className="px-6 py-3 text-base bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium shadow-md cursor-pointer"
+          className="px-4 py-2 text-sm bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium shadow-md cursor-pointer mb-4"
         >
           {t("restart")}
         </button>
-      </div>
-
-      <div>
-        {/* Server Section */}
-        <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-950/30 border-2 border-dashed border-gray-500 rounded-xl">
-          <h4 className="text-xl font-bold text-center text-gray-700 dark:text-gray-400 mb-4">
+        <div className="p-6 bg-gray-50 dark:bg-gray-950/30 border-2 border-dashed border-gray-500 rounded-xl">
+          <h4 className="text-2xl font-bold text-center text-gray-700 dark:text-gray-400 mb-6">
             {t("server")}
           </h4>
 
           {/* Client-Server Communication */}
-          <div className="flex justify-center items-center gap-6 mb-6 relative">
+          <div className="flex justify-center items-center gap-6 mb-8 relative">
             <div
               className={`w-20 h-20 bg-blue-500 rounded-xl flex items-center justify-center text-white text-4xl shadow-lg transition-all duration-500 ${
                 currentStep >= 0
@@ -90,27 +86,27 @@ export function DiagramCard() {
             >
               🌐
             </div>
-            <div className="flex flex-col gap-3 relative">
+            <div className="flex flex-col gap-4 relative">
               {/* Request Arrow */}
               <div
-                className={`w-16 h-1 bg-blue-500 transition-all duration-500 ${
+                className={`w-20 h-1 bg-blue-500 transition-all duration-500 ${
                   currentStep >= 0 ? "opacity-100" : "opacity-0"
                 }`}
               >
                 <div className="w-0 h-0 border-l-4 border-l-blue-500 border-t-2 border-t-transparent border-b-2 border-b-transparent absolute right-0 top-1/2 transform -translate-y-1/2"></div>
               </div>
-              <div className="text-xs text-center text-muted-foreground font-medium">
+              <div className="text-sm text-center text-muted-foreground font-medium">
                 Request
               </div>
               {/* Response Arrow */}
               <div
-                className={`w-16 h-1 bg-emerald-500 transition-all duration-500 ${
-                  currentStep >= 4 ? "opacity-100" : "opacity-0"
+                className={`w-20 h-1 bg-emerald-500 transition-all duration-500 ${
+                  currentStep >= 5 ? "opacity-100" : "opacity-0"
                 }`}
               >
                 <div className="w-0 h-0 border-r-4 border-r-emerald-500 border-t-2 border-t-transparent border-b-2 border-b-transparent absolute left-0 top-1/2 transform -translate-y-1/2"></div>
               </div>
-              <div className="text-xs text-center text-muted-foreground font-medium">
+              <div className="text-sm text-center text-muted-foreground font-medium">
                 Response
               </div>
             </div>
@@ -126,16 +122,16 @@ export function DiagramCard() {
           </div>
 
           {/* Server Steps */}
-          <div className="space-y-6 relative">
-            {/* Step 1: Server receives request */}
+          <div className="space-y-4 relative">
+            {/* Step 1: Server checks cache */}
             <div
               className={`relative transition-all duration-500 ${
                 currentStep >= 0 ? "opacity-100" : "opacity-30"
               }`}
             >
-              <div className="border-2 border-dashed border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
+              <div className="border-2 border-dashed border-gray-500 rounded-xl p-4 bg-gray-50/50 dark:bg-gray-950/30 shadow-md min-h-[70px] flex items-center">
                 <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
-                  {t("serverReceivesRequest")}
+                  {t("serverChecksCache")}
                 </span>
               </div>
               {currentStep >= 1 && (
@@ -143,7 +139,7 @@ export function DiagramCard() {
               )}
             </div>
 
-            {/* Step 2: Server fetches data */}
+            {/* Step 2: Cache valid or expired */}
             <div
               className={`relative transition-all duration-500 ${
                 currentStep >= 1 ? "opacity-100" : "opacity-30"
@@ -152,9 +148,9 @@ export function DiagramCard() {
               {currentStep >= 0 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
-              <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
+              <div className="border-2 border-solid border-gray-500 rounded-xl p-4 bg-gray-50/50 dark:bg-gray-950/30 shadow-md min-h-[70px] flex items-center">
                 <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
-                  {t("serverFetchesData")}
+                  {t("cacheValidOrExpired")}
                 </span>
               </div>
               {currentStep >= 2 && (
@@ -162,7 +158,7 @@ export function DiagramCard() {
               )}
             </div>
 
-            {/* Step 3: Server renders RSC */}
+            {/* Step 3: Server fetches data (if expired) */}
             <div
               className={`relative transition-all duration-500 ${
                 currentStep >= 2 ? "opacity-100" : "opacity-30"
@@ -171,20 +167,17 @@ export function DiagramCard() {
               {currentStep >= 1 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
-              <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <div className="font-semibold text-lg font-mono text-gray-900 dark:text-gray-100">
-                  React.renderToReadableStream()
-                </div>
-                <div className="text-sm text-muted-foreground mt-2">
-                  {t("serverRendersRSC")}
-                </div>
+              <div className="border-2 border-solid border-gray-500 rounded-xl p-4 bg-gray-50/50 dark:bg-gray-950/30 shadow-md min-h-[70px] flex items-center">
+                <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
+                  {t("serverFetchesData")}
+                </span>
               </div>
               {currentStep >= 3 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
               )}
             </div>
 
-            {/* Step 4: Server serializes RSC payload */}
+            {/* Step 4: Server renders HTML */}
             <div
               className={`relative transition-all duration-500 ${
                 currentStep >= 3 ? "opacity-100" : "opacity-30"
@@ -193,17 +186,17 @@ export function DiagramCard() {
               {currentStep >= 2 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
-              <div className="border-2 border-solid border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
-                  {t("serverSerializesRSC")}
-                </span>
+              <div className="border-2 border-solid border-gray-500 rounded-xl p-4 bg-gray-50/50 dark:bg-gray-950/30 shadow-md min-h-[70px] flex items-center">
+                <div className="font-semibold text-lg font-mono text-gray-900 dark:text-gray-100">
+                  React.renderToString()
+                </div>
               </div>
               {currentStep >= 4 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
               )}
             </div>
 
-            {/* Step 5: Server sends RSC payload */}
+            {/* Step 5: Server stores in cache */}
             <div
               className={`relative transition-all duration-500 ${
                 currentStep >= 4 ? "opacity-100" : "opacity-30"
@@ -212,84 +205,34 @@ export function DiagramCard() {
               {currentStep >= 3 && (
                 <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
               )}
-              <div className="border-2 border-dashed border-gray-500 rounded-xl p-6 bg-gray-50/50 dark:bg-gray-950/30 shadow-md">
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
-                    {t("serverSendsRSCPayload")}
-                  </span>
-                  {currentStep >= 4 && (
-                    <span className="text-gray-600 dark:text-gray-400 text-2xl animate-pulse">
-                      ✓
-                    </span>
-                  )}
-                </div>
+              <div className="border-2 border-dashed border-gray-500 rounded-xl p-4 bg-gray-50/50 dark:bg-gray-950/30 shadow-md min-h-[70px] flex items-center">
+                <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
+                  {t("serverStoresCache")}
+                </span>
               </div>
+              {currentStep >= 5 && (
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+              )}
             </div>
-          </div>
-        </div>
 
-        {/* Client Section */}
-        <div className="p-4 bg-blue-50 dark:bg-blue-950/30 border-2 border-dashed border-blue-500 rounded-xl">
-          <h4 className="text-xl font-bold text-center text-blue-700 dark:text-blue-400 mb-4">
-            {t("client")}
-          </h4>
-
-          {/* Client Steps */}
-          <div className="space-y-6 relative">
-            {/* Step 6: Client receives RSC payload */}
+            {/* Step 6: Server sends HTML */}
             <div
               className={`relative transition-all duration-500 ${
                 currentStep >= 5 ? "opacity-100" : "opacity-30"
               }`}
             >
-              <div className="border-2 border-dashed border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
-                  {t("clientReceivesRSCPayload")}
+              {currentStep >= 4 && (
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
+              )}
+              <div className="border-2 border-dashed border-gray-500 rounded-xl p-4 bg-gray-50/50 dark:bg-gray-950/30 shadow-md min-h-[70px] flex items-center justify-between">
+                <span className="font-semibold text-lg text-gray-900 dark:text-gray-100">
+                  {t("serverSendsHTML")}
                 </span>
-              </div>
-              {currentStep >= 6 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
-              )}
-            </div>
-
-            {/* Step 7: Client hydrates components */}
-            <div
-              className={`relative transition-all duration-500 ${
-                currentStep >= 6 ? "opacity-100" : "opacity-30"
-              }`}
-            >
-              {currentStep >= 5 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
-              )}
-              <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <div className="font-semibold text-lg font-mono text-blue-900 dark:text-blue-100">
-                  React.hydrateRoot()
-                </div>
-                <div className="text-sm text-muted-foreground mt-2">
-                  {t("clientHydratesComponents")}
-                </div>
-              </div>
-              {currentStep >= 7 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
-              )}
-            </div>
-
-            {/* Step 8: Page interactive */}
-            <div
-              className={`relative transition-all duration-500 ${
-                currentStep >= 7 ? "opacity-100" : "opacity-30"
-              }`}
-            >
-              {currentStep >= 6 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-8 w-1 h-8 bg-gray-400"></div>
-              )}
-              <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">✨</span>
-                  <span className="font-semibold text-lg text-blue-900 dark:text-blue-100">
-                    {t("pageInteractive")}
+                {currentStep >= 5 && (
+                  <span className="text-gray-600 dark:text-gray-400 text-2xl animate-pulse">
+                    ✓
                   </span>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -298,3 +241,4 @@ export function DiagramCard() {
     </div>
   );
 }
+

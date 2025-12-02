@@ -640,7 +640,7 @@
         "title": "How to implement?",
         "description": "PPR combines static shell with dynamic content streaming. Requires React 19 and RSC. Introduced in Next.js 14.1 (experimental), stable in 15+.",
         "points": [
-          "Enable PPR via 'experimental: { ppr: true }' in next.config.js",
+          "Enable PPR via experimental ppr setting in next.config.js",
           "Requires React 19 and React Server Components",
           "Wrap dynamic components in <Suspense fallback={<Skeleton />}>",
           "Use 'use cache' directive for cacheable dynamic content",
@@ -743,7 +743,7 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
-          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via <Suspense> at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js."
+          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via Suspense at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js."
         }
       },
       "tableTitle": "Rendering Techniques Comparison Table",
@@ -896,7 +896,7 @@
           "dynamicContent": "High",
           "serverLoad": "Balanced",
           "useCases": ["Hybrid apps", "Optimal perf", "Modern pages"],
-          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via <Suspense> at request. Introduced in Next.js 14.1 (experimental), stable in 15+; requires React 19 and RSC. Enable via experimental: { ppr: true } in next.config.js. Use Cases: Pages mixing static UI (nav, headers) with dynamic data (user feeds). Pros: Instant shell delivery + parallel dynamic rendering; SEO-friendly. Cons: Requires <Suspense> wrappers; status codes can't change post-stream. Implementation: Wrap dynamic components in <Suspense fallback={<Skeleton />}>; use 'use cache' directive."
+          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via Suspense at request. Introduced in Next.js 14.1 (experimental), stable in 15+; requires React 19 and RSC. Enable via experimental ppr setting in next.config.js. Use Cases: Pages mixing static UI (nav, headers) with dynamic data (user feeds). Pros: Instant shell delivery + parallel dynamic rendering; SEO-friendly. Cons: Requires Suspense wrappers; status codes cannot change post-stream. Implementation: Wrap dynamic components in Suspense with fallback; use cache directive."
         }
       },
       "speedLabels": {
@@ -921,6 +921,18 @@
         "balanced": "Balanced",
         "medium": "Medium",
         "high": "High"
+      }
+    },
+    "thankYou": {
+      "title": "Thank You!",
+      "message": "Thank you for your attention! Feel free to explore the repository and connect with me on LinkedIn.",
+      "repository": {
+        "title": "Repository",
+        "description": "Scan to view the source code"
+      },
+      "linkedin": {
+        "title": "LinkedIn",
+        "description": "Scan to connect with me"
       }
     }
   },

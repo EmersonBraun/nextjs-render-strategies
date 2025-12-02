@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
 import { getTranslations } from "next-intl/server";
+import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideSection } from "@/components/slide-section";
+import { IntroSlide } from "@/components/intro-slide";
 import {
   Card,
   CardContent,
@@ -155,145 +158,151 @@ export default async function ComparisonPage({
 
   const takeaways = t.raw("takeaways") as Takeaways;
 
+  const sectionIds = ["intro", "table", "takeaways"];
+
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
-        <p className="text-lg text-muted-foreground">{t("subtitle")}</p>
+    <>
+      <SlideNavigation sectionIds={sectionIds} />
+      <div className="max-w-6xl mx-auto">
+        <SlideSection id="intro">
+          <IntroSlide title={t("title")} description={t("subtitle")} />
+        </SlideSection>
+        <SlideSection id="table">
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("tableTitle")}</CardTitle>
+              <CardDescription>{t("tableDescription")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left p-3 font-semibold">
+                        {headers.technique}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.introduced}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.initialSpeed}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.seoPerformance}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.dynamicContent}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.serverLoad}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.useCases}
+                      </th>
+                      <th className="text-left p-3 font-semibold">
+                        {headers.keyTradeoffs}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonData.map((item) => (
+                      <tr
+                        key={item.technique}
+                        className="border-b hover:bg-muted/50"
+                      >
+                        <td className="p-3">
+                          <div>
+                            <div className="font-semibold">{item.technique}</div>
+                            <div className="text-sm text-muted-foreground">
+                              {item.name}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="p-3 text-sm">{item.introduced}</td>
+                        <td
+                          className={`p-3 font-medium ${getSpeedColor(item.initialSpeed, speedLabels)}`}
+                        >
+                          {item.initialSpeed}
+                        </td>
+                        <td
+                          className={`p-3 font-medium ${getSEOColor(item.seo, seoLabels)}`}
+                        >
+                          {item.seo}
+                        </td>
+                        <td
+                          className={`p-3 font-medium ${getDynamicColor(item.dynamicContent, dynamicLabels)}`}
+                        >
+                          {item.dynamicContent}
+                        </td>
+                        <td
+                          className={`p-3 font-medium ${getServerLoadColor(item.serverLoad, serverLoadLabels)}`}
+                        >
+                          {item.serverLoad}
+                        </td>
+                        <td className="p-3">
+                          <div className="text-sm">
+                            {item.useCases.map((useCase, index) => (
+                              <span key={useCase}>
+                                {useCase}
+                                {index < item.useCases.length - 1 && ", "}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+                        <td className="p-3 text-sm">{item.tradeoffs}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </SlideSection>
+        <SlideSection id="takeaways">
+          <Card>
+            <CardHeader>
+              <CardTitle>{takeaways.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold mb-2">{takeaways.static.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {takeaways.static.description}
+                  </p>
+                  <ul className="text-sm space-y-1">
+                    {takeaways.static.items.map((item: string) => (
+                      <li key={item}>• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold mb-2">{takeaways.dynamic.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {takeaways.dynamic.description}
+                  </p>
+                  <ul className="text-sm space-y-1">
+                    {takeaways.dynamic.items.map((item: string) => (
+                      <li key={item}>• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="p-4 border rounded-lg">
+                  <h3 className="font-semibold mb-2">{takeaways.hybrid.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {takeaways.hybrid.description}
+                  </p>
+                  <ul className="text-sm space-y-1">
+                    {takeaways.hybrid.items.map((item: string) => (
+                      <li key={item}>• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </SlideSection>
       </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("tableTitle")}</CardTitle>
-          <CardDescription>{t("tableDescription")}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left p-3 font-semibold">
-                    {headers.technique}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.introduced}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.initialSpeed}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.seoPerformance}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.dynamicContent}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.serverLoad}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.useCases}
-                  </th>
-                  <th className="text-left p-3 font-semibold">
-                    {headers.keyTradeoffs}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonData.map((item) => (
-                  <tr
-                    key={item.technique}
-                    className="border-b hover:bg-muted/50"
-                  >
-                    <td className="p-3">
-                      <div>
-                        <div className="font-semibold">{item.technique}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {item.name}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-3 text-sm">{item.introduced}</td>
-                    <td
-                      className={`p-3 font-medium ${getSpeedColor(item.initialSpeed, speedLabels)}`}
-                    >
-                      {item.initialSpeed}
-                    </td>
-                    <td
-                      className={`p-3 font-medium ${getSEOColor(item.seo, seoLabels)}`}
-                    >
-                      {item.seo}
-                    </td>
-                    <td
-                      className={`p-3 font-medium ${getDynamicColor(item.dynamicContent, dynamicLabels)}`}
-                    >
-                      {item.dynamicContent}
-                    </td>
-                    <td
-                      className={`p-3 font-medium ${getServerLoadColor(item.serverLoad, serverLoadLabels)}`}
-                    >
-                      {item.serverLoad}
-                    </td>
-                    <td className="p-3">
-                      <div className="text-sm">
-                        {item.useCases.map((useCase, index) => (
-                          <span key={useCase}>
-                            {useCase}
-                            {index < item.useCases.length - 1 && ", "}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="p-3 text-sm">{item.tradeoffs}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{takeaways.title}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 border rounded-lg">
-              <h3 className="font-semibold mb-2">{takeaways.static.title}</h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                {takeaways.static.description}
-              </p>
-              <ul className="text-sm space-y-1">
-                {takeaways.static.items.map((item: string) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-4 border rounded-lg">
-              <h3 className="font-semibold mb-2">{takeaways.dynamic.title}</h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                {takeaways.dynamic.description}
-              </p>
-              <ul className="text-sm space-y-1">
-                {takeaways.dynamic.items.map((item: string) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-4 border rounded-lg">
-              <h3 className="font-semibold mb-2">{takeaways.hybrid.title}</h3>
-              <p className="text-sm text-muted-foreground mb-2">
-                {takeaways.hybrid.description}
-              </p>
-              <ul className="text-sm space-y-1">
-                {takeaways.hybrid.items.map((item: string) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    </>
   );
 }
