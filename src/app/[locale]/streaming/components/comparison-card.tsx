@@ -9,43 +9,40 @@ export function ComparisonCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm">
-            5
-          </span>
+        <CardTitle>
           {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="p-4 bg-orange-50 dark:bg-orange-950 border border-orange-200 dark:border-orange-800 rounded-lg">
+        <div className="p-5">
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="font-medium">{t("initialSpeed")}:</span>
+              <span className="text-foreground font-medium">{t("initialSpeed")}:</span>
               <span className="text-blue-600 dark:text-blue-400 font-semibold">
                 {t("valueFast")}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="font-medium">{t("seoPerformance")}:</span>
+              <span className="text-foreground font-medium">{t("seoPerformance")}:</span>
               <span className="text-blue-600 dark:text-blue-400 font-semibold">
                 {t("valueGood")}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="font-medium">{t("dynamicContent")}:</span>
-              <span className="text-green-600 dark:text-green-400 font-semibold">
+              <span className="text-foreground font-medium">{t("dynamicContent")}:</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
                 {t("valueHigh")}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="font-medium">{t("serverLoad")}:</span>
-              <span className="text-yellow-600 dark:text-yellow-400 font-semibold">
+              <span className="text-foreground font-medium">{t("serverLoad")}:</span>
+              <span className="text-amber-600 dark:text-amber-400 font-semibold">
                 {t("valueMedium")}
               </span>
             </div>
-            <div className="mt-3">
-              <span className="font-medium">{t("bestFor")}:</span>
-              <div className="text-sm text-orange-700 dark:text-orange-300 mt-1">
+            <div className="mt-4 pt-3 border-t border-border/40">
+              <span className="text-foreground font-medium">{t("bestFor")}:</span>
+              <div className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                 {t("bestForValue")}
               </div>
             </div>

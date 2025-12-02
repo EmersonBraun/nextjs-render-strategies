@@ -102,6 +102,17 @@
           "Підтримка Офлайн: Працює без з'єднання з сервером"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку CSR",
+        "restart": "Перезапустити Анімацію",
+        "serverSendsHTML": "Сервер надсилає HTML/CSS/JS",
+        "clientLoadsHTML": "Клієнт завантажує HTML/CSS/JS",
+        "jsFetchesData": "JavaScript отримує дані",
+        "dynamicContentRendered": "Динамічний контент відрендерений на клієнті",
+        "contentOnScreen": "Контент з'являється на екрані",
+        "fasterInitialTime": "Швидший початковий час",
+        "renderUI": "Відрендерити UI"
+      },
       "comparison": {
         "title": "Порівняння CSR",
         "initialSpeed": "Початкова Швидкість",
@@ -109,7 +120,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "SPA, Дашборди, Інтерактивні додатки"
+        "bestForValue": "SPA, Дашборди, Інтерактивні додатки",
+        "valueSlow": "Повільно",
+        "valuePoor": "Погано",
+        "valueHigh": "Високо",
+        "valueLow": "Низько"
       }
     },
     "ssr": {
@@ -137,6 +152,16 @@
           "Доступність: Працює без JavaScript"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку SSR",
+        "restart": "Перезапустити Анімацію",
+        "clientSendsRequest": "Клієнт надсилає запит",
+        "serverReceivesRequest": "Сервер отримує запит",
+        "serverFetchesData": "Сервер отримує дані",
+        "serverSendsHTML": "Сервер надсилає відрендерений HTML",
+        "clientReceivesHTML": "Клієнт отримує HTML",
+        "pageInteractive": "Сторінка інтерактивна"
+      },
       "comparison": {
         "title": "Порівняння SSR",
         "initialSpeed": "Початкова Швидкість",
@@ -144,7 +169,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "E-commerce, Блоги, Сайти критичні для SEO"
+        "bestForValue": "E-commerce, Блоги, Сайти критичні для SEO",
+        "valueFast": "Швидко",
+        "valueGreat": "Чудово",
+        "valueLow": "Низько",
+        "valueHigh": "Високо"
       }
     },
     "ssg": {
@@ -194,6 +223,20 @@
           "Безпека: Без уразливостей серверної сторони"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку SSG",
+        "restart": "Перезапустити Анімацію",
+        "buildTime": "Час Збірки",
+        "fetchDataAtBuild": "Отримати дані під час збірки",
+        "storeOnCDN": "Зберігати HTML на CDN",
+        "runtime": "Час Виконання",
+        "server": "Сервер",
+        "client": "Клієнт",
+        "clientSendsRequest": "Клієнт надсилає запит",
+        "cdnServesHTML": "CDN подає статичний HTML",
+        "clientReceivesHTML": "Клієнт отримує HTML",
+        "pageInteractive": "Сторінка інтерактивна"
+      },
       "comparison": {
         "title": "Порівняння SSG",
         "initialSpeed": "Початкова Швидкість",
@@ -201,7 +244,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "Блоги, Документація, Маркетингові сайти"
+        "bestForValue": "Блоги, Документація, Маркетингові сайти",
+        "valueFast": "Швидко",
+        "valueGreat": "Чудово",
+        "valueLow": "Низько",
+        "valueNone": "Немає"
       }
     },
     "isr": {
@@ -230,6 +277,18 @@
           "Ефективність Витрат: Зменшене навантаження сервера"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку ISR",
+        "restart": "Перезапустити Анімацію",
+        "clientSendsRequest": "Клієнт надсилає запит",
+        "serverChecksCache": "Сервер перевіряє кеш",
+        "cacheValidOrExpired": "Кеш валідний або застарів",
+        "serverFetchesData": "Сервер отримує дані",
+        "serverStoresCache": "Сервер зберігає в кеші",
+        "serverSendsHTML": "Сервер надсилає відрендерений HTML",
+        "clientReceivesHTML": "Клієнт отримує HTML",
+        "pageInteractive": "Сторінка інтерактивна"
+      },
       "comparison": {
         "title": "Порівняння ISR",
         "initialSpeed": "Початкова Швидкість",
@@ -237,7 +296,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "Каталоги, Новини, Списки продуктів"
+        "bestForValue": "Каталоги, Новини, Списки продуктів",
+        "valueFast": "Швидко",
+        "valueGreat": "Чудово",
+        "valueMedium": "Середньо",
+        "valueLow": "Низько"
       }
     },
     "rsc": {
@@ -270,6 +333,19 @@
           "Кращий SEO: Контент рендериться на сервері"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку RSC",
+        "restart": "Перезапустити Анімацію",
+        "clientSendsRequest": "Клієнт надсилає запит",
+        "serverReceivesRequest": "Сервер отримує запит",
+        "serverFetchesData": "Сервер отримує дані",
+        "serverRendersRSC": "Сервер рендерить Server Components",
+        "serverSerializesRSC": "Сервер серіалізує payload RSC",
+        "serverSendsRSCPayload": "Сервер надсилає payload RSC",
+        "clientReceivesRSCPayload": "Клієнт отримує payload RSC",
+        "clientHydratesComponents": "Клієнт гідратує компоненти",
+        "pageInteractive": "Сторінка інтерактивна"
+      },
       "comparison": {
         "title": "Порівняння RSC",
         "initialSpeed": "Початкова Швидкість",
@@ -277,7 +353,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "Сучасні додатки, Додатки з багатьма даними, Безпечні додатки"
+        "bestForValue": "Сучасні додатки, Додатки з багатьма даними, Безпечні додатки",
+        "valueOptimal": "Оптимально",
+        "valueGreat": "Чудово",
+        "valueHigh": "Високо",
+        "valueBalanced": "Збалансовано"
       }
     },
     "streaming": {
@@ -318,6 +398,20 @@
           "Межі Помилок: Ізольована обробка помилок на компонент"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку Streaming",
+        "restart": "Перезапустити Анімацію",
+        "clientSendsRequest": "Клієнт надсилає запит",
+        "serverReceivesRequest": "Сервер отримує запит",
+        "serverStartsRendering": "Сервер починає рендеринг",
+        "serverRendersFastContent": "Сервер рендерить швидкий контент",
+        "serverStreamsChunk1": "Сервер передає chunk HTML 1",
+        "clientReceivesChunk1": "Клієнт отримує та відображає chunk 1",
+        "serverRendersSlowContent": "Сервер рендерить повільний контент (Suspense)",
+        "serverStreamsChunk2": "Сервер передає chunk HTML 2",
+        "clientReceivesChunk2": "Клієнт отримує та відображає chunk 2",
+        "pageInteractive": "Сторінка інтерактивна"
+      },
       "comparison": {
         "title": "Порівняння Streaming",
         "initialSpeed": "Початкова Швидкість",
@@ -325,7 +419,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "Дашборди, Реальний час, Прогресивні додатки"
+        "bestForValue": "Дашборди, Реальний час, Прогресивні додатки",
+        "valueFast": "Швидко",
+        "valueGood": "Добре",
+        "valueHigh": "Високо",
+        "valueMedium": "Середньо"
       }
     },
     "ppr": {
@@ -362,6 +460,21 @@
           "Гнучка Архітектура: Змішує статичний та динамічний контент"
         ]
       },
+      "diagram": {
+        "title": "Діаграма Потоку PPR",
+        "restart": "Перезапустити Анімацію",
+        "buildTime": "Час Збірки",
+        "generateStaticShell": "Згенерувати статичну оболонку",
+        "storeStaticShell": "Зберігати статичну оболонку",
+        "runtime": "Час Виконання",
+        "clientSendsRequest": "Клієнт надсилає запит",
+        "serverSendsStaticShell": "Сервер надсилає статичну оболонку",
+        "clientReceivesStaticShell": "Клієнт отримує статичну оболонку",
+        "serverFetchesDynamicData": "Сервер отримує динамічні дані",
+        "serverStreamsDynamicContent": "Сервер передає динамічний контент",
+        "clientReceivesDynamicContent": "Клієнт отримує динамічний контент",
+        "pageInteractive": "Сторінка інтерактивна"
+      },
       "comparison": {
         "title": "Порівняння PPR",
         "initialSpeed": "Початкова Швидкість",
@@ -369,7 +482,11 @@
         "dynamicContent": "Динамічний Контент",
         "serverLoad": "Навантаження Сервера",
         "bestFor": "Найкраще для",
-        "bestForValue": "Next.js 16+, Гібридні додатки, Оптимізована продуктивність"
+        "bestForValue": "Next.js 16+, Гібридні додатки, Оптимізована продуктивність",
+        "valueOptimal": "Оптимально",
+        "valueGreat": "Чудово",
+        "valueHigh": "Високо",
+        "valueBalanced": "Збалансовано"
       }
     },
     "comparison": {

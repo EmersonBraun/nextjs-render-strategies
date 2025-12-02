@@ -1,21 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { BenefitsCard } from "./components/benefits-card";
 import { ComparisonCard } from "./components/comparison-card";
-import { Step1Card } from "./components/step1-card";
-import { Step2Card } from "./components/step2-card";
-import { Step3Card } from "./components/step3-card";
-
-// Simulate ISR data fetching with revalidation
-async function getISRData(locale: string) {
-  const t = await getTranslations({ locale, namespace: "pages.isr" });
-  const data = {
-    message: t("step3.title"),
-    lastGenerated: new Date().toLocaleTimeString(),
-    nextRegeneration: new Date(Date.now() + 60 * 1000).toLocaleTimeString(),
-    viewCount: Math.floor(Math.random() * 1000) + 100,
-  };
-  return data;
-}
+import { DiagramCard } from "./components/diagram-card";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -26,19 +12,16 @@ export default async function ISRPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "pages.isr" });
-  const data = await getISRData(locale);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <div className="text-center space-y-4">
         <h1 className="text-3xl font-bold">{t("title")}</h1>
         <p className="text-muted-foreground">{t("description")}</p>
       </div>
 
       <div className="space-y-6">
-        <Step1Card />
-        <Step2Card />
-        <Step3Card data={data} />
+        <DiagramCard />
         <BenefitsCard />
         <ComparisonCard />
       </div>

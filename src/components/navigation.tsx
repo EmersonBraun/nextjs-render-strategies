@@ -31,23 +31,24 @@ export function Navigation() {
   };
 
   return (
-    <nav className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 mb-4 sticky top-0 z-10">
+    <nav className="border-b border-border/60 bg-background/80 backdrop-blur-md supports-backdrop-filter:bg-background/70 mb-6 sticky top-0 z-10">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
-            <h1 className="text-xl font-bold">
+            <h1 className="text-lg font-semibold tracking-tight">
               Next.js Rendering Strategies Demo
             </h1>
           </div>
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-0.5">
             {navigationItems.map((item) => (
               <Button
                 key={item.name}
                 variant="ghost"
                 className={cn(
+                  "rounded-md",
                   isActive(item.href)
-                    ? "border-2 border-black text-white dark:bg-white dark:text-black"
-                    : "",
+                    ? "bg-accent text-accent-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
                 size="sm"
                 asChild

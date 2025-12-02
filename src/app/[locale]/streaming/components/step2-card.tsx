@@ -28,8 +28,8 @@ async function SlowDataComponent({
   };
 
   return (
-    <div className="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg">
-      <p className="text-blue-800 dark:text-blue-200 font-medium">
+    <div className="p-5 bg-gradient-to-br from-blue-50/50 to-blue-100/30 dark:from-blue-950/50 dark:to-blue-900/30 border border-blue-200/60 dark:border-blue-800/40 rounded-xl">
+      <p className="text-foreground leading-relaxed font-medium">
         {title} loaded!
       </p>
       <p className="text-sm text-blue-600 dark:text-blue-300 mt-1">
@@ -43,10 +43,10 @@ async function SlowDataComponent({
 // Loading component for Suspense
 function LoadingSpinner({ message }: { message: string }) {
   return (
-    <div className="p-4 bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-      <div className="flex items-center gap-2">
+    <div className="p-5 bg-gradient-to-br from-yellow-50/50 to-yellow-100/30 dark:from-yellow-950/50 dark:to-yellow-900/30 border border-yellow-200/60 dark:border-yellow-800/40 rounded-xl">
+      <div className="flex items-center gap-3">
         <div className="animate-spin w-4 h-4 border-2 border-yellow-600 border-t-transparent rounded-full"></div>
-        <p className="text-yellow-800 dark:text-yellow-200">{message}</p>
+        <p className="text-foreground leading-relaxed">{message}</p>
       </div>
     </div>
   );
@@ -61,8 +61,8 @@ export async function Step2Card({ locale }: { locale: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm">
+        <CardTitle className="flex items-center gap-3">
+          <span className="w-7 h-7 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-lg font-semibold shadow-sm flex items-center justify-center text-sm">
             2
           </span>
           {t("title")}

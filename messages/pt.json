@@ -102,6 +102,17 @@
           "Suporte Offline: Funciona sem conexão com servidor"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo CSR",
+        "restart": "Reiniciar Animação",
+        "serverSendsHTML": "Servidor envia HTML/CSS/JS",
+        "clientLoadsHTML": "Cliente carrega HTML/CSS/JS",
+        "jsFetchesData": "JavaScript busca dados",
+        "dynamicContentRendered": "Conteúdo dinâmico renderizado no cliente",
+        "contentOnScreen": "Conteúdo aparece na tela",
+        "fasterInitialTime": "Tempo inicial mais rápido",
+        "renderUI": "Renderizar UI"
+      },
       "comparison": {
         "title": "Comparação CSR",
         "initialSpeed": "Velocidade Inicial",
@@ -109,7 +120,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "SPAs, Dashboards, Apps interativos"
+        "bestForValue": "SPAs, Dashboards, Apps interativos",
+        "valueSlow": "Lento",
+        "valuePoor": "Ruim",
+        "valueHigh": "Alto",
+        "valueLow": "Baixo"
       }
     },
     "ssr": {
@@ -137,6 +152,16 @@
           "Acessibilidade: Funciona sem JavaScript"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo SSR",
+        "restart": "Reiniciar Animação",
+        "clientSendsRequest": "Cliente envia requisição",
+        "serverReceivesRequest": "Servidor recebe requisição",
+        "serverFetchesData": "Servidor busca dados",
+        "serverSendsHTML": "Servidor envia HTML renderizado",
+        "clientReceivesHTML": "Cliente recebe HTML",
+        "pageInteractive": "Página interativa"
+      },
       "comparison": {
         "title": "Comparação SSR",
         "initialSpeed": "Velocidade Inicial",
@@ -144,7 +169,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "E-commerce, Blogs, Sites críticos para SEO"
+        "bestForValue": "E-commerce, Blogs, Sites críticos para SEO",
+        "valueFast": "Rápido",
+        "valueGreat": "Ótimo",
+        "valueLow": "Baixo",
+        "valueHigh": "Alto"
       }
     },
     "ssg": {
@@ -194,6 +223,20 @@
           "Segurança: Sem vulnerabilidades do lado do servidor"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo SSG",
+        "restart": "Reiniciar Animação",
+        "buildTime": "Tempo de Build",
+        "fetchDataAtBuild": "Buscar dados no tempo de build",
+        "storeOnCDN": "Armazenar HTML no CDN",
+        "runtime": "Tempo de Execução",
+        "server": "Servidor",
+        "client": "Cliente",
+        "clientSendsRequest": "Cliente envia requisição",
+        "cdnServesHTML": "CDN serve HTML estático",
+        "clientReceivesHTML": "Cliente recebe HTML",
+        "pageInteractive": "Página interativa"
+      },
       "comparison": {
         "title": "Comparação SSG",
         "initialSpeed": "Velocidade Inicial",
@@ -201,7 +244,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "Blogs, Documentação, Sites de marketing"
+        "bestForValue": "Blogs, Documentação, Sites de marketing",
+        "valueFast": "Rápido",
+        "valueGreat": "Ótimo",
+        "valueLow": "Baixo",
+        "valueNone": "Nenhum"
       }
     },
     "isr": {
@@ -230,6 +277,18 @@
           "Custo Eficiente: Carga reduzida do servidor"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo ISR",
+        "restart": "Reiniciar Animação",
+        "clientSendsRequest": "Cliente envia requisição",
+        "serverChecksCache": "Servidor verifica cache",
+        "cacheValidOrExpired": "Cache válido ou expirado",
+        "serverFetchesData": "Servidor busca dados",
+        "serverStoresCache": "Servidor armazena em cache",
+        "serverSendsHTML": "Servidor envia HTML renderizado",
+        "clientReceivesHTML": "Cliente recebe HTML",
+        "pageInteractive": "Página interativa"
+      },
       "comparison": {
         "title": "Comparação ISR",
         "initialSpeed": "Velocidade Inicial",
@@ -237,7 +296,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "Catálogos, Notícias, Listagens de produtos"
+        "bestForValue": "Catálogos, Notícias, Listagens de produtos",
+        "valueFast": "Rápido",
+        "valueGreat": "Ótimo",
+        "valueMedium": "Médio",
+        "valueLow": "Baixo"
       }
     },
     "rsc": {
@@ -270,6 +333,19 @@
           "Melhor SEO: Conteúdo renderizado no servidor"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo RSC",
+        "restart": "Reiniciar Animação",
+        "clientSendsRequest": "Cliente envia requisição",
+        "serverReceivesRequest": "Servidor recebe requisição",
+        "serverFetchesData": "Servidor busca dados",
+        "serverRendersRSC": "Servidor renderiza Server Components",
+        "serverSerializesRSC": "Servidor serializa payload RSC",
+        "serverSendsRSCPayload": "Servidor envia payload RSC",
+        "clientReceivesRSCPayload": "Cliente recebe payload RSC",
+        "clientHydratesComponents": "Cliente hidrata componentes",
+        "pageInteractive": "Página interativa"
+      },
       "comparison": {
         "title": "Comparação RSC",
         "initialSpeed": "Velocidade Inicial",
@@ -277,7 +353,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "Apps modernos, Apps com muitos dados, Apps seguros"
+        "bestForValue": "Apps modernos, Apps com muitos dados, Apps seguros",
+        "valueOptimal": "Ótimo",
+        "valueGreat": "Ótimo",
+        "valueHigh": "Alto",
+        "valueBalanced": "Equilibrado"
       }
     },
     "streaming": {
@@ -318,6 +398,20 @@
           "Limites de Erro: Tratamento de erro isolado por componente"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo Streaming",
+        "restart": "Reiniciar Animação",
+        "clientSendsRequest": "Cliente envia requisição",
+        "serverReceivesRequest": "Servidor recebe requisição",
+        "serverStartsRendering": "Servidor inicia renderização",
+        "serverRendersFastContent": "Servidor renderiza conteúdo rápido",
+        "serverStreamsChunk1": "Servidor transmite chunk HTML 1",
+        "clientReceivesChunk1": "Cliente recebe e exibe chunk 1",
+        "serverRendersSlowContent": "Servidor renderiza conteúdo lento (Suspense)",
+        "serverStreamsChunk2": "Servidor transmite chunk HTML 2",
+        "clientReceivesChunk2": "Cliente recebe e exibe chunk 2",
+        "pageInteractive": "Página interativa"
+      },
       "comparison": {
         "title": "Comparação Streaming",
         "initialSpeed": "Velocidade Inicial",
@@ -325,7 +419,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "Dashboards, Tempo real, Apps progressivos"
+        "bestForValue": "Dashboards, Tempo real, Apps progressivos",
+        "valueFast": "Rápido",
+        "valueGood": "Bom",
+        "valueHigh": "Alto",
+        "valueMedium": "Médio"
       }
     },
     "ppr": {
@@ -362,6 +460,21 @@
           "Arquitetura Flexível: Mistura conteúdo estático e dinâmico"
         ]
       },
+      "diagram": {
+        "title": "Diagrama de Fluxo PPR",
+        "restart": "Reiniciar Animação",
+        "buildTime": "Tempo de Build",
+        "generateStaticShell": "Gerar concha estática",
+        "storeStaticShell": "Armazenar concha estática",
+        "runtime": "Tempo de Execução",
+        "clientSendsRequest": "Cliente envia requisição",
+        "serverSendsStaticShell": "Servidor envia concha estática",
+        "clientReceivesStaticShell": "Cliente recebe concha estática",
+        "serverFetchesDynamicData": "Servidor busca dados dinâmicos",
+        "serverStreamsDynamicContent": "Servidor transmite conteúdo dinâmico",
+        "clientReceivesDynamicContent": "Cliente recebe conteúdo dinâmico",
+        "pageInteractive": "Página interativa"
+      },
       "comparison": {
         "title": "Comparação PPR",
         "initialSpeed": "Velocidade Inicial",
@@ -369,7 +482,11 @@
         "dynamicContent": "Conteúdo Dinâmico",
         "serverLoad": "Carga do Servidor",
         "bestFor": "Melhor para",
-        "bestForValue": "Next.js 16+, Apps híbridos, Performance otimizada"
+        "bestForValue": "Next.js 16+, Apps híbridos, Performance otimizada",
+        "valueOptimal": "Ótimo",
+        "valueGreat": "Ótimo",
+        "valueHigh": "Alto",
+        "valueBalanced": "Equilibrado"
       }
     },
     "comparison": {

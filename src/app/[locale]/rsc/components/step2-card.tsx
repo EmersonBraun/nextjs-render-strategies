@@ -11,8 +11,8 @@ export function Step2Card() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm">
+        <CardTitle className="flex items-center gap-3">
+          <span className="w-7 h-7 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg font-semibold shadow-sm flex items-center justify-center text-sm">
             2
           </span>
           {t("title")}

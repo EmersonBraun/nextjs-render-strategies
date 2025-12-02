@@ -9,16 +9,16 @@ export function Step2Card() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm">
+        <CardTitle className="flex items-center gap-3">
+          <span className="w-7 h-7 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-lg flex items-center justify-center text-sm font-semibold shadow-sm">
             2
           </span>
           {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="p-4 bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-          <p className="text-yellow-800 dark:text-yellow-200">
+        <div className="p-5 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-950/50 dark:to-amber-900/30 border border-amber-200/60 dark:border-amber-800/40 rounded-xl">
+          <p className="text-foreground leading-relaxed">
             {t("description")}
           </p>
         </div>

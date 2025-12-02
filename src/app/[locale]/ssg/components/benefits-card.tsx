@@ -9,18 +9,18 @@ export function BenefitsCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm">
-            4
-          </span>
+        <CardTitle>
           {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="p-4 bg-purple-50 dark:bg-purple-950 border border-purple-200 dark:border-purple-800 rounded-lg">
-          <ul className="text-purple-800 dark:text-purple-200 space-y-2">
+        <div className="p-5">
+          <ul className="text-foreground space-y-2.5">
             {t.raw("items").map((item: string) => (
-              <li key={item}>✅ {item}</li>
+              <li key={item} className="flex items-start gap-2.5">
+                <span className="text-purple-600 dark:text-purple-400 mt-0.5">•</span>
+                <span>{item}</span>
+              </li>
             ))}
           </ul>
         </div>

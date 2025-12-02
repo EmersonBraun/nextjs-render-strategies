@@ -6,16 +6,16 @@ export function Step1Card() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <span className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-sm">
+        <CardTitle className="flex items-center gap-3">
+          <span className="w-7 h-7 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg flex items-center justify-center text-sm font-semibold shadow-sm">
             1
           </span>
           {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="p-4 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-lg">
-          <p className="text-green-800 dark:text-green-200">
+        <div className="p-5 bg-gradient-to-br from-emerald-50/50 to-emerald-100/30 dark:from-emerald-950/50 dark:to-emerald-900/30 border border-emerald-200/60 dark:border-emerald-800/40 rounded-xl">
+          <p className="text-foreground leading-relaxed">
             {t("description")}
           </p>
         </div>

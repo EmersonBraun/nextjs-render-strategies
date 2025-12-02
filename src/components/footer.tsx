@@ -16,10 +16,10 @@ export function Footer() {
   );
 
   return (
-    <footer className="border-t bg-background mt-12 text-center py-4">
-      <div className="flex justify-center gap-4">
-        <div>{t("copyright", { date: currentDate })}</div>
-        <div>|</div>
+    <footer className="border-t border-border/60 bg-background mt-16 text-center py-8">
+      <div className="flex justify-center items-center gap-4 flex-wrap">
+        <div className="text-muted-foreground">{t("copyright", { date: currentDate })}</div>
+        <div className="text-border">|</div>
         <div className="flex items-center gap-2">
           <a
             href="https://linkedin.com/in/emersonbraun"

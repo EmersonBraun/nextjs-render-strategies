@@ -102,6 +102,19 @@
           "Offline Support: Works without server connection"
         ]
       },
+      "diagram": {
+        "title": "CSR Flow Diagram",
+        "restart": "Restart Animation",
+        "server": "Server",
+        "client": "Client",
+        "serverSendsHTML": "Server sends HTML/CSS/JS",
+        "clientLoadsHTML": "Client loads HTML/CSS/JS",
+        "jsFetchesData": "JavaScript fetches data",
+        "dynamicContentRendered": "Dynamic content rendered on client",
+        "contentOnScreen": "Content appears on screen",
+        "fasterInitialTime": "Faster initial time",
+        "renderUI": "Render UI"
+      },
       "comparison": {
         "title": "CSR Comparison",
         "initialSpeed": "Initial Speed",
@@ -140,6 +153,18 @@
           "Social Sharing: Rich previews for social media",
           "Accessibility: Works without JavaScript"
         ]
+      },
+      "diagram": {
+        "title": "SSR Flow Diagram",
+        "restart": "Restart Animation",
+        "server": "Server",
+        "client": "Client",
+        "clientSendsRequest": "Client sends request",
+        "serverReceivesRequest": "Server receives request",
+        "serverFetchesData": "Server fetches data",
+        "serverSendsHTML": "Server sends rendered HTML",
+        "clientReceivesHTML": "Client receives HTML",
+        "pageInteractive": "Page interactive"
       },
       "comparison": {
         "title": "SSR Comparison",
@@ -202,6 +227,20 @@
           "Security: No server-side vulnerabilities"
         ]
       },
+      "diagram": {
+        "title": "SSG Flow Diagram",
+        "restart": "Restart Animation",
+        "buildTime": "Build Time",
+        "fetchDataAtBuild": "Fetch data at build time",
+        "storeOnCDN": "Store HTML on CDN",
+        "runtime": "Runtime",
+        "server": "Server",
+        "client": "Client",
+        "clientSendsRequest": "Client sends request",
+        "cdnServesHTML": "CDN serves static HTML",
+        "clientReceivesHTML": "Client receives HTML",
+        "pageInteractive": "Page interactive"
+      },
       "comparison": {
         "title": "SSG Comparison",
         "initialSpeed": "Initial Speed",
@@ -241,6 +280,20 @@
           "Scalable: Handles traffic spikes gracefully",
           "Cost Efficient: Reduced server load"
         ]
+      },
+      "diagram": {
+        "title": "ISR Flow Diagram",
+        "restart": "Restart Animation",
+        "server": "Server",
+        "client": "Client",
+        "clientSendsRequest": "Client sends request",
+        "serverChecksCache": "Server checks cache",
+        "cacheValidOrExpired": "Cache valid or expired",
+        "serverFetchesData": "Server fetches data",
+        "serverStoresCache": "Server stores in cache",
+        "serverSendsHTML": "Server sends rendered HTML",
+        "clientReceivesHTML": "Client receives HTML",
+        "pageInteractive": "Page interactive"
       },
       "comparison": {
         "title": "ISR Comparison",
@@ -285,6 +338,21 @@
           "Reduced Bundle Size: Less JavaScript to client",
           "Better SEO: Server-rendered content"
         ]
+      },
+      "diagram": {
+        "title": "RSC Flow Diagram",
+        "restart": "Restart Animation",
+        "server": "Server",
+        "client": "Client",
+        "clientSendsRequest": "Client sends request",
+        "serverReceivesRequest": "Server receives request",
+        "serverFetchesData": "Server fetches data",
+        "serverRendersRSC": "Server renders Server Components",
+        "serverSerializesRSC": "Server serializes RSC payload",
+        "serverSendsRSCPayload": "Server sends RSC payload",
+        "clientReceivesRSCPayload": "Client receives RSC payload",
+        "clientHydratesComponents": "Client hydrates components",
+        "pageInteractive": "Page interactive"
       },
       "comparison": {
         "title": "RSC Comparison",
@@ -338,6 +406,22 @@
           "Error Boundaries: Isolated error handling per component"
         ]
       },
+      "diagram": {
+        "title": "Streaming Flow Diagram",
+        "restart": "Restart Animation",
+        "server": "Server",
+        "client": "Client",
+        "clientSendsRequest": "Client sends request",
+        "serverReceivesRequest": "Server receives request",
+        "serverStartsRendering": "Server starts rendering",
+        "serverRendersFastContent": "Server renders fast content",
+        "serverStreamsChunk1": "Server streams HTML chunk 1",
+        "clientReceivesChunk1": "Client receives and displays chunk 1",
+        "serverRendersSlowContent": "Server renders slow content (Suspense)",
+        "serverStreamsChunk2": "Server streams HTML chunk 2",
+        "clientReceivesChunk2": "Client receives and displays chunk 2",
+        "pageInteractive": "Page interactive"
+      },
       "comparison": {
         "title": "Streaming Comparison",
         "initialSpeed": "Initial Speed",
@@ -385,6 +469,23 @@
           "Optimal UX: Users see content immediately",
           "Flexible Architecture: Mix static and dynamic content"
         ]
+      },
+      "diagram": {
+        "title": "PPR Flow Diagram",
+        "restart": "Restart Animation",
+        "buildTime": "Build Time",
+        "generateStaticShell": "Generate static shell",
+        "storeStaticShell": "Store static shell",
+        "runtime": "Runtime",
+        "server": "Server",
+        "client": "Client",
+        "clientSendsRequest": "Client sends request",
+        "serverSendsStaticShell": "Server sends static shell",
+        "clientReceivesStaticShell": "Client receives static shell",
+        "serverFetchesDynamicData": "Server fetches dynamic data",
+        "serverStreamsDynamicContent": "Server streams dynamic content",
+        "clientReceivesDynamicContent": "Client receives dynamic content",
+        "pageInteractive": "Page interactive"
       },
       "comparison": {
         "title": "PPR Comparison",
