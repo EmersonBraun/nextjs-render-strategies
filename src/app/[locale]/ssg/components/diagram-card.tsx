@@ -233,8 +233,8 @@ export function DiagramCard() {
                   currentStep >= 3 ? "opacity-100" : "opacity-30"
                 }`}
               >
-              <div className="border-2 border-dashed border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
+                <div className="border-2 border-dashed border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
+                  <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
                     {t("clientSendsRequest")}
                   </span>
                 </div>
@@ -252,8 +252,8 @@ export function DiagramCard() {
                 {currentStep >= 4 && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
                 )}
-              <div className="border-2 border-dashed border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
+                <div className="border-2 border-dashed border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
+                  <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
                     {t("clientReceivesHTML")}
                   </span>
                 </div>
@@ -271,8 +271,8 @@ export function DiagramCard() {
                 {currentStep >= 5 && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
                 )}
-              <div className="border-2 border-solid border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <div className="font-semibold text-base font-mono text-blue-900 dark:text-blue-100">
+                <div className="border-2 border-solid border-blue-500 rounded-xl p-3 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
+                  <div className="font-semibold text-base font-mono text-blue-900 dark:text-blue-100">
                     React.hydrate()
                   </div>
                 </div>
@@ -291,9 +291,9 @@ export function DiagramCard() {
                   <div className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-1 h-6 bg-gray-400"></div>
                 )}
                 <div className="border-2 border-solid border-blue-500 rounded-xl p-6 bg-blue-50/50 dark:bg-blue-950/30 shadow-md">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">✨</span>
-                  <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">✨</span>
+                    <span className="font-semibold text-base text-blue-900 dark:text-blue-100">
                       {t("pageInteractive")}
                     </span>
                   </div>

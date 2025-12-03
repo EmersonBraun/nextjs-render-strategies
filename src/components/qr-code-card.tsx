@@ -44,4 +44,3 @@ export function QRCodeCard({ url, title, description }: QRCodeCardProps) {
     </Card>
   );
 }
-

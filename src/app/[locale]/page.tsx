@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { IntroSlide } from "@/components/intro-slide";
+import { PresentationLink } from "@/components/presentation-link";
+import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideSection } from "@/components/slide-section";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,7 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link } from "@/i18n/navigation";
 
 export async function generateMetadata({
   params,
@@ -36,12 +40,39 @@ export async function generateMetadata({
 
 export default async function Home({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ presentationMode?: string }>;
 }) {
   const { locale } = await params;
+  const { presentationMode } = await searchParams;
+  const isPresentationMode = presentationMode === "true";
   const t = await getTranslations({ locale, namespace: "pages.home" });
 
+  // If in presentation mode, show only intro slide
+  if (isPresentationMode) {
+    const sectionIds = ["intro"];
+
+    return (
+      <>
+        <Suspense fallback={null}>
+          <SlideNavigation sectionIds={sectionIds} />
+        </Suspense>
+        <div className="max-w-7xl mx-auto">
+          <SlideSection id="intro" presentationMode={isPresentationMode}>
+            <IntroSlide
+              title={t("hero.title")}
+              description={t("hero.subtitle")}
+              showGradient
+            />
+          </SlideSection>
+        </div>
+      </>
+    );
+  }
+
+  // Normal mode: show full content
   return (
     <div className="max-w-7xl mx-auto space-y-20">
       {/* Hero Section */}
@@ -55,7 +86,7 @@ export default async function Home({
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
           <Button asChild size="lg" className="text-base px-8 h-12">
-            <Link href="/csr">{t("hero.cta")}</Link>
+            <PresentationLink href="/csr">{t("hero.cta")}</PresentationLink>
           </Button>
           <Button
             asChild
@@ -63,7 +94,9 @@ export default async function Home({
             variant="outline"
             className="text-base px-8 h-12"
           >
-            <Link href="/comparison">{t("hero.secondaryCta")}</Link>
+            <PresentationLink href="/comparison">
+              {t("hero.secondaryCta")}
+            </PresentationLink>
           </Button>
         </div>
       </div>
@@ -160,7 +193,9 @@ export default async function Home({
               variant="default"
               className="text-base px-8 h-12"
             >
-              <Link href="/comparison">{t("comparison.cta")}</Link>
+              <PresentationLink href="/comparison">
+                {t("comparison.cta")}
+              </PresentationLink>
             </Button>
           </CardContent>
         </Card>

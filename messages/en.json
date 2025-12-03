@@ -36,7 +36,7 @@
     "home": {
       "hero": {
         "title": "Next.js Rendering Strategies",
-        "subtitle": "Master Next.js rendering approaches with interactive demos, real-world examples, and comprehensive comparisons",
+        "subtitle": "SSR, SSG, ISR, and Beyond",
         "cta": "Start Learning 🚀",
         "secondaryCta": "View Comparison"
       },
@@ -102,7 +102,7 @@
     "csr": {
       "loading": "Page loading...",
       "title": "Client-Side Rendering (CSR)",
-      "description": "Pages are rendered on the client-side after JavaScript loads",
+      "description": "Pages are rendered on the client-side after JavaScript loads. Ideal for SPAs, Games, and Dashboards where interactivity is key.",
       "step1": {
         "title": "Page Loaded",
         "description": "✅ Page shell loaded, JavaScript executing..."
@@ -173,7 +173,7 @@
     },
     "ssr": {
       "title": "Server-Side Rendering (SSR)",
-      "description": "Pages are rendered on the server for each request",
+      "description": "Pages are rendered on the server for each request. Perfect for E-commerce, Profiles, and Real-time data applications where fresh, personalized content is essential.",
       "step1": {
         "title": "Server Processing",
         "description": "🔄 Server fetching data and rendering HTML..."
@@ -240,7 +240,7 @@
     },
     "ssg": {
       "title": "Static Site Generation (SSG)",
-      "description": "Pages are pre-built at build time",
+      "description": "Pages are pre-built at build time for maximum performance. Best suited for Blogs, Docs, and Marketing sites with content that doesn't change frequently.",
       "overview": "Overview of SSG with dynamic route examples",
       "step1": {
         "title": "Build Time Generation",
@@ -320,19 +320,20 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "SSG uses async Server Components that are pre-rendered at build time. Use generateStaticParams for dynamic routes.",
+        "description": "SSG uses async Server Components pre-rendered at build time. For dynamic routes like [id], use generateStaticParams() to generate all static pages at build.",
+        "exampleWithDynamicRoute": "Example with dynamic route [id]:",
+        "simpleExample": "Simple example (static page):",
         "points": [
           "Components are async functions (no 'use client' directive)",
           "Cannot use React hooks (useState, useEffect, etc.)",
           "Use 'cache: \"force-cache\"' in fetch for static data",
-          "Use generateStaticParams() for dynamic routes",
           "Pages are generated at build time, not on request"
         ]
       }
     },
     "isr": {
       "title": "Incremental Static Regeneration (ISR)",
-      "description": "SSG with timed revalidation",
+      "description": "SSG with timed revalidation that regenerates pages in the background. Excellent for Catalogs, News sites, and Product listings that need periodic updates without full rebuilds.",
       "step1": {
         "title": "Static Content Served",
         "description": "⚡ Cached static content served instantly"
@@ -404,7 +405,7 @@
     },
     "rsc": {
       "title": "React Server Components (RSC)",
-      "description": "Server-only components for optimal performance",
+      "description": "Server-only components for optimal performance, default in App Router. Ideal for Modern apps, Data-heavy applications, and Secure apps requiring server-side logic.",
       "step1": {
         "title": "Server Component",
         "description": "Rendered on server with direct data access",
@@ -473,16 +474,13 @@
           "Server Components are async functions (default, no directive needed)",
           "Cannot use React hooks in Server Components",
           "Add 'use client' directive only when you need interactivity",
-          "Server Components can fetch data directly, Client Components use hooks",
-          "Server Components cannot import Client Components (only pass props)",
-          "Environment variables are stripped from client bundle automatically",
-          "RSC payload is serialized and sent to client for hydration"
+          "Server Components can fetch data directly, Client Components use hooks"
         ]
       }
     },
     "streaming": {
       "title": "React Streaming",
-      "description": "Progressive loading with Suspense boundaries",
+      "description": "Progressive loading with Suspense boundaries that streams content as it becomes available. Perfect for Dashboards, Real-time applications, and Progressive apps where users benefit from seeing content incrementally.",
       "step1": {
         "title": "Fast Content (Immediate)",
         "description": "Content that loads instantly",
@@ -568,7 +566,7 @@
     },
     "ppr": {
       "title": "Partial Prerendering (PPR)",
-      "description": "Hybrid technique: Static shells prerendered at build time with dynamic content streamed via Suspense",
+      "description": "Hybrid technique combining static shells prerendered at build time with dynamic content streamed via Suspense. Best for Hybrid apps, Optimal performance scenarios, and Modern pages that mix static UI with dynamic data.",
       "step1": {
         "title": "Static Shell",
         "description": "Static content prerendered at build time",

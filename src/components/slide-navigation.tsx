@@ -1,59 +1,81 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter, usePathname } from "@/i18n/navigation";
-import { getNextPage, getPreviousPage, getPagePath } from "@/lib/page-navigation";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import {
+  getNextPage,
+  getPagePathWithQuery,
+  getPreviousPage,
+} from "@/lib/page-navigation";
 
-interface SlideNavigationProps {
+export interface SlideNavigationProps {
   sectionIds: string[];
 }
 
-export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
+export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const isScrollingRef = useRef(false);
   const isManualNavigationRef = useRef(false);
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const presentationMode = searchParams.get("presentationMode");
+  const isPresentationMode = presentationMode === "true";
 
   // Get current page from pathname
   const getCurrentPage = useCallback(() => {
     // usePathname from next-intl already returns pathname without locale
     const path = pathname.replace(/^\//, ""); // Remove leading slash
     if (path === "" || path === "/") return null;
-    
+
     // Handle comparison page
     if (path === "comparison" || path.startsWith("comparison/")) {
       return "comparison";
     }
-    
+
     // Handle thank-you page
     if (path === "thank-you" || path.startsWith("thank-you/")) {
       return "thank-you";
     }
-    
+
     // Extract the first segment (page name)
     const pageName = path.split("/")[0];
-    
+
     // Validate it's a known page
-    const validPages = ["csr", "ssr", "ssg", "isr", "rsc", "streaming", "ppr", "comparison", "thank-you"];
+    const validPages = [
+      "csr",
+      "ssr",
+      "ssg",
+      "isr",
+      "rsc",
+      "streaming",
+      "ppr",
+      "comparison",
+      "thank-you",
+    ];
     if (validPages.includes(pageName)) {
       return pageName;
     }
-    
+
     return null;
   }, [pathname]);
 
   const scrollToSection = useCallback(
-    (index: number, updateHash = true) => {
-      if (index < 0 || index >= sectionIds.length || isScrollingRef.current) return;
+    async (index: number, updateHash = true) => {
+      if (index < 0 || index >= sectionIds.length || isScrollingRef.current)
+        return;
 
       isScrollingRef.current = true;
       isManualNavigationRef.current = true;
       setCurrentIndex(index);
-      
+
       const element = document.getElementById(sectionIds[index]);
-      if (element) {
+      if (!element) return;
+
+      // Use View Transition API if available, otherwise fallback to regular scroll
+      const performScroll = () => {
         element.scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -64,24 +86,40 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
           const newHash = `#${sectionIds[index]}`;
           window.history.replaceState(null, "", newHash);
         }
-      }
 
-      setTimeout(() => {
-        isScrollingRef.current = false;
-        // Reset manual navigation flag after scroll completes
         setTimeout(() => {
-          isManualNavigationRef.current = false;
-        }, 200);
-      }, 1000);
+          isScrollingRef.current = false;
+          // Reset manual navigation flag after scroll completes
+          setTimeout(() => {
+            isManualNavigationRef.current = false;
+          }, 200);
+        }, 1000);
+      };
+
+      // Check if View Transitions API is supported
+      if (
+        typeof document !== "undefined" &&
+        "startViewTransition" in document
+      ) {
+        const transition = (
+          document as unknown as Document
+        ).startViewTransition(() => {
+          performScroll();
+        });
+        // Wait for transition to complete
+        await transition.finished;
+      } else {
+        performScroll();
+      }
     },
-    [sectionIds]
+    [sectionIds],
   );
 
   // Handle hash on mount and hash changes
   useEffect(() => {
     const handleHashChange = () => {
       if (isManualNavigationRef.current) return;
-      
+
       const hash = window.location.hash.replace("#", "");
       if (hash && sectionIds.includes(hash)) {
         const index = sectionIds.indexOf(hash);
@@ -108,13 +146,26 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
     };
   }, [sectionIds, currentIndex, scrollToSection]);
 
+  // Use refs to avoid re-renders when accessing current values
+  const sectionIdsRef = useRef(sectionIds);
+  const currentIndexRef = useRef(currentIndex);
+
+  // Update refs when values change
+  useEffect(() => {
+    sectionIdsRef.current = sectionIds;
+  }, [sectionIds]);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+
   // IntersectionObserver to detect current section (only for passive scroll detection)
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     const visibleSections = new Set<string>();
 
     const initObservers = () => {
-      sectionIds.forEach((id) => {
+      sectionIdsRef.current.forEach((id) => {
         const element = document.getElementById(id);
         if (!element) return;
 
@@ -132,13 +183,19 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
             });
 
             // Update current index based on visible sections (only if not manually navigating)
-            if (visibleSections.size > 0 && !isManualNavigationRef.current && !isScrollingRef.current) {
+            if (
+              visibleSections.size > 0 &&
+              !isManualNavigationRef.current &&
+              !isScrollingRef.current
+            ) {
               const sortedVisible = Array.from(visibleSections).sort(
-                (a, b) => sectionIds.indexOf(a) - sectionIds.indexOf(b)
+                (a, b) =>
+                  sectionIdsRef.current.indexOf(a) -
+                  sectionIdsRef.current.indexOf(b),
               );
               const visibleId = sortedVisible[0];
-              const index = sectionIds.indexOf(visibleId);
-              if (index !== -1 && index !== currentIndex) {
+              const index = sectionIdsRef.current.indexOf(visibleId);
+              if (index !== -1 && index !== currentIndexRef.current) {
                 setCurrentIndex(index);
                 // Update hash without triggering scroll
                 const newHash = `#${visibleId}`;
@@ -151,7 +208,7 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
           {
             threshold: [0.5],
             rootMargin: "-20% 0px -20% 0px",
-          }
+          },
         );
 
         observer.observe(element);
@@ -164,9 +221,11 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
 
     return () => {
       clearTimeout(timeoutId);
-      observers.forEach((observer) => observer.disconnect());
+      for (const observer of observers) {
+        observer.disconnect();
+      }
     };
-  }, [sectionIds, currentIndex]);
+  }, []);
 
   const goToPrevious = useCallback(() => {
     if (isScrollingRef.current) return;
@@ -178,8 +237,11 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
       const currentPage = getCurrentPage();
       const previousPage = getPreviousPage(currentPage);
       if (previousPage) {
-        const path = getPagePath(previousPage);
+        const path = getPagePathWithQuery(previousPage, true);
         router.push(`${path}#intro`);
+      } else {
+        // If no previous page, go to home with presentationMode=true#intro
+        router.push(`/?presentationMode=true#intro`);
       }
     }
   }, [currentIndex, scrollToSection, getCurrentPage, router]);
@@ -194,15 +256,20 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
       const currentPage = getCurrentPage();
       const nextPage = getNextPage(currentPage);
       if (nextPage) {
-        const path = getPagePath(nextPage);
+        const path = getPagePathWithQuery(nextPage, true);
         router.push(`${path}#intro`);
       }
     }
-  }, [currentIndex, sectionIds.length, scrollToSection, getCurrentPage, router]);
+  }, [
+    currentIndex,
+    sectionIds.length,
+    scrollToSection,
+    getCurrentPage,
+    router,
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      console.log("handleKeyDown", e.key);
       if (isScrollingRef.current) return;
 
       if (e.key === "ArrowLeft" || e.key === "PageUp") {
@@ -221,15 +288,24 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
   }, [goToPrevious, goToNext]);
 
   const currentPage = getCurrentPage();
-  const canGoPrevious = currentIndex > 0 || getPreviousPage(currentPage) !== null;
-  const canGoNext = currentIndex < sectionIds.length - 1 || getNextPage(currentPage) !== null;
+  // Can go previous if not at first slide, or if there's a previous page, or if we can go to home
+  const canGoPrevious =
+    currentIndex > 0 ||
+    getPreviousPage(currentPage) !== null ||
+    currentPage !== null;
+  const canGoNext =
+    currentIndex < sectionIds.length - 1 || getNextPage(currentPage) !== null;
 
-  if (sectionIds.length === 0) return null;
+  // Only render if in presentation mode
+  if (!isPresentationMode || sectionIds.length === 0) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-y-0 left-0 right-0 pointer-events-none z-50 flex items-center justify-between px-4">
       {/* Left Arrow */}
       <button
+        type="button"
         onClick={goToPrevious}
         disabled={!canGoPrevious}
         className={`pointer-events-auto p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-lg transition-all duration-200 ${
@@ -244,6 +320,7 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
 
       {/* Right Arrow */}
       <button
+        type="button"
         onClick={goToNext}
         disabled={!canGoNext}
         className={`pointer-events-auto p-3 rounded-full bg-background/80 backdrop-blur-sm border border-border shadow-lg transition-all duration-200 ${
@@ -259,3 +336,12 @@ export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
   );
 }
 
+export function SlideNavigation({ sectionIds }: SlideNavigationProps) {
+  if (sectionIds.length === 0) return null;
+
+  return (
+    <Suspense fallback={null}>
+      <SlideNavigationContent sectionIds={sectionIds} />
+    </Suspense>
+  );
+}

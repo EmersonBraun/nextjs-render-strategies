@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { IntroSlide } from "@/components/intro-slide";
 import { SlideNavigation } from "@/components/slide-navigation";
 import { SlideSection } from "@/components/slide-section";
-import { IntroSlide } from "@/components/intro-slide";
 import { BenefitsCard } from "./components/benefits-card";
 import { BuildTimeSection } from "./components/build-time-section";
 import { ClientSection } from "./components/client-section";
-import { ComparisonCard } from "./components/comparison-card";
 import { ImplementationCard } from "./components/implementation-card";
-
-export const experimental_ppr = true;
 
 export async function generateMetadata({
   params,
@@ -37,35 +34,48 @@ export async function generateMetadata({
 
 export default async function PPRPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ presentationMode?: string }>;
 }) {
   const { locale } = await params;
+  const { presentationMode } = await searchParams;
+  const isPresentationMode = presentationMode === "true";
   const t = await getTranslations({ locale, namespace: "pages.ppr" });
 
-  const sectionIds = ["intro", "animation-build", "animation-client", "benefits", "implementation", "comparison"];
+  const sectionIds = [
+    "intro",
+    "animation-build",
+    "animation-client",
+    "benefits",
+    "implementation",
+  ];
 
   return (
     <>
-      <SlideNavigation sectionIds={sectionIds} />
+      {isPresentationMode && <SlideNavigation sectionIds={sectionIds} />}
       <div className="max-w-7xl mx-auto">
-        <SlideSection id="intro">
+        <SlideSection id="intro" presentationMode={isPresentationMode}>
           <IntroSlide title={t("title")} description={t("description")} />
         </SlideSection>
-        <SlideSection id="animation-build">
+        <SlideSection
+          id="animation-build"
+          presentationMode={isPresentationMode}
+        >
           <BuildTimeSection />
         </SlideSection>
-        <SlideSection id="animation-client">
+        <SlideSection
+          id="animation-client"
+          presentationMode={isPresentationMode}
+        >
           <ClientSection />
         </SlideSection>
-        <SlideSection id="benefits">
+        <SlideSection id="benefits" presentationMode={isPresentationMode}>
           <BenefitsCard />
         </SlideSection>
-        <SlideSection id="implementation">
+        <SlideSection id="implementation" presentationMode={isPresentationMode}>
           <ImplementationCard locale={locale} />
-        </SlideSection>
-        <SlideSection id="comparison">
-          <ComparisonCard />
         </SlideSection>
       </div>
     </>

@@ -36,7 +36,7 @@
     "home": {
       "hero": {
         "title": "Estrategias de Renderizado Next.js",
-        "subtitle": "Domina los enfoques de renderizado Next.js con demostraciones interactivas, ejemplos prácticos y comparaciones completas",
+        "subtitle": "SSR, SSG, ISR y Más",
         "cta": "Comenzar a Aprender 🚀",
         "secondaryCta": "Ver Comparación"
       },
@@ -138,7 +138,7 @@
     "csr": {
       "loading": "Cargando página...",
       "title": "Renderizado del Cliente (CSR)",
-      "description": "Las páginas se renderizan en el cliente después de que JavaScript se carga",
+      "description": "Las páginas se renderizan en el cliente después de que JavaScript se carga. Ideal para SPAs, Juegos y Dashboards donde la interactividad es clave.",
       "step1": {
         "title": "Página Cargada",
         "description": "✅ Shell HTML cargado, JavaScript ejecutándose..."
@@ -210,7 +210,7 @@
     },
     "ssr": {
       "title": "Renderizado del Servidor (SSR)",
-      "description": "Las páginas se renderizan en el servidor para cada solicitud",
+      "description": "Las páginas se renderizan en el servidor para cada solicitud. Perfecto para E-commerce, Perfiles y aplicaciones con datos en tiempo real donde el contenido fresco y personalizado es esencial.",
       "step1": {
         "title": "Procesamiento del Servidor",
         "description": "🔄 Servidor obteniendo datos y renderizando HTML..."
@@ -277,7 +277,7 @@
     },
     "ssg": {
       "title": "Generación de Sitio Estático (SSG)",
-      "description": "Las páginas se pre-construyen en tiempo de build",
+      "description": "Las páginas se pre-construyen en tiempo de build para máximo rendimiento. Mejor para Blogs, Documentación y sitios de Marketing con contenido que no cambia frecuentemente.",
       "step1": {
         "title": "Generación en Tiempo de Build",
         "description": "🔨 Contenido generado y HTML pre-construido",
@@ -330,7 +330,9 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "SSG usa componentes Server asíncronos que se prerenderizan en tiempo de build.",
+        "description": "SSG usa componentes Server asíncronos prerenderizados en tiempo de build. Para rutas dinámicas como [id], usa generateStaticParams() para generar todas las páginas estáticas en el build.",
+        "exampleWithDynamicRoute": "Ejemplo con ruta dinámica [id]:",
+        "simpleExample": "Ejemplo simple (página estática):",
         "points": [
           "Los componentes son funciones asíncronas (sin directiva 'use client')",
           "No se pueden usar hooks React (useState, useEffect, etc.)",
@@ -368,7 +370,7 @@
     },
     "isr": {
       "title": "Regeneración Estática Incremental (ISR)",
-      "description": "SSG con revalidación cronometrada",
+      "description": "SSG con revalidación cronometrada que regenera páginas en background. Excelente para Catálogos, sitios de Noticias y Listados de productos que necesitan actualizaciones periódicas sin rebuilds completos.",
       "step1": {
         "title": "Contenido Estático Servido",
         "description": "⚡ Contenido estático en caché servido instantáneamente"
@@ -438,7 +440,7 @@
     },
     "rsc": {
       "title": "Componentes del Servidor React (RSC)",
-      "description": "Componentes solo del servidor para rendimiento optimizado",
+      "description": "Componentes solo del servidor para rendimiento optimizado, predeterminado en App Router. Ideal para Apps modernas, aplicaciones con muchos datos y Apps seguros que requieren lógica del lado del servidor.",
       "step1": {
         "title": "Componente del Servidor",
         "description": "Renderizado en el servidor con acceso directo a datos",
@@ -513,7 +515,7 @@
     },
     "streaming": {
       "title": "Streaming React",
-      "description": "Carga progresiva con límites Suspense",
+      "description": "Carga progresiva con límites Suspense que transmite contenido conforme está disponible. Perfecto para Dashboards, aplicaciones en tiempo real y Apps progresivos donde los usuarios se benefician de ver contenido incrementalmente.",
       "step1": {
         "title": "Contenido Rápido (Inmediato)",
         "description": "Contenido que se carga instantáneamente",
@@ -597,7 +599,7 @@
     },
     "ppr": {
       "title": "Prerenderizado Parcial (PPR)",
-      "description": "Conchas estáticas con agujeros dinámicos",
+      "description": "Técnica híbrida combinando conchas estáticas prerenderizadas en tiempo de build con contenido dinámico transmitido vía Suspense. Mejor para Apps híbridas, escenarios de rendimiento optimizado y Páginas modernas que mezclan UI estática con datos dinámicos.",
       "step1": {
         "title": "Concha Estática",
         "description": "Contenido estático prerenderizado en tiempo de build",

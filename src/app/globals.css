@@ -102,3 +102,64 @@ h6 {
   line-height: 1.2;
   font-weight: 600;
 }
+
+/* View Transitions for Slide Sections */
+@supports (view-transition-name: none) {
+  /* Slide transition animations */
+  ::view-transition-old(slide-intro),
+  ::view-transition-new(slide-intro),
+  ::view-transition-old(slide-animation-server),
+  ::view-transition-new(slide-animation-server),
+  ::view-transition-old(slide-animation-client),
+  ::view-transition-new(slide-animation-client),
+  ::view-transition-old(slide-animation-build),
+  ::view-transition-new(slide-animation-build),
+  ::view-transition-old(slide-benefits),
+  ::view-transition-new(slide-benefits),
+  ::view-transition-old(slide-implementation),
+  ::view-transition-new(slide-implementation) {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Fade and slide animation for transitions */
+  ::view-transition-old(slide-intro),
+  ::view-transition-old(slide-animation-server),
+  ::view-transition-old(slide-animation-client),
+  ::view-transition-old(slide-animation-build),
+  ::view-transition-old(slide-benefits),
+  ::view-transition-old(slide-implementation) {
+    animation-name: slide-out;
+  }
+
+  ::view-transition-new(slide-intro),
+  ::view-transition-new(slide-animation-server),
+  ::view-transition-new(slide-animation-client),
+  ::view-transition-new(slide-animation-build),
+  ::view-transition-new(slide-benefits),
+  ::view-transition-new(slide-implementation) {
+    animation-name: slide-in;
+  }
+
+  @keyframes slide-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

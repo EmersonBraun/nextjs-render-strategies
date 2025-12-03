@@ -6,6 +6,7 @@ import { useLocale } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { usePresentationMode } from "@/lib/use-presentation-mode";
 import { cn } from "@/lib/utils";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
@@ -26,6 +27,7 @@ export function Navigation() {
   const pathname = usePathname();
   const locale = useLocale();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { getUrlWithPresentationMode } = usePresentationMode();
 
   const isActive = (href: string) => {
     const cleanPathname = pathname.replace(`/${locale}`, "");
@@ -68,7 +70,9 @@ export function Navigation() {
                 size="sm"
                 asChild
               >
-                <Link href={item.href}>{item.name}</Link>
+                <Link href={getUrlWithPresentationMode(item.href)}>
+                  {item.name}
+                </Link>
               </Button>
             ))}
           </div>
@@ -102,7 +106,7 @@ export function Navigation() {
               {navigationItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={getUrlWithPresentationMode(item.href)}
                   onClick={handleLinkClick}
                   className={cn(
                     "block px-3 py-2 rounded-md text-sm font-medium transition-colors",

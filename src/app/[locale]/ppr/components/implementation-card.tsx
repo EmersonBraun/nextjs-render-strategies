@@ -24,10 +24,8 @@ export default {
   },
 };
 
-// page.tsx
 import { Suspense } from "react";
 
-// Static shell (prerendered at build time)
 export default function Page() {
   return (
     <div>
@@ -38,13 +36,7 @@ export default function Page() {
     </div>
   );
 }
-
-// Dynamic content (streamed on request)
-async function DynamicContent() {
-  const res = await fetch("https://api.example.com/data");
-  const data = await res.json();
-  return <div>{data.message}</div>;
-}`}</code>
+`}</code>
             </pre>
           </div>
           <ul className="text-sm text-muted-foreground space-y-2">

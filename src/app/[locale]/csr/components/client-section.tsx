@@ -2,13 +2,24 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver } from "@/lib/use-intersection-observer";
 
 export function ClientSection() {
   const t = useTranslations("pages.csr.diagram");
   const [currentStep, setCurrentStep] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const { ref, isIntersecting } = useIntersectionObserver();
 
   useEffect(() => {
+    if (!isIntersecting) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      setCurrentStep(0);
+      return;
+    }
+
     const startAnimation = () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -35,7 +46,7 @@ export function ClientSection() {
         clearInterval(intervalRef.current);
       }
     };
-  }, []);
+  }, [isIntersecting]);
 
   const resetAnimation = () => {
     if (intervalRef.current) {
@@ -61,7 +72,7 @@ export function ClientSection() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div ref={ref} className="w-full h-full flex flex-col">
       <div className="flex-1 flex flex-col justify-center">
         <button
           type="button"
@@ -212,4 +223,3 @@ export function ClientSection() {
     </div>
   );
 }
-

@@ -14,23 +14,23 @@ export type PageRoute = (typeof PAGE_ORDER)[number];
 
 export function getNextPage(currentPage: string | null): PageRoute | null {
   if (!currentPage) return PAGE_ORDER[0];
-  
+
   const currentIndex = PAGE_ORDER.indexOf(currentPage as PageRoute);
   if (currentIndex === -1 || currentIndex === PAGE_ORDER.length - 1) {
     return null;
   }
-  
+
   return PAGE_ORDER[currentIndex + 1];
 }
 
 export function getPreviousPage(currentPage: string | null): PageRoute | null {
   if (!currentPage) return null;
-  
+
   const currentIndex = PAGE_ORDER.indexOf(currentPage as PageRoute);
   if (currentIndex === -1 || currentIndex === 0) {
     return null;
   }
-  
+
   return PAGE_ORDER[currentIndex - 1];
 }
 
@@ -40,3 +40,17 @@ export function getPagePath(page: PageRoute): string {
   return `/${page}`;
 }
 
+/**
+ * Constrói uma URL preservando o queryParam presentationMode se fornecido
+ */
+export function getPagePathWithQuery(
+  page: PageRoute,
+  presentationMode?: boolean,
+): string {
+  const path = getPagePath(page);
+  if (presentationMode) {
+    const separator = path.includes("?") ? "&" : "?";
+    return `${path}${separator}presentationMode=true`;
+  }
+  return path;
+}

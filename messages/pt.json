@@ -36,7 +36,7 @@
     "home": {
       "hero": {
         "title": "Estratégias de Renderização Next.js",
-        "subtitle": "Domine as abordagens de renderização Next.js com demonstrações interativas, exemplos práticos e comparações completas",
+        "subtitle": "SSR, SSG, ISR e Além",
         "cta": "Começar a Aprender 🚀",
         "secondaryCta": "Ver Comparação"
       },
@@ -138,7 +138,7 @@
     "csr": {
       "loading": "Carregando página...",
       "title": "Renderização no Cliente (CSR)",
-      "description": "Páginas são renderizadas no cliente após o JavaScript carregar",
+      "description": "Páginas são renderizadas no cliente após o JavaScript carregar. Ideal para SPAs, Jogos e Dashboards onde a interatividade é essencial.",
       "step1": {
         "title": "Página Carregada",
         "description": "✅ Shell HTML carregado, JavaScript executando..."
@@ -210,7 +210,7 @@
     },
     "ssr": {
       "title": "Renderização no Servidor (SSR)",
-      "description": "Páginas são renderizadas no servidor para cada requisição",
+      "description": "Páginas são renderizadas no servidor para cada requisição. Perfeito para E-commerce, Perfis e aplicações com dados em tempo real onde conteúdo fresco e personalizado é essencial.",
       "step1": {
         "title": "Processamento do Servidor",
         "description": "🔄 Servidor buscando dados e renderizando HTML..."
@@ -263,11 +263,21 @@
         "valueGreat": "Ótimo",
         "valueLow": "Baixo",
         "valueHigh": "Alto"
+      },
+      "implementation": {
+        "title": "Como implementar?",
+        "description": "SSR usa componentes Server assíncronos. No App Router, renderização dinâmica é o padrão para páginas com dados dinâmicos.",
+        "points": [
+          "Componentes são funções assíncronas (sem diretiva 'use client')",
+          "Não pode usar hooks React (useState, useEffect, etc.)",
+          "Use fetch() assíncrono para busca de dados no servidor",
+          "Busca de dados acontece no servidor para cada requisição"
+        ]
       }
     },
     "ssg": {
       "title": "Geração de Site Estático (SSG)",
-      "description": "Páginas são pré-construídas no tempo de build",
+      "description": "Páginas são pré-construídas no tempo de build para máxima performance. Melhor para Blogs, Documentação e sites de Marketing com conteúdo que não muda frequentemente.",
       "overview": "Visão geral do SSG com exemplos de rotas dinâmicas",
       "step1": {
         "title": "Geração no Tempo de Build",
@@ -320,7 +330,9 @@
       },
       "implementation": {
         "title": "Como implementar?",
-        "description": "SSG usa componentes Server assíncronos pré-renderizados no tempo de build.",
+        "description": "SSG usa componentes Server assíncronos pré-renderizados no tempo de build. Para rotas dinâmicas como [id], use generateStaticParams() para gerar todas as páginas estáticas no build.",
+        "exampleWithDynamicRoute": "Exemplo com rota dinâmica [id]:",
+        "simpleExample": "Exemplo simples (página estática):",
         "points": [
           "Componentes são funções assíncronas (sem diretiva 'use client')",
           "Não pode usar hooks React (useState, useEffect, etc.)",
@@ -358,7 +370,7 @@
     },
     "isr": {
       "title": "Regeneração Estática Incremental (ISR)",
-      "description": "SSG com revalidação cronometrada",
+      "description": "SSG com revalidação cronometrada que regenera páginas em background. Excelente para Catálogos, sites de Notícias e Listagens de produtos que precisam de atualizações periódicas sem rebuilds completos.",
       "step1": {
         "title": "Conteúdo Estático Servido",
         "description": "⚡ Conteúdo estático em cache servido instantaneamente"
@@ -428,7 +440,7 @@
     },
     "rsc": {
       "title": "Componentes do Servidor React (RSC)",
-      "description": "Componentes apenas do servidor para performance otimizada",
+      "description": "Componentes apenas do servidor para performance otimizada, padrão no App Router. Ideal para Apps modernos, aplicações com muitos dados e Apps seguros que requerem lógica do lado do servidor.",
       "step1": {
         "title": "Componente do Servidor",
         "description": "Renderizado no servidor com acesso direto aos dados",
@@ -503,7 +515,7 @@
     },
     "streaming": {
       "title": "Streaming React",
-      "description": "Carregamento progressivo com limites Suspense",
+      "description": "Carregamento progressivo com limites Suspense que transmite conteúdo conforme fica disponível. Perfeito para Dashboards, aplicações em tempo real e Apps progressivos onde usuários se beneficiam de ver conteúdo incrementalmente.",
       "step1": {
         "title": "Conteúdo Rápido (Imediato)",
         "description": "Conteúdo que carrega instantaneamente",
@@ -573,11 +585,23 @@
         "valueGood": "Bom",
         "valueHigh": "Alto",
         "valueMedium": "Médio"
+      },
+      "implementation": {
+        "title": "Como implementar?",
+        "description": "Streaming usa limites Suspense com componentes Server assíncronos. Não pode usar hooks em limites Suspense.",
+        "points": [
+          "Componentes são funções assíncronas (sem diretiva 'use client')",
+          "Não pode usar hooks React (incluindo use hook) em Server Components",
+          "Envolva componentes assíncronos com Suspense e forneça fallback",
+          "Use loading.js para estados de carregamento no nível de rota",
+          "Conteúdo transmite para o cliente conforme fica disponível",
+          "Funciona perfeitamente com RSC e opções de fetch (revalidate)"
+        ]
       }
     },
     "ppr": {
       "title": "Pré-renderização Parcial (PPR)",
-      "description": "Conchas estáticas com buracos dinâmicos",
+      "description": "Técnica híbrida combinando conchas estáticas pré-renderizadas no tempo de build com conteúdo dinâmico transmitido via Suspense. Melhor para Apps híbridos, cenários de performance otimizada e Páginas modernas que misturam UI estática com dados dinâmicos.",
       "step1": {
         "title": "Concha Estática",
         "description": "Conteúdo estático pré-renderizado no tempo de build",
