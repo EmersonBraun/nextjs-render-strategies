@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Activity } from "react";
 import { IntroSlide } from "@/components/intro-slide";
-import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideNavigationClient } from "@/components/slide-navigation-client";
 import { SlideSection } from "@/components/slide-section";
 import { BenefitsCard } from "./components/benefits-card";
 import { BuildTimeSection } from "./components/build-time-section";
 import { ClientSection } from "./components/client-section";
 import { ImplementationCard } from "./components/implementation-card";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -54,7 +57,9 @@ export default async function SSGPage({
 
   return (
     <>
-      {isPresentationMode && <SlideNavigation sectionIds={sectionIds} />}
+      <Activity mode={isPresentationMode ? "visible" : "hidden"}>
+        <SlideNavigationClient sectionIds={sectionIds} />
+      </Activity>
       <div className="max-w-7xl mx-auto">
         <SlideSection id="intro" presentationMode={isPresentationMode}>
           <IntroSlide title={t("title")} description={t("description")} />

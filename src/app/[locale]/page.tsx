@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Suspense } from "react";
 import { IntroSlide } from "@/components/intro-slide";
 import { PresentationLink } from "@/components/presentation-link";
-import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideNavigationClient } from "@/components/slide-navigation-client";
 import { SlideSection } from "@/components/slide-section";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -56,9 +57,7 @@ export default async function Home({
 
     return (
       <>
-        <Suspense fallback={null}>
-          <SlideNavigation sectionIds={sectionIds} />
-        </Suspense>
+        <SlideNavigationClient sectionIds={sectionIds} />
         <div className="max-w-7xl mx-auto">
           <SlideSection id="intro" presentationMode={isPresentationMode}>
             <IntroSlide

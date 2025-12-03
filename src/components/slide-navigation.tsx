@@ -16,6 +16,7 @@ export interface SlideNavigationProps {
 
 export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentHash, setCurrentHash] = useState("");
   const isScrollingRef = useRef(false);
   const isManualNavigationRef = useRef(false);
   const router = useRouter();
@@ -85,6 +86,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
         if (updateHash) {
           const newHash = `#${sectionIds[index]}`;
           window.history.replaceState(null, "", newHash);
+          setCurrentHash(sectionIds[index]);
         }
 
         setTimeout(() => {
@@ -118,9 +120,11 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   // Handle hash on mount and hash changes
   useEffect(() => {
     const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      setCurrentHash(hash);
+
       if (isManualNavigationRef.current) return;
 
-      const hash = window.location.hash.replace("#", "");
       if (hash && sectionIds.includes(hash)) {
         const index = sectionIds.indexOf(hash);
         if (index !== -1 && index !== currentIndex) {
@@ -132,6 +136,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
 
     // Check initial hash
     const initialHash = window.location.hash.replace("#", "");
+    setCurrentHash(initialHash);
     if (initialHash && sectionIds.includes(initialHash)) {
       const index = sectionIds.indexOf(initialHash);
       if (index !== -1) {
@@ -230,8 +235,14 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   const goToPrevious = useCallback(() => {
     if (isScrollingRef.current) return;
 
-    if (currentIndex > 0) {
-      scrollToSection(currentIndex - 1);
+    // Get current slide from hash to ensure we're using the correct index
+    const actualIndex =
+      currentHash && sectionIds.includes(currentHash)
+        ? sectionIds.indexOf(currentHash)
+        : currentIndex;
+
+    if (actualIndex > 0) {
+      scrollToSection(actualIndex - 1);
     } else {
       // Navigate to previous page
       const currentPage = getCurrentPage();
@@ -244,13 +255,27 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
         router.push(`/?presentationMode=true#intro`);
       }
     }
-  }, [currentIndex, scrollToSection, getCurrentPage, router]);
+  }, [
+    currentIndex,
+    currentHash,
+    sectionIds,
+    scrollToSection,
+    getCurrentPage,
+    router,
+  ]);
 
   const goToNext = useCallback(() => {
     if (isScrollingRef.current) return;
 
-    if (currentIndex < sectionIds.length - 1) {
-      scrollToSection(currentIndex + 1);
+    // Get current slide from hash to ensure we're using the correct index
+    // This ensures we always go to the next slide in sequence, not the next unviewed one
+    const actualIndex =
+      currentHash && sectionIds.includes(currentHash)
+        ? sectionIds.indexOf(currentHash)
+        : currentIndex;
+
+    if (actualIndex < sectionIds.length - 1) {
+      scrollToSection(actualIndex + 1);
     } else {
       // Navigate to next page
       const currentPage = getCurrentPage();
@@ -262,7 +287,8 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     }
   }, [
     currentIndex,
-    sectionIds.length,
+    currentHash,
+    sectionIds,
     scrollToSection,
     getCurrentPage,
     router,
@@ -288,13 +314,19 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   }, [goToPrevious, goToNext]);
 
   const currentPage = getCurrentPage();
+  // Get actual index from hash to ensure correct navigation state
+  const actualIndex =
+    currentHash && sectionIds.includes(currentHash)
+      ? sectionIds.indexOf(currentHash)
+      : currentIndex;
+
   // Can go previous if not at first slide, or if there's a previous page, or if we can go to home
   const canGoPrevious =
-    currentIndex > 0 ||
+    actualIndex > 0 ||
     getPreviousPage(currentPage) !== null ||
     currentPage !== null;
   const canGoNext =
-    currentIndex < sectionIds.length - 1 || getNextPage(currentPage) !== null;
+    actualIndex < sectionIds.length - 1 || getNextPage(currentPage) !== null;
 
   // Only render if in presentation mode
   if (!isPresentationMode || sectionIds.length === 0) {

@@ -1,11 +1,14 @@
 import { getTranslations } from "next-intl/server";
+import { Activity } from "react";
 import { IntroSlide } from "@/components/intro-slide";
-import { SlideNavigation } from "@/components/slide-navigation";
+import { SlideNavigationClient } from "@/components/slide-navigation-client";
 import { SlideSection } from "@/components/slide-section";
 import { BenefitsCard } from "./components/benefits-card";
 import { ClientSection } from "./components/client-section";
 import { ImplementationCard } from "./components/implementation-card";
 import { ServerSection } from "./components/server-section";
+
+export const dynamic = "force-dynamic";
 
 export default async function CSRPage({
   params,
@@ -29,7 +32,9 @@ export default async function CSRPage({
 
   return (
     <>
-      {isPresentationMode && <SlideNavigation sectionIds={sectionIds} />}
+      <Activity mode={isPresentationMode ? "visible" : "hidden"}>
+        <SlideNavigationClient sectionIds={sectionIds} />
+      </Activity>
       <div className="max-w-7xl mx-auto">
         <SlideSection id="intro" presentationMode={isPresentationMode}>
           <IntroSlide title={t("title")} description={t("description")} />
