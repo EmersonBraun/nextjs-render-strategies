@@ -324,7 +324,6 @@ declare const messages: {
       title: "Rendering Modes Comparison";
       subtitle: "Compare different rendering approaches across key metrics";
       tableTitle: "Rendering Modes Comparison Table";
-      tableDescription: "This table compares various rendering modes for web applications";
       headers: {
         mode: "Mode";
         initialSpeed: "Initial Speed";

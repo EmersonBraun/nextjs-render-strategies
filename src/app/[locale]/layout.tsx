@@ -109,7 +109,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -118,7 +118,7 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={messages} locale={locale}>
             <Navigation />
-            <div className="container mx-auto px-4">{children}</div>
+            <div className="container mx-auto px-4 flex-1">{children}</div>
             <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>

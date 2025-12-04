@@ -106,7 +106,7 @@ export default async function Home({
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
             {t("strategies.title")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed text-justify">
             {t("strategies.description")}
           </p>
         </div>

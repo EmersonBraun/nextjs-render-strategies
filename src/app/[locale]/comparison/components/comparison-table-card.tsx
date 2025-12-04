@@ -1,11 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function getSpeedColor(speed: string, speedLabels: Record<string, string>) {
   if (speed === speedLabels.high || speed === speedLabels.optimal) {
@@ -123,8 +117,9 @@ export async function ComparisonTableCard({ locale }: { locale: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t("tableTitle")}</CardTitle>
-        <CardDescription>{t("tableDescription")}</CardDescription>
+        <CardTitle className="text-center mb-[-48px]">
+          {t("tableTitle")}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
@@ -160,7 +155,7 @@ export async function ComparisonTableCard({ locale }: { locale: string }) {
             <tbody>
               {comparisonData.map((item) => (
                 <tr key={item.technique} className="border-b hover:bg-muted/50">
-                  <td className="p-3">
+                  <td className="p-2">
                     <div>
                       <div className="font-semibold">{item.technique}</div>
                       <div className="text-sm text-muted-foreground">

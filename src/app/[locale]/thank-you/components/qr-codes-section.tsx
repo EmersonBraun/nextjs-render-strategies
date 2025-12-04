@@ -35,7 +35,10 @@ export function QRCodesSection({
     };
   }, []);
 
-  if (!isVisible) return null;
+  if (!isVisible)
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto animate-in fade-in duration-500"></div>
+    );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto animate-in fade-in duration-500">

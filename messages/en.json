@@ -648,7 +648,7 @@
       }
     },
     "comparison": {
-      "title": "Rendering Techniques Comparison",
+      "title": "Rendering Modes Comparison",
       "subtitle": "Compare different rendering approaches across key metrics",
       "summary": {
         "title": "Quick Reference Guide",
@@ -744,8 +744,7 @@
           "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via Suspense at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js."
         }
       },
-      "tableTitle": "Rendering Techniques Comparison Table",
-      "tableDescription": "This table compares various rendering techniques for web applications",
+      "tableTitle": "Rendering Modes Comparison Table",
       "headers": {
         "technique": "Technique",
         "introduced": "Introduced",

@@ -3,7 +3,7 @@
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { usePresentationMode } from "@/lib/use-presentation-mode";
@@ -27,7 +27,25 @@ export function Navigation() {
   const pathname = usePathname();
   const locale = useLocale();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const { getUrlWithPresentationMode } = usePresentationMode();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Check for CTRL/CMD + Shift + M
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.shiftKey &&
+        event.key === "M"
+      ) {
+        event.preventDefault();
+        setIsHidden((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const isActive = (href: string) => {
     const cleanPathname = pathname.replace(`/${locale}`, "");
@@ -38,6 +56,10 @@ export function Navigation() {
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
   };
+
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <nav className="border-b border-border/60 bg-background/80 backdrop-blur-md supports-backdrop-filter:bg-background/70 mb-6 sticky top-0 z-10">

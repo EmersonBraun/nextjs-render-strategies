@@ -76,8 +76,8 @@
         },
         "ppr": {
           "name": "Pré-renderização Parcial",
-          "description": "Conchas estáticas com buracos dinâmicos para UX otimizada",
-          "shortDescription": "Conchas estáticas + buracos dinâmicos"
+          "description": "Shells estáticos com buracos dinâmicos para UX otimizada",
+          "shortDescription": "Shells estáticos + buracos dinâmicos"
         }
       },
       "features": {
@@ -601,17 +601,17 @@
     },
     "ppr": {
       "title": "Pré-renderização Parcial (PPR)",
-      "description": "Técnica híbrida combinando conchas estáticas pré-renderizadas no tempo de build com conteúdo dinâmico transmitido via Suspense. Melhor para Apps híbridos, cenários de performance otimizada e Páginas modernas que misturam UI estática com dados dinâmicos.",
+      "description": "Técnica híbrida combinando shells estáticos pré-renderizados no tempo de build com conteúdo dinâmico transmitido via Suspense. Melhor para Apps híbridos, cenários de performance otimizada e Páginas modernas que misturam UI estática com dados dinâmicos.",
       "step1": {
-        "title": "Concha Estática",
+        "title": "Shell Estático",
         "description": "Conteúdo estático pré-renderizado no tempo de build",
-        "staticShellReady": "⚡ Concha estática pronta!",
+        "staticShellReady": "⚡ Shell estático pronto!",
         "builtAt": "Construído em:"
       },
       "step2": {
         "title": "Buracos Dinâmicos",
-        "description": "Conteúdo dinâmico flui para a concha estática",
-        "descriptionText": "Conteúdo dinâmico flui para a concha estática:",
+        "description": "Conteúdo dinâmico flui para o shell estático",
+        "descriptionText": "Conteúdo dinâmico flui para o shell estático:",
         "dynamicContent": "Conteúdo Dinâmico (500ms)",
         "userContent": "Conteúdo do Usuário (300ms)",
         "dynamicContentLoaded": "✅ Conteúdo dinâmico carregado",
@@ -621,13 +621,13 @@
       },
       "step3": {
         "title": "Resultado Híbrido",
-        "description": "✅ Concha estática + conteúdo dinâmico = performance otimizada",
+        "description": "✅ Shell estático + conteúdo dinâmico = performance otimizada",
         "subDescription": "Melhor dos dois mundos: velocidade + personalização"
       },
       "benefits": {
         "title": "Benefícios x Trade-offs",
         "items": [
-          "Concha Estática Instantânea: Carregamento inicial rápido da página",
+          "Shell Estático Instantâneo: Carregamento inicial rápido da página",
           "Aprimoramento Progressivo: Conteúdo dinâmico flui",
           "UX Otimizada: Usuários veem conteúdo imediatamente",
           "Arquitetura Flexível: Mistura conteúdo estático e dinâmico"
@@ -641,7 +641,7 @@
       },
       "implementation": {
         "title": "Como implementar?",
-        "description": "PPR combina concha estática com streaming de conteúdo dinâmico. Introduzido no Next.js 14.1 (experimental), estável no 15+.",
+        "description": "PPR combina shell estático com streaming de conteúdo dinâmico. Introduzido no Next.js 14.1 (experimental), estável no 15+.",
         "points": [
           "Habilite PPR via 'cacheComponents: true' ou 'ppr: true' em next.config.js",
           "Envolva componentes dinâmicos em <Suspense fallback={<Skeleton />}>",
@@ -653,14 +653,14 @@
         "title": "Diagrama de Fluxo PPR",
         "restart": "Reiniciar Animação",
         "buildTime": "Tempo de Build",
-        "generateStaticShell": "Gerar concha estática",
-        "storeStaticShell": "Armazenar concha estática",
+        "generateStaticShell": "Gerar shell estático",
+        "storeStaticShell": "Armazenar shell estático",
         "runtime": "Tempo de Execução",
         "server": "Servidor",
         "client": "Cliente",
         "clientSendsRequest": "Cliente envia requisição",
-        "serverSendsStaticShell": "Servidor envia concha estática",
-        "clientReceivesStaticShell": "Cliente recebe concha estática",
+        "serverSendsStaticShell": "Servidor envia shell estático",
+        "clientReceivesStaticShell": "Cliente recebe shell estático",
         "serverFetchesDynamicData": "Servidor busca dados dinâmicos",
         "serverStreamsDynamicContent": "Servidor transmite conteúdo dinâmico",
         "clientReceivesDynamicContent": "Cliente recebe conteúdo dinâmico",
@@ -681,12 +681,12 @@
       }
     },
     "comparison": {
-      "title": "Comparação de Modos de Renderização",
+      "title": "Comparação de Modos",
       "subtitle": "Compare diferentes abordagens de renderização em métricas-chave",
-      "tableTitle": "Tabela de Comparação de Modos de Renderização",
-      "tableDescription": "Esta tabela compara vários modos de renderização para aplicações web",
+      "tableTitle": "Tabela de Comparação de Modos",
       "headers": {
         "mode": "Modo",
+        "introduced": "Introdução",
         "initialSpeed": "Velocidade Inicial",
         "seoPerformance": "Performance SEO",
         "dynamicContent": "Conteúdo Dinâmico",
@@ -835,7 +835,7 @@
           "dynamicContent": "Alto",
           "serverLoad": "Equilibrado",
           "useCases": ["Next.js 16+", "Apps híbridos", "Performance ótima"],
-          "description": "Conchas estáticas + buracos dinâmicos"
+          "description": "Shells estáticos + buracos dinâmicos"
         }
       },
       "speedLabels": {
