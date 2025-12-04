@@ -41,8 +41,7 @@ export function IntroSlide({
     <section
       className={`flex flex-col justify-center items-center py-12 px-4 ${className}`}
     >
-      <div className="relative flex flex-col items-center justify-center h-screen text-center space-y-6 px-4 w-full">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 rounded-3xl" />
+      <div className="relative flex flex-col items-center justify-center h-[10vh] text-center space-y-6 px-4 w-full">
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
             {title}
