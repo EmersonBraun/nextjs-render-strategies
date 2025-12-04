@@ -1,14 +1,14 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import {
   getNextPage,
-  getPagePathWithQuery,
+  getPagePath,
   getPreviousPage,
 } from "@/lib/page-navigation";
+import { usePresentationStore } from "@/store/use-presentation-store";
 
 export interface SlideNavigationProps {
   sectionIds: string[];
@@ -21,9 +21,9 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   const isManualNavigationRef = useRef(false);
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const presentationMode = searchParams.get("presentationMode");
-  const isPresentationMode = presentationMode === "true";
+  const isPresentationMode = usePresentationStore(
+    (state) => state.isPresentationMode,
+  );
 
   // Get current page from pathname
   const getCurrentPage = useCallback(() => {
@@ -248,11 +248,11 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
       const currentPage = getCurrentPage();
       const previousPage = getPreviousPage(currentPage);
       if (previousPage) {
-        const path = getPagePathWithQuery(previousPage, true);
+        const path = getPagePath(previousPage);
         router.push(`${path}#intro`);
       } else {
-        // If no previous page, go to home with presentationMode=true#intro
-        router.push(`/?presentationMode=true#intro`);
+        // If no previous page, go to home
+        router.push(`/#intro`);
       }
     }
   }, [
@@ -281,7 +281,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
       const currentPage = getCurrentPage();
       const nextPage = getNextPage(currentPage);
       if (nextPage) {
-        const path = getPagePathWithQuery(nextPage, true);
+        const path = getPagePath(nextPage);
         router.push(`${path}#intro`);
       }
     }

@@ -39,18 +39,3 @@ export function getPagePath(page: PageRoute): string {
   if (page === "thank-you") return "/thank-you";
   return `/${page}`;
 }
-
-/**
- * Constrói uma URL preservando o queryParam presentationMode se fornecido
- */
-export function getPagePathWithQuery(
-  page: PageRoute,
-  presentationMode?: boolean,
-): string {
-  const path = getPagePath(page);
-  if (presentationMode) {
-    const separator = path.includes("?") ? "&" : "?";
-    return `${path}${separator}presentationMode=true`;
-  }
-  return path;
-}

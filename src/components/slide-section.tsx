@@ -1,19 +1,24 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { usePresentationStore } from "@/store/use-presentation-store";
 
 interface SlideSectionProps {
   id: string;
   children: ReactNode;
   className?: string;
-  presentationMode?: boolean;
 }
 
 export function SlideSection({
   id,
   children,
   className = "",
-  presentationMode = true,
 }: SlideSectionProps) {
-  if (presentationMode) {
+  const isPresentationMode = usePresentationStore(
+    (state) => state.isPresentationMode,
+  );
+
+  if (isPresentationMode) {
     return (
       <section
         id={id}

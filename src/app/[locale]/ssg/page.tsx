@@ -37,14 +37,10 @@ export async function generateMetadata({
 
 export default async function SSGPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ presentationMode?: string }>;
 }) {
   const { locale } = await params;
-  const { presentationMode } = await searchParams;
-  const isPresentationMode = presentationMode === "true";
   const t = await getTranslations({ locale, namespace: "pages.ssg" });
 
   const sectionIds = [
@@ -57,29 +53,23 @@ export default async function SSGPage({
 
   return (
     <>
-      <Activity mode={isPresentationMode ? "visible" : "hidden"}>
+      <Activity mode="visible">
         <SlideNavigationClient sectionIds={sectionIds} />
       </Activity>
       <div className="max-w-7xl mx-auto">
-        <SlideSection id="intro" presentationMode={isPresentationMode}>
+        <SlideSection id="intro">
           <IntroSlide title={t("title")} description={t("description")} />
         </SlideSection>
-        <SlideSection
-          id="animation-build"
-          presentationMode={isPresentationMode}
-        >
+        <SlideSection id="animation-build">
           <BuildTimeSection />
         </SlideSection>
-        <SlideSection
-          id="animation-client"
-          presentationMode={isPresentationMode}
-        >
+        <SlideSection id="animation-client">
           <ClientSection />
         </SlideSection>
-        <SlideSection id="benefits" presentationMode={isPresentationMode}>
+        <SlideSection id="benefits">
           <BenefitsCard />
         </SlideSection>
-        <SlideSection id="implementation" presentationMode={isPresentationMode}>
+        <SlideSection id="implementation">
           <ImplementationCard locale={locale} />
         </SlideSection>
       </div>

@@ -10,32 +10,27 @@ export const dynamic = "force-dynamic";
 
 export default async function ComparisonPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ presentationMode?: string }>;
 }) {
   const { locale } = await params;
-  const { presentationMode } = await searchParams;
-  const isPresentationMode = presentationMode === "true";
-
   const t = await getTranslations({ locale, namespace: "pages.comparison" });
 
   const sectionIds = ["intro", "table", "takeaways"];
 
   return (
     <>
-      <Activity mode={isPresentationMode ? "visible" : "hidden"}>
+      <Activity mode="visible">
         <SlideNavigationClient sectionIds={sectionIds} />
       </Activity>
       <div className="max-w-6xl mx-auto">
-        <SlideSection id="intro" presentationMode={isPresentationMode}>
+        <SlideSection id="intro">
           <IntroSlide title={t("title")} description={t("subtitle")} />
         </SlideSection>
-        <SlideSection id="table" presentationMode={isPresentationMode}>
+        <SlideSection id="table">
           <ComparisonTableCard locale={locale} />
         </SlideSection>
-        <SlideSection id="takeaways" presentationMode={isPresentationMode}>
+        <SlideSection id="takeaways">
           <TakeawaysCard locale={locale} />
         </SlideSection>
       </div>

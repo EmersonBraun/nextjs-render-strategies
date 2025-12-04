@@ -1,23 +1,13 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePresentationStore } from "@/store/use-presentation-store";
 
 export function usePresentationMode() {
-  const searchParams = useSearchParams();
-  const presentationMode = searchParams.get("presentationMode");
-  const isPresentationMode = presentationMode === "true";
-
-  const getUrlWithPresentationMode = (path: string): string => {
-    if (isPresentationMode) {
-      const separator = path.includes("?") ? "&" : "?";
-      return `${path}${separator}presentationMode=true`;
-    }
-    return path;
-  };
+  const isPresentationMode = usePresentationStore(
+    (state) => state.isPresentationMode,
+  );
 
   return {
     isPresentationMode,
-    presentationMode,
-    getUrlWithPresentationMode,
   };
 }

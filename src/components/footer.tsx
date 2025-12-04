@@ -1,10 +1,18 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { usePresentationStore } from "@/store/use-presentation-store";
 
 export function Footer() {
   const t = useTranslations("footer");
   const locale = useLocale();
+  const isPresentationMode = usePresentationStore(
+    (state) => state.isPresentationMode,
+  );
+
+  if (isPresentationMode) {
+    return null;
+  }
 
   const currentDate = new Date().toLocaleDateString(
     locale === "uk" ? "uk-UA" : locale,

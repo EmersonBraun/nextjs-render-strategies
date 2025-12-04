@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { IntroSlide } from "@/components/intro-slide";
 import { PresentationLink } from "@/components/presentation-link";
-import { SlideNavigationClient } from "@/components/slide-navigation-client";
-import { SlideSection } from "@/components/slide-section";
 import { Button } from "@/components/ui/button";
+import { HomeContent } from "./components/home-content";
 import {
   Card,
   CardContent,
@@ -41,38 +39,14 @@ export async function generateMetadata({
 
 export default async function Home({
   params,
-  searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ presentationMode?: string }>;
 }) {
   const { locale } = await params;
-  const { presentationMode } = await searchParams;
-  const isPresentationMode = presentationMode === "true";
   const t = await getTranslations({ locale, namespace: "pages.home" });
 
-  // If in presentation mode, show only intro slide
-  if (isPresentationMode) {
-    const sectionIds = ["intro"];
-
-    return (
-      <>
-        <SlideNavigationClient sectionIds={sectionIds} />
-        <div className="max-w-7xl mx-auto">
-          <SlideSection id="intro" presentationMode={isPresentationMode}>
-            <IntroSlide
-              title={t("hero.title")}
-              description={t("hero.subtitle")}
-              showGradient
-            />
-          </SlideSection>
-        </div>
-      </>
-    );
-  }
-
-  // Normal mode: show full content
   return (
+    <HomeContent title={t("hero.title")} subtitle={t("hero.subtitle")}>
     <div className="max-w-7xl mx-auto space-y-20">
       {/* Hero Section */}
       <div className="relative text-center space-y-8 py-20 px-4">
@@ -200,5 +174,6 @@ export default async function Home({
         </Card>
       </section>
     </div>
+    </HomeContent>
   );
 }

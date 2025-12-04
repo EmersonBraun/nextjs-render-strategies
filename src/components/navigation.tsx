@@ -6,7 +6,10 @@ import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { usePresentationMode } from "@/lib/use-presentation-mode";
+import {
+  type PresentationStore,
+  usePresentationStore,
+} from "@/store/use-presentation-store";
 import { cn } from "@/lib/utils";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
@@ -28,7 +31,9 @@ export function Navigation() {
   const locale = useLocale();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const { getUrlWithPresentationMode } = usePresentationMode();
+  const togglePresentationMode = usePresentationStore(
+    (state: PresentationStore) => state.togglePresentationMode,
+  );
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -40,12 +45,13 @@ export function Navigation() {
       ) {
         event.preventDefault();
         setIsHidden((prev) => !prev);
+        togglePresentationMode();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [togglePresentationMode]);
 
   const isActive = (href: string) => {
     const cleanPathname = pathname.replace(`/${locale}`, "");
@@ -92,7 +98,7 @@ export function Navigation() {
                 size="sm"
                 asChild
               >
-                <Link href={getUrlWithPresentationMode(item.href)}>
+                <Link href={item.href}>
                   {item.name}
                 </Link>
               </Button>
@@ -128,7 +134,7 @@ export function Navigation() {
               {navigationItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={getUrlWithPresentationMode(item.href)}
+                  href={item.href}
                   onClick={handleLinkClick}
                   className={cn(
                     "block px-3 py-2 rounded-md text-sm font-medium transition-colors",
