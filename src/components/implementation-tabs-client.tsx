@@ -36,16 +36,17 @@ export function ImplementationTabsClient({
             </pre>
           </div>
           <ul className="text-sm text-muted-foreground space-y-2">
-            {((t.raw(`frameworks.${framework}.points`) as string[]) || []).map(
-              (point: string) => (
-                <li key={point} className="flex items-start gap-2">
-                  <span className="text-purple-600 dark:text-purple-400 mt-0.5">
-                    •
-                  </span>
-                  <span>{point}</span>
-                </li>
-              ),
-            )}
+            {(Array.isArray(t.raw(`frameworks.${framework}.points`))
+              ? (t.raw(`frameworks.${framework}.points`) as string[])
+              : []
+            ).map((point: string) => (
+              <li key={point} className="flex items-start gap-2">
+                <span className="text-purple-600 dark:text-purple-400 mt-0.5">
+                  •
+                </span>
+                <span>{point}</span>
+              </li>
+            ))}
           </ul>
         </TabsContent>
       ))}

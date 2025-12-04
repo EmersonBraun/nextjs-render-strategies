@@ -9,8 +9,6 @@ import { ClientSection } from "./components/client-section";
 import { ImplementationCard } from "./components/implementation-card";
 import { ServerSection } from "./components/server-section";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata({
   params,
 }: {

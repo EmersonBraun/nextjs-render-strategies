@@ -11,8 +11,6 @@ import {
 } from "@/components/ui/card";
 import { HomeContent } from "./components/home-content";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata({
   params,
 }: {

@@ -3,8 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { QRCodesSection } from "./components/qr-codes-section";
 import { ScrollToTop } from "./components/scroll-to-top";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata({
   params,
 }: {

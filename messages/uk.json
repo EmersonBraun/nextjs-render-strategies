@@ -173,13 +173,38 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "CSR використовує клієнтські компоненти з React hooks для інтерактивності.",
-        "points": [
-          "Використовуйте директиву 'use client' на початку файлу",
-          "Компоненти можуть використовувати React hooks (useState, useEffect, тощо)",
-          "Отримання даних відбувається на клієнті",
-          "Ідеально для інтерактивних функцій та динамічних оновлень"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "CSR використовує клієнтські компоненти з React hooks для інтерактивності.",
+            "code": "\"use client\";\n\nimport { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Використовуйте директиву 'use client' на початку файлу",
+              "Компоненти можуть використовувати React hooks (useState, useEffect, тощо)",
+              "Отримання даних відбувається на клієнті",
+              "Ідеально для інтерактивних функцій та динамічних оновлень"
+            ]
+          },
+          "remix": {
+            "description": "CSR у Remix використовує клієнтські компоненти з React hooks.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Директива 'use client' не потрібна в Remix",
+              "Компоненти можуть використовувати React hooks (useState, useEffect, тощо)",
+              "Отримання даних відбувається на клієнті",
+              "Використовуйте clientLoader Remix для завантаження даних на клієнті"
+            ]
+          },
+          "tanstack": {
+            "description": "CSR у TanStack Start використовує клієнтські компоненти з React hooks.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Директива 'use client' не потрібна в TanStack Start",
+              "Компоненти можуть використовувати React hooks (useState, useEffect, тощо)",
+              "Отримання даних відбувається на клієнті",
+              "Використовуйте TanStack Query для управління даними на клієнті"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку CSR",
@@ -241,13 +266,38 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "SSR використовує асинхронні Server Components без React hooks.",
-        "points": [
-          "Компоненти є асинхронними функціями (без директиви 'use client')",
-          "Не можна використовувати React hooks (useState, useEffect, тощо)",
-          "Додайте 'export const dynamic = \"force-dynamic\"' для вимкнення кешу",
-          "Отримання даних відбувається на сервері для кожного запиту"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "SSR використовує Server Components асинхронні. У App Router динамічний рендеринг є типовим для сторінок з динамічними даними.",
+            "code": "export const dynamic = \"force-dynamic\";\n\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Компоненти є асинхронними функціями (без директиви 'use client')",
+              "Не можна використовувати React hooks (useState, useEffect, тощо)",
+              "Використовуйте асинхронний fetch() для отримання даних на сервері",
+              "Отримання даних відбувається на сервері для кожного запиту"
+            ]
+          },
+          "remix": {
+            "description": "SSR у Remix використовує функції loader для отримання даних на сервері.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return json(data);\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте функцію loader для отримання даних на сервері",
+              "Використовуйте хук useLoaderData для доступу до даних у компонентах",
+              "Дані отримуються на сервері для кожного запиту",
+              "Компоненти рендеряться на сервері"
+            ]
+          },
+          "tanstack": {
+            "description": "SSR у TanStack Start використовує функції loader для отримання даних на сервері.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader(async () => {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return data;\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте createLoader для визначення отримання даних на сервері",
+              "Використовуйте хук loader.use() для доступу до даних у компонентах",
+              "Дані отримуються на сервері для кожного запиту",
+              "Компоненти рендеряться на сервері"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку SSR",
@@ -330,15 +380,38 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "SSG використовує асинхронні Server Components, попередньо відрендерені під час збірки. Для динамічних маршрутів як [id], використовуйте generateStaticParams() для генерації всіх статичних сторінок під час збірки.",
-        "exampleWithDynamicRoute": "Приклад з динамічним маршрутом [id]:",
-        "simpleExample": "Простий приклад (статична сторінка):",
-        "points": [
-          "Компоненти є асинхронними функціями (без директиви 'use client')",
-          "Не можна використовувати React hooks (useState, useEffect, тощо)",
-          "Використовуйте 'cache: \"force-cache\"' у fetch для статичних даних",
-          "Сторінки генеруються під час збірки, а не на запит"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "SSG використовує асинхронні Server Components, попередньо відрендерені під час збірки. Для динамічних маршрутів як [id], використовуйте generateStaticParams() для генерації всіх статичних сторінок під час збірки.",
+            "code": "// app/posts/[id]/page.tsx\nexport async function generateStaticParams() {\n  return fetch('https://api.example.com/posts').then(res => res.json());\n}\n\nexport default async function PostPage({ params }: { params: Promise<{ id: string }> }) {\n  const { id } = await params;\n  const post = await fetch(`https://api.example.com/posts/${id}`).then(res => res.json());\n  return <article>{post.content}</article>;\n}",
+            "points": [
+              "Компоненти є асинхронними функціями (без директиви 'use client')",
+              "Не можна використовувати React hooks (useState, useEffect, тощо)",
+              "Використовуйте 'cache: \"force-cache\"' у fetch для статичних даних",
+              "Сторінки генеруються під час збірки, а не на запит"
+            ]
+          },
+          "remix": {
+            "description": "SSG у Remix використовує статичну генерацію під час збірки через заголовки кешу.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\", {\n    headers: { \"Cache-Control\": \"public, max-age=31536000\" }\n  });\n  const data = await res.json();\n  return json(data, {\n    headers: { \"Cache-Control\": \"public, max-age=31536000\" }\n  });\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте функцію loader з заголовками кешу",
+              "Встановіть відповідні заголовки Cache-Control",
+              "Сторінки попередньо рендеряться під час збірки",
+              "Використовуйте функції генерації під час збірки Remix"
+            ]
+          },
+          "tanstack": {
+            "description": "SSG у TanStack Start використовує статичну генерацію під час збірки.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    const data = await res.json();\n    return data;\n  },\n  gcTime: Infinity\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте createLoader з конфігурацією статичної генерації",
+              "Встановіть gcTime на Infinity для статичного контенту",
+              "Сторінки попередньо рендеряться під час збірки",
+              "Використовуйте генерацію під час збірки TanStack Start"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку SSG",
@@ -402,13 +475,39 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "ISR використовує асинхронні Server компоненти з часом ревалідації.",
-        "points": [
-          "Компоненти є асинхронними функціями (без директиви 'use client')",
-          "Не можна використовувати хуки React (useState, useEffect, тощо)",
-          "Додайте 'export const revalidate = 3600' (1 година) для визначення часу ревалідації",
-          "Сторінки регенеруються періодично на основі значення revalidate"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "ISR використовує Server Components асинхронні з ревалідацією на рівні сторінки. Використовуйте generateStaticParams для динамічних маршрутів.",
+            "code": "export const revalidate = 3600; // 1 година\n\nexport async function generateStaticParams() {\n  return [{ id: \"1\" }, { id: \"2\" }];\n}\n\nexport default async function ISRComponent({ params }: { params: { id: string } }) {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Компоненти є асинхронними функціями (без директиви 'use client')",
+              "Не можна використовувати хуки React (useState, useEffect, тощо)",
+              "Додайте 'export const revalidate = 3600' на рівні сторінки (1 година)",
+              "Використовуйте generateStaticParams() для динамічних маршрутів",
+              "Використовуйте revalidatePath() або revalidateTag() для ревалідації за запитом"
+            ]
+          },
+          "remix": {
+            "description": "ISR у Remix використовує заголовки кешу з інтервалами ревалідації.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return json(data, {\n    headers: { \"Cache-Control\": \"public, s-maxage=3600, stale-while-revalidate\" }\n  });\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте заголовки Cache-Control з s-maxage",
+              "Використовуйте stale-while-revalidate для оновлень у фоновому режимі",
+              "Контент регенерується у фоновому режимі після інтервалу",
+              "Використовуйте функції управління кешем Remix"
+            ]
+          },
+          "tanstack": {
+            "description": "ISR у TanStack Start використовує користувацьку логіку ревалідації.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    const data = await res.json();\n    return data;\n  },\n  gcTime: 3600000,\n  staleTime: 3600000\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте createLoader з gcTime та staleTime",
+              "Встановіть інтервали ревалідації",
+              "Контент регенерується у фоновому режимі",
+              "Використовуйте ревалідацію кешу TanStack Start"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку ISR",
@@ -476,13 +575,38 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "RSC використовує Server Components за замовчуванням, з Client Components коли потрібно.",
-        "points": [
-          "Server Components є асинхронними функціями (за замовчуванням, без директиви)",
-          "Не можна використовувати React hooks у Server Components",
-          "Додайте директиву 'use client' лише коли потрібна інтерактивність",
-          "Server Components можуть отримувати дані безпосередньо, Client Components використовують hooks"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "RSC використовує Server Components за замовчуванням у App Router. Server Components не можуть імпортувати Client Components.",
+            "code": "// Server Component (за замовчуванням)\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return (\n    <div>\n      <h1>{data.title}</h1>\n      <ClientComponent data={data} />\n    </div>\n  );\n}\n\n// Client Component (коли потрібно)\n\"use client\";\nimport { useState } from \"react\";\n\nexport function ClientComponent({ data }: { data: any }) {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}",
+            "points": [
+              "Server Components є асинхронними функціями (за замовчуванням, без директиви)",
+              "Не можна використовувати React hooks у Server Components",
+              "Додайте директиву 'use client' лише коли потрібна інтерактивність",
+              "Server Components можуть отримувати дані безпосередньо, Client Components використовують hooks"
+            ]
+          },
+          "remix": {
+            "description": "Підтримка RSC у Remix через React Server Components.",
+            "code": "// Server Component\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Server Components є асинхронними функціями",
+              "Не можна використовувати React hooks у Server Components",
+              "Використовуйте loader для отримання даних на сервері",
+              "Remix підтримує React Server Components"
+            ]
+          },
+          "tanstack": {
+            "description": "Підтримка RSC запланована в TanStack Start.",
+            "code": "// Server Component (заплановано)\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Підтримка RSC запланована для TanStack Start",
+              "Server Components будуть асинхронними функціями",
+              "Використовуйте loaders для отримання даних на сервері",
+              "Перевірте документацію TanStack Start для оновлень"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку RSC",
@@ -559,13 +683,39 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "Streaming використовує межі Suspense з асинхронними Server Components.",
-        "points": [
-          "Компоненти є асинхронними функціями (без директиви 'use client')",
-          "Не можна використовувати React hooks у Server Components",
-          "Обгорніть асинхронні компоненти Suspense та надайте fallback",
-          "Контент передається клієнту коли стає доступним"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "Streaming використовує межі Suspense з Server Components асинхронними. Не можна використовувати хуки в межах Suspense.",
+            "code": "import { Suspense } from \"react\";\n\nexport default async function StreamingPage() {\n  return (\n    <div>\n      <Suspense fallback={<div>Завантаження...</div>}>\n        <AsyncComponent />\n      </Suspense>\n    </div>\n  );\n}\n\nasync function AsyncComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Компоненти є асинхронними функціями (без директиви 'use client')",
+              "Не можна використовувати React hooks (включно з use hook) у Server Components",
+              "Обгорніть асинхронні компоненти Suspense та надайте fallback",
+              "Використовуйте loading.js для станів завантаження на рівні маршруту",
+              "Контент передається клієнту коли стає доступним"
+            ]
+          },
+          "remix": {
+            "description": "Streaming у Remix використовує межі Suspense з відкладеними даними.",
+            "code": "import { defer } from \"@remix-run/node\";\nimport { useLoaderData, Await } from \"@remix-run/react\";\nimport { Suspense } from \"react\";\n\nexport async function loader() {\n  const dataPromise = fetch(\"https://api.example.com/data\").then(r => r.json());\n  return defer({ data: dataPromise });\n}\n\nexport default function Page() {\n  const { data } = useLoaderData<typeof loader>();\n  return (\n    <Suspense fallback={<div>Завантаження...</div>}>\n      <Await resolve={data}>\n        {(data) => <div>{data.message}</div>}\n      </Await>\n    </Suspense>\n  );\n}",
+            "points": [
+              "Використовуйте defer() для створення відкладених промісів",
+              "Використовуйте компонент Await з Suspense",
+              "Контент передається коли дані стають доступними",
+              "Використовуйте можливості стрімінгу Remix"
+            ]
+          },
+          "tanstack": {
+            "description": "Streaming у TanStack Start використовує межі Suspense.",
+            "code": "import { Suspense } from \"react\";\nimport { createLoader } from \"@tanstack/start\";\n\nconst loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    return res.json();\n  }\n});\n\nexport default function Page() {\n  return (\n    <Suspense fallback={<div>Завантаження...</div>}>\n      <AsyncContent />\n    </Suspense>\n  );\n}\n\nfunction AsyncContent() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Використовуйте межі Suspense з loaders",
+              "Контент передається коли дані завантажуються",
+              "Використовуйте підтримку стрімінгу TanStack Start",
+              "Надайте UI fallback для станів завантаження"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку Streaming",
@@ -639,13 +789,37 @@
       },
       "implementation": {
         "title": "Як реалізувати?",
-        "description": "PPR поєднує статичну оболонку зі стрімінгом динамічного контенту. Введено в Next.js 14.1 (експериментальний), стабільний у 15+.",
-        "points": [
-          "Увімкніть PPR через 'cacheComponents: true' або 'ppr: true' в next.config.js",
-          "Обгорніть динамічні компоненти в <Suspense fallback={<Skeleton />}>",
-          "Статичні частини попередньо рендеряться під час збірки",
-          "Динамічні частини передаються на запит - коди статусу не можуть змінюватися після стрімінгу"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "PPR поєднує статичну оболонку зі стрімінгом динамічного контенту. Вимагає React 19 та RSC. Введено в Next.js 14.1 (експериментальний), стабільний у 15+.",
+            "code": "// next.config.js\nexport default {\n  experimental: {\n    ppr: true, // або cacheComponents: true\n  },\n};\n\nimport { Suspense } from \"react\";\n\nexport default function Page() {\n  return (\n    <div>\n      <StaticHeader />\n      <Suspense fallback={<Skeleton />}>\n        <DynamicContent />\n      </Suspense>\n    </div>\n  );\n}",
+            "points": [
+              "Увімкніть PPR через експериментальну настройку ppr в next.config.js",
+              "Вимагає React 19 та React Server Components",
+              "Обгорніть динамічні компоненти в <Suspense fallback={<Skeleton />}>",
+              "Використовуйте директиву 'use cache' для динамічного контенту, що кешується",
+              "Статичні частини попередньо рендеряться під час збірки"
+            ]
+          },
+          "remix": {
+            "description": "PPR недоступний у Remix.",
+            "code": "// PPR недоступний у Remix",
+            "points": [
+              "PPR недоступний у Remix",
+              "Використовуйте інші стратегії рендерингу, доступні в Remix",
+              "Розгляньте використання стрімінгу або SSR для подібних випадків використання"
+            ]
+          },
+          "tanstack": {
+            "description": "PPR недоступний у TanStack Start.",
+            "code": "// PPR недоступний у TanStack Start",
+            "points": [
+              "PPR недоступний у TanStack Start",
+              "Використовуйте інші стратегії рендерингу, доступні в TanStack Start",
+              "Розгляньте використання стрімінгу або SSR для подібних випадків використання"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Діаграма Потоку PPR",

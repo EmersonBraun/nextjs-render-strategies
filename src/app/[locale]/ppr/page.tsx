@@ -9,8 +9,6 @@ import { BuildTimeSection } from "./components/build-time-section";
 import { ClientSection } from "./components/client-section";
 import { ImplementationCard } from "./components/implementation-card";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata({
   params,
 }: {

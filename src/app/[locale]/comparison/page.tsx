@@ -6,8 +6,6 @@ import { SlideSection } from "@/components/slide-section";
 import { ComparisonTableCard } from "./components/comparison-table-card";
 import { TakeawaysCard } from "./components/takeaways-card";
 
-export const dynamic = "force-dynamic";
-
 export default async function ComparisonPage({
   params,
 }: {

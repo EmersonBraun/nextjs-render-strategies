@@ -173,13 +173,38 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "CSR usa componentes del lado del cliente con hooks React para interactividad.",
-        "points": [
-          "Usa la directiva 'use client' en la parte superior del archivo",
-          "Los componentes pueden usar hooks React (useState, useEffect, etc.)",
-          "La obtención de datos ocurre en el lado del cliente",
-          "Perfecto para características interactivas y actualizaciones dinámicas"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "CSR usa componentes del lado del cliente con hooks React para interactividad.",
+            "code": "\"use client\";\n\nimport { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Usa la directiva 'use client' en la parte superior del archivo",
+              "Los componentes pueden usar hooks React (useState, useEffect, etc.)",
+              "La obtención de datos ocurre en el lado del cliente",
+              "Perfecto para características interactivas y actualizaciones dinámicas"
+            ]
+          },
+          "remix": {
+            "description": "CSR en Remix usa componentes del lado del cliente con hooks React.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "No se necesita directiva 'use client' en Remix",
+              "Los componentes pueden usar hooks React (useState, useEffect, etc.)",
+              "La obtención de datos ocurre en el lado del cliente",
+              "Usa clientLoader de Remix para carga de datos del lado del cliente"
+            ]
+          },
+          "tanstack": {
+            "description": "CSR en TanStack Start usa componentes del lado del cliente con hooks React.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "No se necesita directiva 'use client' en TanStack Start",
+              "Los componentes pueden usar hooks React (useState, useEffect, etc.)",
+              "La obtención de datos ocurre en el lado del cliente",
+              "Usa TanStack Query para gestión de datos del lado del cliente"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo CSR",
@@ -241,13 +266,38 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "SSR usa componentes Server asíncronos sin hooks React.",
-        "points": [
-          "Los componentes son funciones asíncronas (sin directiva 'use client')",
-          "No se pueden usar hooks React (useState, useEffect, etc.)",
-          "Agrega 'export const dynamic = \"force-dynamic\"' para deshabilitar caché",
-          "La obtención de datos ocurre en el servidor para cada solicitud"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "SSR usa Server Components asíncronos. En App Router, renderizado dinámico es el predeterminado para páginas con datos dinámicos.",
+            "code": "export const dynamic = \"force-dynamic\";\n\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Los componentes son funciones asíncronas (sin directiva 'use client')",
+              "No se pueden usar hooks React (useState, useEffect, etc.)",
+              "Usa fetch() asíncrono para obtención de datos en el servidor",
+              "La obtención de datos ocurre en el servidor para cada solicitud"
+            ]
+          },
+          "remix": {
+            "description": "SSR en Remix usa funciones loader para obtener datos en el servidor.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return json(data);\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa función loader para obtener datos en el servidor",
+              "Usa hook useLoaderData para acceder a datos en componentes",
+              "Los datos se obtienen en el servidor para cada solicitud",
+              "Los componentes se renderizan en el servidor"
+            ]
+          },
+          "tanstack": {
+            "description": "SSR en TanStack Start usa funciones loader para obtener datos en el servidor.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader(async () => {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return data;\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa createLoader para definir obtención de datos en el servidor",
+              "Usa hook loader.use() para acceder a datos en componentes",
+              "Los datos se obtienen en el servidor para cada solicitud",
+              "Los componentes se renderizan en el servidor"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo SSR",
@@ -330,15 +380,38 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "SSG usa componentes Server asíncronos prerenderizados en tiempo de build. Para rutas dinámicas como [id], usa generateStaticParams() para generar todas las páginas estáticas en el build.",
-        "exampleWithDynamicRoute": "Ejemplo con ruta dinámica [id]:",
-        "simpleExample": "Ejemplo simple (página estática):",
-        "points": [
-          "Los componentes son funciones asíncronas (sin directiva 'use client')",
-          "No se pueden usar hooks React (useState, useEffect, etc.)",
-          "Usa 'cache: \"force-cache\"' en fetch para datos estáticos",
-          "Las páginas se generan en tiempo de build, no en solicitud"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "SSG usa Server Components asíncronos prerenderizados en tiempo de build. Para rutas dinámicas como [id], usa generateStaticParams() para generar todas las páginas estáticas en el build.",
+            "code": "// app/posts/[id]/page.tsx\nexport async function generateStaticParams() {\n  return fetch('https://api.example.com/posts').then(res => res.json());\n}\n\nexport default async function PostPage({ params }: { params: Promise<{ id: string }> }) {\n  const { id } = await params;\n  const post = await fetch(`https://api.example.com/posts/${id}`).then(res => res.json());\n  return <article>{post.content}</article>;\n}",
+            "points": [
+              "Los componentes son funciones asíncronas (sin directiva 'use client')",
+              "No se pueden usar hooks React (useState, useEffect, etc.)",
+              "Usa 'cache: \"force-cache\"' en fetch para datos estáticos",
+              "Las páginas se generan en tiempo de build, no en solicitud"
+            ]
+          },
+          "remix": {
+            "description": "SSG en Remix usa generación estática en tiempo de build mediante encabezados de caché.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\", {\n    headers: { \"Cache-Control\": \"public, max-age=31536000\" }\n  });\n  const data = await res.json();\n  return json(data, {\n    headers: { \"Cache-Control\": \"public, max-age=31536000\" }\n  });\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa función loader con encabezados de caché",
+              "Establece encabezados Cache-Control apropiados",
+              "Las páginas se prerenderizan en tiempo de build",
+              "Usa características de generación en tiempo de build de Remix"
+            ]
+          },
+          "tanstack": {
+            "description": "SSG en TanStack Start usa generación estática en tiempo de build.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    const data = await res.json();\n    return data;\n  },\n  gcTime: Infinity\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa createLoader con configuración de generación estática",
+              "Establece gcTime a Infinity para contenido estático",
+              "Las páginas se prerenderizan en tiempo de build",
+              "Usa generación en tiempo de build de TanStack Start"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo SSG",
@@ -402,13 +475,39 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "ISR usa componentes Server asíncronos con tiempo de revalidación.",
-        "points": [
-          "Los componentes son funciones asíncronas (sin directiva 'use client')",
-          "No puedes usar hooks de React (useState, useEffect, etc.)",
-          "Agrega 'export const revalidate = 3600' (1 hora) para definir tiempo de revalidación",
-          "Las páginas se regeneran periódicamente según el valor de revalidate"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "ISR usa Server Components asíncronos con revalidación a nivel de página. Usa generateStaticParams para rutas dinámicas.",
+            "code": "export const revalidate = 3600; // 1 hora\n\nexport async function generateStaticParams() {\n  return [{ id: \"1\" }, { id: \"2\" }];\n}\n\nexport default async function ISRComponent({ params }: { params: { id: string } }) {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Los componentes son funciones asíncronas (sin directiva 'use client')",
+              "No puedes usar hooks de React (useState, useEffect, etc.)",
+              "Agrega 'export const revalidate = 3600' a nivel de página (1 hora)",
+              "Usa generateStaticParams() para rutas dinámicas",
+              "Usa revalidatePath() o revalidateTag() para revalidación bajo demanda"
+            ]
+          },
+          "remix": {
+            "description": "ISR en Remix usa encabezados de caché con intervalos de revalidación.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return json(data, {\n    headers: { \"Cache-Control\": \"public, s-maxage=3600, stale-while-revalidate\" }\n  });\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa encabezados Cache-Control con s-maxage",
+              "Usa stale-while-revalidate para actualizaciones en background",
+              "El contenido se regenera en background después del intervalo",
+              "Usa características de gestión de caché de Remix"
+            ]
+          },
+          "tanstack": {
+            "description": "ISR en TanStack Start usa lógica de revalidación personalizada.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    const data = await res.json();\n    return data;\n  },\n  gcTime: 3600000,\n  staleTime: 3600000\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa createLoader con gcTime y staleTime",
+              "Establece intervalos de revalidación",
+              "El contenido se regenera en background",
+              "Usa revalidación de caché de TanStack Start"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo ISR",
@@ -476,13 +575,38 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "RSC usa Server Components por defecto, con Client Components cuando se necesitan.",
-        "points": [
-          "Los Server Components son funciones asíncronas (por defecto, sin directiva necesaria)",
-          "No se pueden usar hooks React en Server Components",
-          "Agrega directiva 'use client' solo cuando necesites interactividad",
-          "Los Server Components pueden obtener datos directamente, los Client Components usan hooks"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "RSC usa Server Components por defecto en App Router. Los Server Components no pueden importar Client Components.",
+            "code": "// Server Component (por defecto)\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return (\n    <div>\n      <h1>{data.title}</h1>\n      <ClientComponent data={data} />\n    </div>\n  );\n}\n\n// Client Component (cuando se necesita)\n\"use client\";\nimport { useState } from \"react\";\n\nexport function ClientComponent({ data }: { data: any }) {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}",
+            "points": [
+              "Los Server Components son funciones asíncronas (por defecto, sin directiva necesaria)",
+              "No se pueden usar hooks React en Server Components",
+              "Agrega directiva 'use client' solo cuando necesites interactividad",
+              "Los Server Components pueden obtener datos directamente, los Client Components usan hooks"
+            ]
+          },
+          "remix": {
+            "description": "Soporte RSC en Remix mediante React Server Components.",
+            "code": "// Server Component\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Los Server Components son funciones asíncronas",
+              "No se pueden usar hooks React en Server Components",
+              "Usa loader para obtención de datos en el servidor",
+              "Remix soporta React Server Components"
+            ]
+          },
+          "tanstack": {
+            "description": "Soporte RSC planeado en TanStack Start.",
+            "code": "// Server Component (planeado)\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "El soporte RSC está planeado para TanStack Start",
+              "Los Server Components serán funciones asíncronas",
+              "Usa loaders para obtención de datos en el servidor",
+              "Consulta la documentación de TanStack Start para actualizaciones"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo RSC",
@@ -559,13 +683,39 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "Streaming usa límites Suspense con componentes Server asíncronos.",
-        "points": [
-          "Los componentes son funciones asíncronas (sin directiva 'use client')",
-          "No se pueden usar hooks React en Server Components",
-          "Envuelve componentes asíncronos con Suspense y proporciona fallback",
-          "El contenido se transmite al cliente conforme está disponible"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "Streaming usa límites Suspense con Server Components asíncronos. No se pueden usar hooks en límites Suspense.",
+            "code": "import { Suspense } from \"react\";\n\nexport default async function StreamingPage() {\n  return (\n    <div>\n      <Suspense fallback={<div>Cargando...</div>}>\n        <AsyncComponent />\n      </Suspense>\n    </div>\n  );\n}\n\nasync function AsyncComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Los componentes son funciones asíncronas (sin directiva 'use client')",
+              "No se pueden usar hooks React (incluido use hook) en Server Components",
+              "Envuelve componentes asíncronos con Suspense y proporciona fallback",
+              "Usa loading.js para estados de carga a nivel de ruta",
+              "El contenido se transmite al cliente conforme está disponible"
+            ]
+          },
+          "remix": {
+            "description": "Streaming en Remix usa límites Suspense con datos diferidos.",
+            "code": "import { defer } from \"@remix-run/node\";\nimport { useLoaderData, Await } from \"@remix-run/react\";\nimport { Suspense } from \"react\";\n\nexport async function loader() {\n  const dataPromise = fetch(\"https://api.example.com/data\").then(r => r.json());\n  return defer({ data: dataPromise });\n}\n\nexport default function Page() {\n  const { data } = useLoaderData<typeof loader>();\n  return (\n    <Suspense fallback={<div>Cargando...</div>}>\n      <Await resolve={data}>\n        {(data) => <div>{data.message}</div>}\n      </Await>\n    </Suspense>\n  );\n}",
+            "points": [
+              "Usa defer() para crear promesas diferidas",
+              "Usa componente Await con Suspense",
+              "El contenido se transmite conforme los datos están disponibles",
+              "Usa capacidades de streaming de Remix"
+            ]
+          },
+          "tanstack": {
+            "description": "Streaming en TanStack Start usa límites Suspense.",
+            "code": "import { Suspense } from \"react\";\nimport { createLoader } from \"@tanstack/start\";\n\nconst loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    return res.json();\n  }\n});\n\nexport default function Page() {\n  return (\n    <Suspense fallback={<div>Cargando...</div>}>\n      <AsyncContent />\n    </Suspense>\n  );\n}\n\nfunction AsyncContent() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Usa límites Suspense con loaders",
+              "El contenido se transmite conforme los datos cargan",
+              "Usa soporte de streaming de TanStack Start",
+              "Proporciona UI de fallback para estados de carga"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo Streaming",
@@ -639,13 +789,37 @@
       },
       "implementation": {
         "title": "¿Cómo implementar?",
-        "description": "PPR combina shell estático con streaming de contenido dinámico. Introducido en Next.js 14.1 (experimental), estable en 15+.",
-        "points": [
-          "Habilita PPR via 'cacheComponents: true' o 'ppr: true' en next.config.js",
-          "Envuelve componentes dinámicos en <Suspense fallback={<Skeleton />}>",
-          "Las partes estáticas se prerenderizan en tiempo de build",
-          "Las partes dinámicas hacen stream en solicitud - los códigos de estado no pueden cambiar post-stream"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "PPR combina shell estático con streaming de contenido dinámico. Requiere React 19 y RSC. Introducido en Next.js 14.1 (experimental), estable en 15+.",
+            "code": "// next.config.js\nexport default {\n  experimental: {\n    ppr: true, // o cacheComponents: true\n  },\n};\n\nimport { Suspense } from \"react\";\n\nexport default function Page() {\n  return (\n    <div>\n      <StaticHeader />\n      <Suspense fallback={<Skeleton />}>\n        <DynamicContent />\n      </Suspense>\n    </div>\n  );\n}",
+            "points": [
+              "Habilita PPR via configuración experimental ppr en next.config.js",
+              "Requiere React 19 y React Server Components",
+              "Envuelve componentes dinámicos en <Suspense fallback={<Skeleton />}>",
+              "Usa directiva 'use cache' para contenido dinámico cacheable",
+              "Las partes estáticas se prerenderizan en tiempo de build"
+            ]
+          },
+          "remix": {
+            "description": "PPR no está disponible en Remix.",
+            "code": "// PPR no disponible en Remix",
+            "points": [
+              "PPR no está disponible en Remix",
+              "Usa otras estrategias de renderizado disponibles en Remix",
+              "Considera usar streaming o SSR para casos de uso similares"
+            ]
+          },
+          "tanstack": {
+            "description": "PPR no está disponible en TanStack Start.",
+            "code": "// PPR no disponible en TanStack Start",
+            "points": [
+              "PPR no está disponible en TanStack Start",
+              "Usa otras estrategias de renderizado disponibles en TanStack Start",
+              "Considera usar streaming o SSR para casos de uso similares"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Flujo PPR",
