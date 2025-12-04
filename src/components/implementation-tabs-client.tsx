@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CodeBlock } from "@/components/code-block";
 
 interface ImplementationTabsClientProps {
   namespace: string;
@@ -30,11 +31,10 @@ export function ImplementationTabsClient({
           <p className="text-muted-foreground">
             {t(`frameworks.${framework}.description`)}
           </p>
-          <div className="bg-muted rounded-lg p-4 overflow-x-auto">
-            <pre className="text-sm">
-              <code>{t.raw(`frameworks.${framework}.code`) as string}</code>
-            </pre>
-          </div>
+          <CodeBlock
+            code={t.raw(`frameworks.${framework}.code`) as string}
+            language="typescript"
+          />
           <ul className="text-sm text-muted-foreground space-y-2">
             {(Array.isArray(t.raw(`frameworks.${framework}.points`))
               ? (t.raw(`frameworks.${framework}.points`) as string[])
