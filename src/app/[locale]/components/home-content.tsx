@@ -25,7 +25,7 @@ export function HomeContent({ title, subtitle, children }: HomeContentProps) {
         <SlideNavigationClient sectionIds={sectionIds} />
         <div className="max-w-7xl mx-auto">
           <SlideSection id="intro">
-            <IntroSlide title={title} description={subtitle} showGradient />
+            <IntroSlide title={title} description={subtitle} />
           </SlideSection>
         </div>
       </>

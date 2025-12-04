@@ -1,8 +1,8 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
-import { useTheme } from "next-themes";
 
 interface CodeBlockProps {
   code: string;
@@ -51,8 +51,8 @@ export function CodeBlock({
   return (
     <div
       className={`rounded-lg overflow-hidden ${className}`}
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki returns safe HTML with syntax highlighting classes
       dangerouslySetInnerHTML={{ __html: highlightedCode }}
     />
   );
 }
-

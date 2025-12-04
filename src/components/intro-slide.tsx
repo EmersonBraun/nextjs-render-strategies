@@ -1,11 +1,10 @@
 "use client";
+import type { ReactNode } from "react";
 import { usePresentationStore } from "@/store/use-presentation-store";
-import { Activity, type ReactNode } from "react";
 
 interface IntroSlideProps {
   title: string;
   description: string;
-  showGradient?: boolean;
   children?: ReactNode;
   className?: string;
   presentationMode?: boolean;
@@ -14,11 +13,9 @@ interface IntroSlideProps {
 export function IntroSlide({
   title,
   description,
-  showGradient = false,
   className = "",
   children,
 }: IntroSlideProps) {
-
   const presentationMode = usePresentationStore(
     (state) => state.isPresentationMode,
   );
@@ -26,7 +23,7 @@ export function IntroSlide({
   if (presentationMode) {
     return (
       <div className="relative flex flex-col items-center justify-center h-screen text-center space-y-6 px-4 w-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 rounded-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 rounded-3xl" />
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
             {title}
@@ -45,7 +42,7 @@ export function IntroSlide({
       className={`flex flex-col justify-center items-center py-12 px-4 ${className}`}
     >
       <div className="relative flex flex-col items-center justify-center h-screen text-center space-y-6 px-4 w-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 rounded-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 rounded-3xl" />
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
             {title}
