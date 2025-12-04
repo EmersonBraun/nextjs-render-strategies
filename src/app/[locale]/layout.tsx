@@ -37,7 +37,6 @@ export async function generateMetadata({
     },
     description: t("hero.subtitle"),
     keywords: [
-      "Next.js",
       "React",
       "Rendering Strategies",
       "SSR",
@@ -60,7 +59,7 @@ export async function generateMetadata({
       alternateLocale: locales.filter((l) => l !== locale),
       title: t("hero.title"),
       description: t("hero.subtitle"),
-      siteName: "Next.js Rendering Strategies",
+      siteName: "React Rendering Strategies",
     },
     twitter: {
       card: "summary_large_image",

@@ -117,8 +117,10 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     [sectionIds],
   );
 
-  // Handle hash on mount and hash changes
+  // Handle hash on mount and hash changes (only in presentation mode)
   useEffect(() => {
+    if (!isPresentationMode) return;
+
     const handleHashChange = () => {
       const hash = window.location.hash.replace("#", "");
       setCurrentHash(hash);
@@ -149,7 +151,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
     };
-  }, [sectionIds, currentIndex, scrollToSection]);
+  }, [sectionIds, currentIndex, scrollToSection, isPresentationMode]);
 
   // Use refs to avoid re-renders when accessing current values
   const sectionIdsRef = useRef(sectionIds);
@@ -164,8 +166,25 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     currentIndexRef.current = currentIndex;
   }, [currentIndex]);
 
-  // IntersectionObserver to detect current section (only for passive scroll detection)
+  // Clear hash when not in presentation mode or when navigating between pages
   useEffect(() => {
+    if (!isPresentationMode) {
+      // Clear hash if it exists and is a slide hash (not a regular anchor)
+      const hash = window.location.hash.replace("#", "");
+      if (hash && sectionIds.includes(hash)) {
+        // Remove the hash from URL to prevent slide navigation behavior
+        const url = new URL(window.location.href);
+        url.hash = "";
+        window.history.replaceState(null, "", url.pathname + url.search);
+        setCurrentHash("");
+      }
+    }
+  }, [isPresentationMode, sectionIds]);
+
+  // IntersectionObserver to detect current section (only for passive scroll detection in presentation mode)
+  useEffect(() => {
+    if (!isPresentationMode) return;
+
     const observers: IntersectionObserver[] = [];
     const visibleSections = new Set<string>();
 
@@ -230,10 +249,10 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
         observer.disconnect();
       }
     };
-  }, []);
+  }, [isPresentationMode]);
 
   const goToPrevious = useCallback(() => {
-    if (isScrollingRef.current) return;
+    if (isScrollingRef.current || !isPresentationMode) return;
 
     // Get current slide from hash to ensure we're using the correct index
     const actualIndex =
@@ -262,10 +281,11 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     scrollToSection,
     getCurrentPage,
     router,
+    isPresentationMode,
   ]);
 
   const goToNext = useCallback(() => {
-    if (isScrollingRef.current) return;
+    if (isScrollingRef.current || !isPresentationMode) return;
 
     // Get current slide from hash to ensure we're using the correct index
     // This ensures we always go to the next slide in sequence, not the next unviewed one
@@ -292,9 +312,12 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     scrollToSection,
     getCurrentPage,
     router,
+    isPresentationMode,
   ]);
 
   useEffect(() => {
+    if (!isPresentationMode) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isScrollingRef.current) return;
 
@@ -311,7 +334,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [goToPrevious, goToNext]);
+  }, [goToPrevious, goToNext, isPresentationMode]);
 
   const currentPage = getCurrentPage();
   // Get actual index from hash to ensure correct navigation state

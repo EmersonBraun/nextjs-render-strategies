@@ -35,7 +35,7 @@
   "pages": {
     "home": {
       "hero": {
-        "title": "Estratégias de Renderização Next.js",
+        "title": "Estratégias de Renderização React",
         "subtitle": "SSR, SSG, ISR e Além",
         "cta": "Começar a Aprender 🚀",
         "secondaryCta": "Ver Comparação"
@@ -43,7 +43,7 @@
       "strategies": {
         "title": "Explorar Estratégias de Renderização",
         "subtitle": "Clique em qualquer estratégia para aprender mais sobre sua implementação, benefícios e casos de uso",
-        "description": "O Next.js oferece múltiplas estratégias de renderização para otimizar a performance, SEO e experiência do usuário da sua aplicação. Desde Renderização no Cliente (CSR) para aplicações interativas até Geração de Site Estático (SSG) para máxima performance, Renderização no Servidor (SSR) para conteúdo dinâmico, e abordagens modernas como Componentes do Servidor React (RSC), Streaming e Pré-renderização Parcial (PPR). Cada estratégia tem seus próprios pontos fortes e casos de uso, permitindo que você escolha a melhor abordagem para suas necessidades específicas.",
+        "description": "React oferece múltiplas estratégias de renderização para otimizar a performance, SEO e experiência do usuário da sua aplicação. Desde Renderização no Cliente (CSR) para aplicações interativas até Geração de Site Estático (SSG) para máxima performance, Renderização no Servidor (SSR) para conteúdo dinâmico, e abordagens modernas como Componentes do Servidor React (RSC), Streaming e Pré-renderização Parcial (PPR). Cada estratégia tem seus próprios pontos fortes e casos de uso, permitindo que você escolha a melhor abordagem para suas necessidades específicas.",
         "csr": {
           "name": "Renderização no Cliente",
           "description": "Renderizar páginas no navegador após o JavaScript carregar",
@@ -82,7 +82,7 @@
       },
       "features": {
         "title": "Por Que Usar Este Guia?",
-        "subtitle": "Tudo que você precisa para dominar renderização Next.js",
+        "subtitle": "Tudo que você precisa para dominar renderização React",
         "interactive": {
           "title": "Demonstrações Interativas",
           "description": "Veja cada estratégia em ação com exemplos ao vivo e diagramas visuais"
@@ -102,7 +102,7 @@
       },
       "whatIs": {
         "title": "O que é este projeto?",
-        "description": "Este guia de Estratégias de Renderização Next.js é seu companheiro completo para entender diferentes abordagens de renderização. Cada estratégia é apresentada com demonstrações interativas mostrando Casos de Uso, Pontos-Chave e Comparações. Esta organização ajuda você a entender rapidamente quando usar cada abordagem, o que é importante saber para construir aplicações performáticas e como diferentes estratégias se relacionam entre si.",
+        "description": "Este guia de Estratégias de Renderização React é seu companheiro completo para entender diferentes abordagens de renderização. Cada estratégia é apresentada com demonstrações interativas mostrando Casos de Uso, Pontos-Chave e Comparações. Esta organização ajuda você a entender rapidamente quando usar cada abordagem, o que é importante saber para construir aplicações performáticas e como diferentes estratégias se relacionam entre si.",
         "cta": "Explorar Estratégias ✨"
       },
       "explore": {
@@ -129,9 +129,9 @@
           "description": "Use ISR, RSC ou PPR para performance otimizada"
         }
       },
-      "title": "Estratégias de Renderização Next.js",
+      "title": "Estratégias de Renderização React",
       "subtitle": "Explore diferentes abordagens de renderização e suas compensações",
-      "description": "Esta demonstração mostra várias estratégias de renderização Next.js incluindo CSR, SSR, SSG, ISR, RSC, Streaming e PPR. Cada página demonstra as características únicas e casos de uso de diferentes abordagens de renderização.",
+      "description": "Esta demonstração mostra várias estratégias de renderização React incluindo CSR, SSR, SSG, ISR, RSC, Streaming e PPR. Cada página demonstra as características únicas e casos de uso de diferentes abordagens de renderização.",
       "getStarted": "Começar",
       "learnMore": "Saiba Mais"
     },
@@ -173,13 +173,38 @@
       },
       "implementation": {
         "title": "Como implementar?",
-        "description": "CSR usa componentes do lado do cliente com hooks React para interatividade.",
-        "points": [
-          "Use a diretiva 'use client' no topo do arquivo",
-          "Componentes podem usar hooks React (useState, useEffect, etc.)",
-          "Busca de dados acontece no lado do cliente",
-          "Perfeito para recursos interativos e atualizações dinâmicas"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "CSR usa componentes do lado do cliente com hooks React para interatividade.",
+            "code": "\"use client\";\n\nimport { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Use a diretiva 'use client' no topo do arquivo",
+              "Componentes podem usar hooks React (useState, useEffect, etc.)",
+              "Busca de dados acontece no lado do cliente",
+              "Perfeito para recursos interativos e atualizações dinâmicas"
+            ]
+          },
+          "remix": {
+            "description": "CSR no Remix usa componentes do lado do cliente com hooks React.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Não precisa da diretiva 'use client' no Remix",
+              "Componentes podem usar hooks React (useState, useEffect, etc.)",
+              "Busca de dados acontece no lado do cliente",
+              "Use clientLoader do Remix para carregamento de dados no cliente"
+            ]
+          },
+          "tanstack": {
+            "description": "CSR no TanStack Start usa componentes do lado do cliente com hooks React.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Não precisa da diretiva 'use client' no TanStack Start",
+              "Componentes podem usar hooks React (useState, useEffect, etc.)",
+              "Busca de dados acontece no lado do cliente",
+              "Use TanStack Query para gerenciamento de dados no cliente"
+            ]
+          }
+        }
       },
       "diagram": {
         "title": "Diagrama de Fluxo CSR",
@@ -765,7 +790,7 @@
       "modes": {
         "csr": {
           "name": "Client-Side Rendering",
-          "introduced": "Tradicional",
+          "introduced": "Tradicional | Remix 2.17.2 | TanStack Start 1.0 RC",
           "initialSpeed": "Lento",
           "seo": "Ruim",
           "dynamicContent": "Alto",
@@ -775,7 +800,7 @@
         },
         "ssr": {
           "name": "Server-Side Rendering",
-          "introduced": "Tradicional",
+          "introduced": "Tradicional | Remix 2.17.2 | TanStack Start 1.0 RC",
           "initialSpeed": "Rápido",
           "seo": "Ótimo",
           "dynamicContent": "Alto",
@@ -785,7 +810,7 @@
         },
         "ssg": {
           "name": "Static Site Generation",
-          "introduced": "Next.js 9",
+          "introduced": "Next.js 9 | Remix 2.0 (via cache) | TanStack Start 1.0 RC",
           "initialSpeed": "Rápido",
           "seo": "Ótimo",
           "dynamicContent": "Baixo",
@@ -795,7 +820,7 @@
         },
         "isr": {
           "name": "Incremental Static Regeneration",
-          "introduced": "Next.js 9.5",
+          "introduced": "Next.js 9.5 | Remix 2.0 (via cache) | TanStack Start 1.0 RC (custom)",
           "initialSpeed": "Rápido",
           "seo": "Ótimo",
           "dynamicContent": "Médio",
@@ -805,7 +830,7 @@
         },
         "rsc": {
           "name": "React Server Components",
-          "introduced": "Next.js 13",
+          "introduced": "Next.js 13 | Remix 1.15 | TanStack Start 1.0 RC",
           "initialSpeed": "Ótimo",
           "seo": "Ótimo",
           "dynamicContent": "Alto",
@@ -819,7 +844,7 @@
         },
         "streaming": {
           "name": "Streaming",
-          "introduced": "Next.js 13",
+          "introduced": "Next.js 13 | Remix 1.15 | TanStack Start 1.0 RC",
           "initialSpeed": "Rápido",
           "seo": "Bom",
           "dynamicContent": "Alto",
@@ -829,7 +854,7 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
-          "introduced": "Next.js 14.1",
+          "introduced": "Next.js 14.1 | Remix N/A | TanStack Start N/A",
           "initialSpeed": "Ótimo",
           "seo": "Ótimo",
           "dynamicContent": "Alto",
@@ -891,7 +916,7 @@
     },
     "ebookCta": "Obter Meu E-book Grátis 📚",
     "ebookTrust": "Confiado por mais de 2.000 desenvolvedores • Sem spam, prometemos",
-    "copyright": "Demonstração de Estratégias de Renderização Next.js. Criado por Emerson Braun, última atualização em {date}",
+    "copyright": "Demonstração de Estratégias de Renderização React. Criado por Emerson Braun, última atualização em {date}",
     "navigation": {
       "strategies": "Estratégias"
     }

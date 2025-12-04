@@ -35,18 +35,18 @@
   "pages": {
     "home": {
       "hero": {
-        "title": "Next.js Rendering Strategies",
+        "title": "React Rendering Strategies",
         "subtitle": "SSR, SSG, ISR, and Beyond",
         "cta": "Start Learning 🚀",
         "secondaryCta": "View Comparison"
       },
       "strategies": {
         "title": "Explore Rendering Strategies",
-        "description": "Next.js offers multiple rendering strategies to optimize your application's performance, SEO, and user experience. From Client-Side Rendering (CSR) for interactive applications to Static Site Generation (SSG) for maximum performance, Server-Side Rendering (SSR) for dynamic content, and modern approaches like React Server Components (RSC), Streaming, and Partial Prerendering (PPR). Each strategy has its own strengths and use cases, allowing you to choose the best approach for your specific needs."
+        "description": "React offers multiple rendering strategies to optimize your application's performance, SEO, and user experience. From Client-Side Rendering (CSR) for interactive applications to Static Site Generation (SSG) for maximum performance, Server-Side Rendering (SSR) for dynamic content, and modern approaches like React Server Components (RSC), Streaming, and Partial Prerendering (PPR). Each strategy has its own strengths and use cases, allowing you to choose the best approach for your specific needs."
       },
       "features": {
         "title": "Why Use This Guide?",
-        "subtitle": "Everything you need to master Next.js rendering",
+        "subtitle": "Everything you need to master React rendering",
         "interactive": {
           "title": "Interactive Demos",
           "description": "See each strategy in action with live examples and visual diagrams"
@@ -66,7 +66,7 @@
       },
       "whatIs": {
         "title": "What is this project?",
-        "description": "This Next.js Rendering Strategies guide is your comprehensive companion for understanding different rendering approaches. Each strategy is presented with interactive demos showcasing Use Cases, Key Points, and Comparisons. This organization helps you quickly understand when to use each approach, what's important to know for building performant applications, and how different strategies relate to each other.",
+        "description": "This React Rendering Strategies guide is your comprehensive companion for understanding different rendering approaches. Each strategy is presented with interactive demos showcasing Use Cases, Key Points, and Comparisons. This organization helps you quickly understand when to use each approach, what's important to know for building performant applications, and how different strategies relate to each other.",
         "cta": "Explore Strategies ✨"
       },
       "explore": {
@@ -93,9 +93,9 @@
           "description": "Use ISR, RSC, or PPR for optimal performance"
         }
       },
-      "title": "Next.js Rendering Strategies",
+      "title": "React Rendering Strategies",
       "subtitle": "Explore different rendering approaches and their trade-offs",
-      "description": "This demo showcases various Next.js rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR. Each page demonstrates the unique characteristics and use cases of different rendering approaches.",
+      "description": "This demo showcases various React rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR. Each page demonstrates the unique characteristics and use cases of different rendering approaches.",
       "getStarted": "Get Started",
       "learnMore": "Learn More"
     },
@@ -162,13 +162,38 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "CSR uses client-side components with React hooks for interactivity.",
-        "points": [
-          "Use 'use client' directive at the top of the file",
-          "Components can use React hooks (useState, useEffect, etc.)",
-          "Data fetching happens on the client side",
-          "Perfect for interactive features and dynamic updates"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "CSR uses client-side components with React hooks for interactivity.",
+            "code": "\"use client\";\n\nimport { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "Use 'use client' directive at the top of the file",
+              "Components can use React hooks (useState, useEffect, etc.)",
+              "Data fetching happens on the client side",
+              "Perfect for interactive features and dynamic updates"
+            ]
+          },
+          "remix": {
+            "description": "CSR in Remix uses client-side components with React hooks.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "No 'use client' directive needed in Remix",
+              "Components can use React hooks (useState, useEffect, etc.)",
+              "Data fetching happens on the client side",
+              "Use Remix's clientLoader for client-side data loading"
+            ]
+          },
+          "tanstack": {
+            "description": "CSR in TanStack Start uses client-side components with React hooks.",
+            "code": "import { useState, useEffect } from \"react\";\n\nexport default function ClientComponent() {\n  const [data, setData] = useState(null);\n\n  useEffect(() => {\n    fetch(\"/api/data\")\n      .then((res) => res.json())\n      .then((data) => setData(data));\n  }, []);\n\n  return <div>{data?.message}</div>;\n}",
+            "points": [
+              "No 'use client' directive needed in TanStack Start",
+              "Components can use React hooks (useState, useEffect, etc.)",
+              "Data fetching happens on the client side",
+              "Use TanStack Query for client-side data management"
+            ]
+          }
+        }
       }
     },
     "ssr": {
@@ -229,13 +254,38 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "SSR uses async Server Components. In App Router, dynamic rendering is the default for pages with dynamic data.",
-        "points": [
-          "Components are async functions (no 'use client' directive)",
-          "Cannot use React hooks (useState, useEffect, etc.)",
-          "Use async fetch() for data fetching on the server",
-          "Data fetching happens on the server for each request"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "SSR uses async Server Components. In App Router, dynamic rendering is the default for pages with dynamic data.",
+            "code": "export const dynamic = \"force-dynamic\";\n\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Components are async functions (no 'use client' directive)",
+              "Cannot use React hooks (useState, useEffect, etc.)",
+              "Use async fetch() for data fetching on the server",
+              "Data fetching happens on the server for each request"
+            ]
+          },
+          "remix": {
+            "description": "SSR in Remix uses loader functions to fetch data on the server.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return json(data);\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use loader function to fetch data on the server",
+              "Use useLoaderData hook to access data in components",
+              "Data is fetched on the server for each request",
+              "Components are rendered on the server"
+            ]
+          },
+          "tanstack": {
+            "description": "SSR in TanStack Start uses loader functions to fetch data on the server.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader(async () => {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return data;\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use createLoader to define server-side data fetching",
+              "Use loader.use() hook to access data in components",
+              "Data is fetched on the server for each request",
+              "Components are rendered on the server"
+            ]
+          }
+        }
       }
     },
     "ssg": {
@@ -320,15 +370,38 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "SSG uses async Server Components pre-rendered at build time. For dynamic routes like [id], use generateStaticParams() to generate all static pages at build.",
-        "exampleWithDynamicRoute": "Example with dynamic route [id]:",
-        "simpleExample": "Simple example (static page):",
-        "points": [
-          "Components are async functions (no 'use client' directive)",
-          "Cannot use React hooks (useState, useEffect, etc.)",
-          "Use 'cache: \"force-cache\"' in fetch for static data",
-          "Pages are generated at build time, not on request"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "SSG uses async Server Components pre-rendered at build time. For dynamic routes like [id], use generateStaticParams() to generate all static pages at build.",
+            "code": "// app/posts/[id]/page.tsx\nexport async function generateStaticParams() {\n  return fetch('https://api.example.com/posts').then(res => res.json());\n}\n\nexport default async function PostPage({ params }: { params: Promise<{ id: string }> }) {\n  const { id } = await params;\n  const post = await fetch(`https://api.example.com/posts/${id}`).then(res => res.json());\n  return <article>{post.content}</article>;\n}",
+            "points": [
+              "Components are async functions (no 'use client' directive)",
+              "Cannot use React hooks (useState, useEffect, etc.)",
+              "Use 'cache: \"force-cache\"' in fetch for static data",
+              "Pages are generated at build time, not on request"
+            ]
+          },
+          "remix": {
+            "description": "SSG in Remix uses build-time static generation via cache headers.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\", {\n    headers: { \"Cache-Control\": \"public, max-age=31536000\" }\n  });\n  const data = await res.json();\n  return json(data, {\n    headers: { \"Cache-Control\": \"public, max-age=31536000\" }\n  });\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use loader function with cache headers",
+              "Set appropriate Cache-Control headers",
+              "Pages are pre-rendered at build time",
+              "Use Remix's build-time generation features"
+            ]
+          },
+          "tanstack": {
+            "description": "SSG in TanStack Start uses build-time static generation.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    const data = await res.json();\n    return data;\n  },\n  gcTime: Infinity\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use createLoader with static generation config",
+              "Set gcTime to Infinity for static content",
+              "Pages are pre-rendered at build time",
+              "Use TanStack Start's build-time generation"
+            ]
+          }
+        }
       }
     },
     "isr": {
@@ -392,15 +465,39 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "ISR uses async Server Components with page-level revalidation. Use generateStaticParams for dynamic routes.",
-        "points": [
-          "Components are async functions (no 'use client' directive)",
-          "Cannot use React hooks (useState, useEffect, etc.)",
-          "Add 'export const revalidate = 3600' at page level (1 hour)",
-          "Use generateStaticParams() for dynamic routes",
-          "Use revalidatePath() or revalidateTag() for on-demand revalidation",
-          "Set 'dynamic = \"force-static\"' for static generation with revalidation"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "ISR uses async Server Components with page-level revalidation. Use generateStaticParams for dynamic routes.",
+            "code": "export const revalidate = 3600; // 1 hour\n\nexport async function generateStaticParams() {\n  return [{ id: \"1\" }, { id: \"2\" }];\n}\n\nexport default async function ISRComponent({ params }: { params: { id: string } }) {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Components are async functions (no 'use client' directive)",
+              "Cannot use React hooks (useState, useEffect, etc.)",
+              "Add 'export const revalidate = 3600' at page level (1 hour)",
+              "Use generateStaticParams() for dynamic routes",
+              "Use revalidatePath() or revalidateTag() for on-demand revalidation"
+            ]
+          },
+          "remix": {
+            "description": "ISR in Remix uses cache headers with revalidation intervals.",
+            "code": "import { json } from \"@remix-run/node\";\nimport { useLoaderData } from \"@remix-run/react\";\n\nexport async function loader() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return json(data, {\n    headers: { \"Cache-Control\": \"public, s-maxage=3600, stale-while-revalidate\" }\n  });\n}\n\nexport default function Page() {\n  const data = useLoaderData<typeof loader>();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use Cache-Control headers with s-maxage",
+              "Use stale-while-revalidate for background updates",
+              "Content regenerates in background after interval",
+              "Use Remix's cache management features"
+            ]
+          },
+          "tanstack": {
+            "description": "ISR in TanStack Start uses custom revalidation logic.",
+            "code": "import { createLoader } from \"@tanstack/start\";\n\nexport const loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    const data = await res.json();\n    return data;\n  },\n  gcTime: 3600000,\n  staleTime: 3600000\n});\n\nexport default function Page() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use createLoader with gcTime and staleTime",
+              "Set revalidation intervals",
+              "Content regenerates in background",
+              "Use TanStack Start's cache revalidation"
+            ]
+          }
+        }
       }
     },
     "rsc": {
@@ -469,13 +566,38 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "RSC uses Server Components by default in App Router. Server Components cannot import Client Components.",
-        "points": [
-          "Server Components are async functions (default, no directive needed)",
-          "Cannot use React hooks in Server Components",
-          "Add 'use client' directive only when you need interactivity",
-          "Server Components can fetch data directly, Client Components use hooks"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "RSC uses Server Components by default in App Router. Server Components cannot import Client Components.",
+            "code": "// Server Component (default)\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n\n  return (\n    <div>\n      <h1>{data.title}</h1>\n      <ClientComponent data={data} />\n    </div>\n  );\n}\n\n// Client Component (when needed)\n\"use client\";\nimport { useState } from \"react\";\n\nexport function ClientComponent({ data }: { data: any }) {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}",
+            "points": [
+              "Server Components are async functions (default, no directive needed)",
+              "Cannot use React hooks in Server Components",
+              "Add 'use client' directive only when you need interactivity",
+              "Server Components can fetch data directly, Client Components use hooks"
+            ]
+          },
+          "remix": {
+            "description": "RSC support in Remix via React Server Components.",
+            "code": "// Server Component\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Server Components are async functions",
+              "Cannot use React hooks in Server Components",
+              "Use loader for server-side data fetching",
+              "Remix supports React Server Components"
+            ]
+          },
+          "tanstack": {
+            "description": "RSC support planned in TanStack Start.",
+            "code": "// Server Component (planned)\nexport default async function ServerComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "RSC support is planned for TanStack Start",
+              "Server Components will be async functions",
+              "Use loaders for server-side data fetching",
+              "Check TanStack Start documentation for updates"
+            ]
+          }
+        }
       }
     },
     "streaming": {
@@ -553,15 +675,39 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "Streaming uses Suspense boundaries with async Server Components. Cannot use hooks in Suspense boundaries.",
-        "points": [
-          "Components are async functions (no 'use client' directive)",
-          "Cannot use React hooks (including use hook) in Server Components",
-          "Wrap async components with Suspense and provide fallback",
-          "Use loading.js for route-level loading states",
-          "Content streams to the client as it becomes available",
-          "Works seamlessly with RSC and fetch options (revalidate)"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "Streaming uses Suspense boundaries with async Server Components. Cannot use hooks in Suspense boundaries.",
+            "code": "import { Suspense } from \"react\";\n\nexport default async function StreamingPage() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <AsyncComponent />\n      </Suspense>\n    </div>\n  );\n}\n\nasync function AsyncComponent() {\n  const res = await fetch(\"https://api.example.com/data\");\n  const data = await res.json();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Components are async functions (no 'use client' directive)",
+              "Cannot use React hooks (including use hook) in Server Components",
+              "Wrap async components with Suspense and provide fallback",
+              "Use loading.js for route-level loading states",
+              "Content streams to the client as it becomes available"
+            ]
+          },
+          "remix": {
+            "description": "Streaming in Remix uses Suspense boundaries with deferred data.",
+            "code": "import { defer } from \"@remix-run/node\";\nimport { useLoaderData, Await } from \"@remix-run/react\";\nimport { Suspense } from \"react\";\n\nexport async function loader() {\n  const dataPromise = fetch(\"https://api.example.com/data\").then(r => r.json());\n  return defer({ data: dataPromise });\n}\n\nexport default function Page() {\n  const { data } = useLoaderData<typeof loader>();\n  return (\n    <Suspense fallback={<div>Loading...</div>}>\n      <Await resolve={data}>\n        {(data) => <div>{data.message}</div>}\n      </Await>\n    </Suspense>\n  );\n}",
+            "points": [
+              "Use defer() to create deferred promises",
+              "Use Await component with Suspense",
+              "Content streams as data becomes available",
+              "Use Remix's streaming capabilities"
+            ]
+          },
+          "tanstack": {
+            "description": "Streaming in TanStack Start uses Suspense boundaries.",
+            "code": "import { Suspense } from \"react\";\nimport { createLoader } from \"@tanstack/start\";\n\nconst loader = createLoader({\n  async load() {\n    const res = await fetch(\"https://api.example.com/data\");\n    return res.json();\n  }\n});\n\nexport default function Page() {\n  return (\n    <Suspense fallback={<div>Loading...</div>}>\n      <AsyncContent />\n    </Suspense>\n  );\n}\n\nfunction AsyncContent() {\n  const data = loader.use();\n  return <div>{data.message}</div>;\n}",
+            "points": [
+              "Use Suspense boundaries with loaders",
+              "Content streams as data loads",
+              "Use TanStack Start's streaming support",
+              "Provide fallback UI for loading states"
+            ]
+          }
+        }
       }
     },
     "ppr": {
@@ -636,15 +782,39 @@
       },
       "implementation": {
         "title": "How to implement?",
-        "description": "PPR combines static shell with dynamic content streaming. Requires React 19 and RSC. Introduced in Next.js 14.1 (experimental), stable in 15+.",
-        "points": [
-          "Enable PPR via experimental ppr setting in next.config.js",
-          "Requires React 19 and React Server Components",
-          "Wrap dynamic components in <Suspense fallback={<Skeleton />}>",
-          "Use 'use cache' directive for cacheable dynamic content",
-          "Static parts are prerendered at build time",
-          "Dynamic parts stream on request - status codes can't change post-stream"
-        ]
+        "frameworks": {
+          "nextjs": {
+            "description": "PPR combines static shell with dynamic content streaming. Requires React 19 and RSC. Introduced in Next.js 14.1 (experimental), stable in 15+.",
+            "code": "// next.config.js\nexport default {\n  experimental: {\n    ppr: true, // or cacheComponents: true\n  },\n};\n\nimport { Suspense } from \"react\";\n\nexport default function Page() {\n  return (\n    <div>\n      <StaticHeader />\n      <Suspense fallback={<Skeleton />}>\n        <DynamicContent />\n      </Suspense>\n    </div>\n  );\n}",
+            "points": [
+              "Enable PPR via experimental ppr setting in next.config.js",
+              "Requires React 19 and React Server Components",
+              "Wrap dynamic components in <Suspense fallback={<Skeleton />}>",
+              "Use 'use cache' directive for cacheable dynamic content",
+              "Static parts are prerendered at build time"
+            ]
+          },
+          "remix": {
+            "description": "PPR is not available in Remix.",
+            "code": "// PPR not available in Remix",
+            "points": [
+              "PPR is not currently supported in Remix",
+              "Use Remix's streaming and caching features instead",
+              "Consider using Remix's deferred data loading",
+              "Check Remix documentation for similar patterns"
+            ]
+          },
+          "tanstack": {
+            "description": "PPR is not available in TanStack Start.",
+            "code": "// PPR not available in TanStack Start",
+            "points": [
+              "PPR is not currently supported in TanStack Start",
+              "Use TanStack Start's streaming and caching features instead",
+              "Consider using Suspense boundaries for progressive loading",
+              "Check TanStack Start documentation for similar patterns"
+            ]
+          }
+        }
       }
     },
     "comparison": {
@@ -741,7 +911,7 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
-          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via Suspense at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js."
+          "description": "Hybrid technique (not standalone mode): Prerenders static shell at build time; streams dynamic holes via Suspense at request. Introduced in Next.js 14.1 (experimental), stable in 15+; not exclusive to 16+. Enable via cacheComponents: true in next.config.js. Not available in Remix or TanStack Start."
         }
       },
       "tableTitle": "Rendering Modes Comparison Table",
@@ -827,7 +997,7 @@
       "modes": {
         "csr": {
           "name": "Client-Side Rendering",
-          "introduced": "Traditional",
+          "introduced": "Traditional | Remix 2.17.2 | TanStack Start 1.0 RC",
           "initialSpeed": "Slow",
           "seo": "Poor",
           "dynamicContent": "High",
@@ -837,7 +1007,7 @@
         },
         "ssr": {
           "name": "Server-Side Rendering",
-          "introduced": "Traditional",
+          "introduced": "Traditional | Remix 2.17.2 | TanStack Start 1.0 RC",
           "initialSpeed": "Fast",
           "seo": "Great",
           "dynamicContent": "Medium",
@@ -847,7 +1017,7 @@
         },
         "ssg": {
           "name": "Static Site Generation",
-          "introduced": "Next.js 9",
+          "introduced": "Next.js 9 | Remix 2.0 (via cache) | TanStack Start 1.0 RC",
           "initialSpeed": "Fast",
           "seo": "Great",
           "dynamicContent": "Low",
@@ -857,7 +1027,7 @@
         },
         "isr": {
           "name": "Incremental Static Regeneration",
-          "introduced": "Next.js 9.5",
+          "introduced": "Next.js 9.5 | Remix 2.0 (via cache) | TanStack Start 1.0 RC (custom)",
           "initialSpeed": "Fast",
           "seo": "Great",
           "dynamicContent": "Medium",
@@ -867,7 +1037,7 @@
         },
         "rsc": {
           "name": "React Server Components",
-          "introduced": "Next.js 13",
+          "introduced": "Next.js 13 | Remix 2.17.2 | TanStack Start 1.0 RC (planned)",
           "initialSpeed": "Optimal",
           "seo": "Great",
           "dynamicContent": "High",
@@ -877,7 +1047,7 @@
         },
         "streaming": {
           "name": "Streaming",
-          "introduced": "Next.js 13",
+          "introduced": "Next.js 13 | Remix 1.15 | TanStack Start 1.0 RC",
           "initialSpeed": "Fast",
           "seo": "Good",
           "dynamicContent": "High",
@@ -887,7 +1057,7 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
-          "introduced": "Next.js 14.1",
+          "introduced": "Next.js 14.1 | Remix N/A | TanStack Start N/A",
           "initialSpeed": "Optimal",
           "seo": "Great",
           "dynamicContent": "High",
@@ -949,7 +1119,7 @@
     },
     "ebookCta": "Get My Free E-book 📚",
     "ebookTrust": "Trusted by 2,000+ developers • No spam, we promise",
-    "copyright": "Next.js Rendering Strategies Demo. Created by Emerson Braun, last updated on {date}",
+    "copyright": "React Rendering Strategies Demo. Created by Emerson Braun, last updated on {date}",
     "navigation": {
       "strategies": "Strategies"
     }

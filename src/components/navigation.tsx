@@ -6,11 +6,11 @@ import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
 import {
   type PresentationStore,
   usePresentationStore,
 } from "@/store/use-presentation-store";
-import { cn } from "@/lib/utils";
 import { LanguageSelector } from "./language-selector";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -74,7 +74,7 @@ export function Navigation() {
           <div className="flex items-center min-w-0 flex-shrink max-w-[40%] sm:max-w-none">
             <h1 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-tight truncate">
               <span className="hidden lg:inline">
-                Next.js Rendering Strategies Demo
+                React Rendering Strategies Demo
               </span>
               <span className="hidden md:inline lg:hidden">
                 Rendering Strategies
@@ -98,9 +98,7 @@ export function Navigation() {
                 size="sm"
                 asChild
               >
-                <Link href={item.href}>
-                  {item.name}
-                </Link>
+                <Link href={item.href}>{item.name}</Link>
               </Button>
             ))}
           </div>

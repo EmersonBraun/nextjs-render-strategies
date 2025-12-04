@@ -12,7 +12,5 @@ export const usePresentationStore = create<PresentationStore>((set) => ({
   isPresentationMode: false,
   togglePresentationMode: () =>
     set((state) => ({ isPresentationMode: !state.isPresentationMode })),
-  setPresentationMode: (value: boolean) =>
-    set({ isPresentationMode: value }),
+  setPresentationMode: (value: boolean) => set({ isPresentationMode: value }),
 }));
-

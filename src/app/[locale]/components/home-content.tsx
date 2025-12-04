@@ -1,9 +1,9 @@
 "use client";
 
+import { IntroSlide } from "@/components/intro-slide";
 import { SlideNavigationClient } from "@/components/slide-navigation-client";
 import { SlideSection } from "@/components/slide-section";
 import { usePresentationStore } from "@/store/use-presentation-store";
-import { IntroSlide } from "@/components/intro-slide";
 
 interface HomeContentProps {
   title: string;
@@ -25,11 +25,7 @@ export function HomeContent({ title, subtitle, children }: HomeContentProps) {
         <SlideNavigationClient sectionIds={sectionIds} />
         <div className="max-w-7xl mx-auto">
           <SlideSection id="intro">
-            <IntroSlide
-              title={title}
-              description={subtitle}
-              showGradient
-            />
+            <IntroSlide title={title} description={subtitle} showGradient />
           </SlideSection>
         </div>
       </>
@@ -39,4 +35,3 @@ export function HomeContent({ title, subtitle, children }: HomeContentProps) {
   // Normal mode: show full content
   return <>{children}</>;
 }
-

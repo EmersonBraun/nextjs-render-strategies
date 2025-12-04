@@ -35,7 +35,7 @@
   "pages": {
     "home": {
       "hero": {
-        "title": "Estrategias de Renderizado Next.js",
+        "title": "Estrategias de Renderizado React",
         "subtitle": "SSR, SSG, ISR y Más",
         "cta": "Comenzar a Aprender 🚀",
         "secondaryCta": "Ver Comparación"
@@ -43,7 +43,7 @@
       "strategies": {
         "title": "Explorar Estrategias de Renderizado",
         "subtitle": "Haz clic en cualquier estrategia para aprender más sobre su implementación, beneficios y casos de uso",
-        "description": "Next.js ofrece múltiples estrategias de renderizado para optimizar el rendimiento, SEO y experiencia del usuario de tu aplicación. Desde Renderizado del Lado del Cliente (CSR) para aplicaciones interactivas hasta Generación de Sitios Estáticos (SSG) para máximo rendimiento, Renderizado del Lado del Servidor (SSR) para contenido dinámico, y enfoques modernos como Componentes del Servidor React (RSC), Streaming y Prerenderizado Parcial (PPR). Cada estrategia tiene sus propias fortalezas y casos de uso, permitiéndote elegir el mejor enfoque para tus necesidades específicas.",
+        "description": "React ofrece múltiples estrategias de renderizado para optimizar el rendimiento, SEO y experiencia del usuario de tu aplicación. Desde Renderizado del Lado del Cliente (CSR) para aplicaciones interactivas hasta Generación de Sitios Estáticos (SSG) para máximo rendimiento, Renderizado del Lado del Servidor (SSR) para contenido dinámico, y enfoques modernos como Componentes del Servidor React (RSC), Streaming y Prerenderizado Parcial (PPR). Cada estrategia tiene sus propias fortalezas y casos de uso, permitiéndote elegir el mejor enfoque para tus necesidades específicas.",
         "csr": {
           "name": "Renderizado del Lado del Cliente",
           "description": "Renderizar páginas en el navegador después de cargar JavaScript",
@@ -82,7 +82,7 @@
       },
       "features": {
         "title": "¿Por Qué Usar Esta Guía?",
-        "subtitle": "Todo lo que necesitas para dominar el renderizado Next.js",
+        "subtitle": "Todo lo que necesitas para dominar el renderizado React",
         "interactive": {
           "title": "Demostraciones Interactivas",
           "description": "Ve cada estrategia en acción con ejemplos en vivo y diagramas visuales"
@@ -102,7 +102,7 @@
       },
       "whatIs": {
         "title": "¿Qué es este proyecto?",
-        "description": "Esta guía de Estrategias de Renderizado Next.js es tu compañero completo para entender diferentes enfoques de renderizado. Cada estrategia se presenta con demostraciones interactivas mostrando Casos de Uso, Puntos Clave y Comparaciones. Esta organización te ayuda a entender rápidamente cuándo usar cada enfoque, qué es importante saber para construir aplicaciones de alto rendimiento y cómo se relacionan entre sí las diferentes estrategias.",
+        "description": "Esta guía de Estrategias de Renderizado React es tu compañero completo para entender diferentes enfoques de renderizado. Cada estrategia se presenta con demostraciones interactivas mostrando Casos de Uso, Puntos Clave y Comparaciones. Esta organización te ayuda a entender rápidamente cuándo usar cada enfoque, qué es importante saber para construir aplicaciones de alto rendimiento y cómo se relacionan entre sí las diferentes estrategias.",
         "cta": "Explorar Estrategias ✨"
       },
       "explore": {
@@ -129,9 +129,9 @@
           "description": "Usa ISR, RSC o PPR para rendimiento óptimo"
         }
       },
-      "title": "Estrategias de Renderizado Next.js",
+      "title": "Estrategias de Renderizado React",
       "subtitle": "Explora diferentes enfoques de renderizado y sus compensaciones",
-      "description": "Esta demostración muestra varias estrategias de renderizado Next.js incluyendo CSR, SSR, SSG, ISR, RSC, Streaming y PPR. Cada página demuestra las características únicas y casos de uso de diferentes enfoques de renderizado.",
+      "description": "Esta demostración muestra varias estrategias de renderizado React incluyendo CSR, SSR, SSG, ISR, RSC, Streaming y PPR. Cada página demuestra las características únicas y casos de uso de diferentes enfoques de renderizado.",
       "getStarted": "Comenzar",
       "learnMore": "Saber Más"
     },
@@ -763,7 +763,7 @@
       "modes": {
         "csr": {
           "name": "Client-Side Rendering",
-          "introduced": "Tradicional",
+          "introduced": "Tradicional | Remix 2.17.2 | TanStack Start 1.0 RC",
           "initialSpeed": "Lento",
           "seo": "Pobre",
           "dynamicContent": "Alto",
@@ -773,7 +773,7 @@
         },
         "ssr": {
           "name": "Server-Side Rendering",
-          "introduced": "Tradicional",
+          "introduced": "Tradicional | Remix 2.17.2 | TanStack Start 1.0 RC",
           "initialSpeed": "Rápido",
           "seo": "Excelente",
           "dynamicContent": "Alto",
@@ -783,7 +783,7 @@
         },
         "ssg": {
           "name": "Static Site Generation",
-          "introduced": "Next.js 9",
+          "introduced": "Next.js 9 | Remix 2.0 (via cache) | TanStack Start 1.0 RC",
           "initialSpeed": "Rápido",
           "seo": "Excelente",
           "dynamicContent": "Bajo",
@@ -793,7 +793,7 @@
         },
         "isr": {
           "name": "Incremental Static Regeneration",
-          "introduced": "Next.js 9.5",
+          "introduced": "Next.js 9.5 | Remix 2.0 (via cache) | TanStack Start 1.0 RC (custom)",
           "initialSpeed": "Rápido",
           "seo": "Excelente",
           "dynamicContent": "Medio",
@@ -803,7 +803,7 @@
         },
         "rsc": {
           "name": "React Server Components",
-          "introduced": "Next.js 13",
+          "introduced": "Next.js 13 | Remix 1.15 | TanStack Start 1.0 RC",
           "initialSpeed": "Óptimo",
           "seo": "Excelente",
           "dynamicContent": "Alto",
@@ -817,7 +817,7 @@
         },
         "streaming": {
           "name": "Streaming",
-          "introduced": "Next.js 13",
+          "introduced": "Next.js 13 | Remix 1.15 | TanStack Start 1.0 RC",
           "initialSpeed": "Rápido",
           "seo": "Bueno",
           "dynamicContent": "Alto",
@@ -827,7 +827,7 @@
         },
         "ppr": {
           "name": "Partial Prerendering",
-          "introduced": "Next.js 14.1",
+          "introduced": "Next.js 14.1 | Remix N/A | TanStack Start N/A",
           "initialSpeed": "Óptimo",
           "seo": "Excelente",
           "dynamicContent": "Alto",
@@ -889,7 +889,7 @@
     },
     "ebookCta": "Obtener Mi E-book Gratis 📚",
     "ebookTrust": "Confiado por más de 2.000 desarrolladores • Sin spam, lo prometemos",
-    "copyright": "Demostración de Estrategias de Renderizado Next.js. Creado por Emerson Braun, última actualización el {date}",
+    "copyright": "Demostración de Estrategias de Renderizado React. Creado por Emerson Braun, última actualización el {date}",
     "navigation": {
       "strategies": "Estrategias"
     }

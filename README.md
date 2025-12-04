@@ -1,6 +1,6 @@
-# Next.js Rendering Strategies
+# React Rendering Strategies
 
-A comprehensive, interactive guide to understanding and implementing different Next.js rendering strategies. This project demonstrates various rendering approaches with live examples, visual diagrams, and detailed comparisons.
+A comprehensive, interactive guide to understanding and implementing different React rendering strategies. This project demonstrates various rendering approaches with live examples, visual diagrams, and detailed comparisons.
 
 🌐 **Live Demo**: [render-strategies.emersonbraun.dev](https://render-strategies.emersonbraun.dev)  
 📦 **Repository**: [github.com/emersonbraun/nextjs-render-strategies](https://github.com/emersonbraun/nextjs-render-strategies)
@@ -27,8 +27,10 @@ A comprehensive, interactive guide to understanding and implementing different N
 
 ## 🛠️ Tech Stack
 
-- [Next.js 16](https://nextjs.org/) - React framework with App Router
+- [Next.js 16](https://nextjs.org/) - React framework with App Router (used for this demo)
 - [React 19](https://react.dev/) - UI library
+- [Remix](https://remix.run/) - Full-stack web framework
+- [TanStack Start](https://tanstack.com/start) - Full-stack React framework
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 - [next-intl](https://next-intl-docs.vercel.app/) - Internationalization
 - [Tailwind CSS](https://tailwindcss.com/) - Styling

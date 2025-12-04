@@ -1,7 +1,7 @@
 {
   "name": "nextjs-render-strategies",
   "version": "1.0.0",
-  "description": "Comprehensive guide and interactive demos for Next.js rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR",
+  "description": "Comprehensive guide and interactive demos for React rendering strategies including CSR, SSR, SSG, ISR, RSC, Streaming, and PPR",
   "private": true,
   "author": "Emerson Braun",
   "keywords": [
