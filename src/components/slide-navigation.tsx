@@ -265,7 +265,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     } else {
       // Navigate to previous page
       const currentPage = getCurrentPage();
-      const previousPage = getPreviousPage(currentPage);
+      const previousPage = getPreviousPage(currentPage, isPresentationMode);
       if (previousPage) {
         const path = getPagePath(previousPage);
         router.push(`${path}#intro`);
@@ -299,7 +299,7 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
     } else {
       // Navigate to next page
       const currentPage = getCurrentPage();
-      const nextPage = getNextPage(currentPage);
+      const nextPage = getNextPage(currentPage, isPresentationMode);
       if (nextPage) {
         const path = getPagePath(nextPage);
         router.push(`${path}#intro`);
@@ -346,10 +346,11 @@ export function SlideNavigationContent({ sectionIds }: SlideNavigationProps) {
   // Can go previous if not at first slide, or if there's a previous page, or if we can go to home
   const canGoPrevious =
     actualIndex > 0 ||
-    getPreviousPage(currentPage) !== null ||
+    getPreviousPage(currentPage, isPresentationMode) !== null ||
     currentPage !== null;
   const canGoNext =
-    actualIndex < sectionIds.length - 1 || getNextPage(currentPage) !== null;
+    actualIndex < sectionIds.length - 1 ||
+    getNextPage(currentPage, isPresentationMode) !== null;
 
   // Only render if in presentation mode
   if (!isPresentationMode || sectionIds.length === 0) {
